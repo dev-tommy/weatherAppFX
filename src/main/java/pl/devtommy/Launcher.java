@@ -16,6 +16,8 @@ public class Launcher extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("MainWindow"));
         stage.setScene(scene);
+        stage.setTitle("Prognoza pogody");
+        stage.setResizable(false);
         stage.show();
     }
 
