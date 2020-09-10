@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -16,8 +18,9 @@ public class Launcher extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("MainWindow"));
         scene.getStylesheets().add(loadStyle("style"));
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
-        stage.setTitle("Prognoza pogody");
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
         stage.show();
     }
