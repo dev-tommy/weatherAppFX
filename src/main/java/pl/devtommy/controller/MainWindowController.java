@@ -1,14 +1,17 @@
 package pl.devtommy.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class MainWindowController {
 
     @FXML
-    private ChoiceBox<?> countryChoiceBox;
+    void closeApp(MouseEvent event) {
+        System.out.println("Mouse Exited");
+        System.exit(0);
+    }
 
     @FXML
     private ComboBox<?> cityComboBox;
