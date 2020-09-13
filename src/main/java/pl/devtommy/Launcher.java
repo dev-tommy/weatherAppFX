@@ -17,7 +17,6 @@ public class Launcher extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("MainWindow"));
-        scene.getStylesheets().add(loadStyle("style"));
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -28,10 +27,6 @@ public class Launcher extends Application {
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
-    }
-
-    private static String loadStyle(String style) throws IOException {
-        return String.valueOf(Launcher.class.getResource(style + ".css"));
     }
 
     public static void main(String[] args) {
