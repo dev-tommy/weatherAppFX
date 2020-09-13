@@ -15,7 +15,7 @@
             <Pane layoutY="200.0" prefHeight="175.0" prefWidth="400.0" styleClass="btm-pane" AnchorPane.bottomAnchor="0.0" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Icon/weather-forecast-icons/Weather1-01.jpg" />
+                  <Image url="@../weather-forecast-iconsher1-01.jpg" />
                </image>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
