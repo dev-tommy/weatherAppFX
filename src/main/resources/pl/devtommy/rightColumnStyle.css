@@ -1,8 +1,8 @@
 .anchorpane {
-    -fx-background-color: white;
+    -fx-background-color: #EEEEEE;
     -fx-background-radius: 0px 10px 10px 0px;
 }
 .btm-pane{
-    -fx-background-color: #2E3335;
+    -fx-background-color: #103335;
     -fx-background-radius: 0px 0px 10px 0px;
 }
