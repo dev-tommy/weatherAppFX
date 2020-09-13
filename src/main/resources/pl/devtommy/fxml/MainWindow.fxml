@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.devtommy.controller.MainWindowController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="400.0" styleClass="anchorpane" stylesheets="@../css/leftColumnStyle.css">
+         <children>
+            <Pane layoutY="200.0" prefHeight="175.0" prefWidth="400.0" styleClass="btm-pane" AnchorPane.bottomAnchor="0.0" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon/weather-forecast-icons/Weather1-01.jpg" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="400.0" prefWidth="400.0" styleClass="anchorpane" stylesheets="@../css/rightColumnStyle.css">
+         <children>
+            <Pane layoutY="186.0" prefHeight="175.0" prefWidth="400.0" styleClass="btm-pane" AnchorPane.bottomAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
