@@ -25,7 +25,7 @@ public class Launcher extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
