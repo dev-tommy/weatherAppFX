@@ -22,15 +22,19 @@
 }
 
 .current-temperature{
-    -fx-text-fill: black;
+    -fx-text-fill: darkred;
 }
 
 .current-weather-describe{
-    -fx-text-fill: #000033a4;
+    -fx-text-fill: black;
 }
 
-.current-location{
-    -fx-text-fill: #000000a4;
+.current-city{
+    -fx-text-fill: black;
+}
+
+.current-country{
+    -fx-text-fill: black;
 }
 
 .next-days{
@@ -39,5 +43,5 @@
 }
 
 .next-temperature{
-    -fx-text-fill: darkgreen;
+    -fx-text-fill: green;
 }
