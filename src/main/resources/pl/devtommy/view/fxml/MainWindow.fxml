@@ -27,9 +27,9 @@
                   <ColorAdjust brightness="0.46" saturation="0.14" />
                </effect>
             </ImageView>
-            <Pane layoutY="200.0" prefHeight="175.0" prefWidth="400.0" styleClass="next-pane" AnchorPane.bottomAnchor="0.0">
+            <Pane layoutY="200.0" prefHeight="175.0" prefWidth="400.0" styleClass="next-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="225.0">
                <children>
-                  <HBox layoutX="-2.0" layoutY="-2.0" prefHeight="175.0" prefWidth="400.0">
+                  <HBox prefHeight="175.0" prefWidth="400.0">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="175.0" prefWidth="108.0">
                            <children>
@@ -190,7 +190,7 @@
                      </children>
                   </HBox>
                </children></Pane>
-            <ImageView fitHeight="150.0" fitWidth="203.0" layoutX="125.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="MULTIPLY" fitHeight="150.0" fitWidth="203.0" layoutX="101.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/weather/cloudy_day_100px.png" />
                </image>
@@ -201,27 +201,32 @@
                   <Rectangle2D />
                </viewport>
             </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="35.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#refreshLeftWeather" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="refreshLeftImageView" blendMode="MULTIPLY" fitHeight="54.0" fitWidth="35.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#refreshLeftWeather" onMouseEntered="#refreshLeftOnMouseEntered" onMouseExited="#refreshLeftOnMouseExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/refresh_32px.png" />
                </image>
             </ImageView>
-            <Label layoutX="14.0" layoutY="119.0" styleClass="current-temperature" text="23°" textFill="#005ff5">
+            <Label layoutX="14.0" layoutY="128.0" styleClass="current-temperature" text="23°" textFill="#005ff5">
                <font>
                   <Font name="Calibri" size="61.0" />
                </font>
             </Label>
-            <Label layoutX="112.0" layoutY="123.0" styleClass="current-weather-describe" text="Cloudy sky" textAlignment="CENTER" textFill="#000000a4">
+            <Label layoutX="112.0" layoutY="113.0" styleClass="current-weather-describe" text="Cloudy sky" textAlignment="CENTER" textFill="#000000a4">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="112.0" layoutY="169.0" styleClass="current-location" text="Polska, Poznań" textAlignment="CENTER" textFill="#000000a4">
+            <Label layoutX="138.0" layoutY="190.0" styleClass="current-country" text="Poland" textAlignment="CENTER" textFill="#000000a4">
                <font>
-                  <Font name="System Italic" size="14.0" />
+                  <Font name="System Italic" size="13.0" />
                </font>
             </Label>
-            <VBox layoutX="275.0" layoutY="124.0" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
+            <Label layoutX="138.0" layoutY="161.0" styleClass="current-city" text="Poznan" textAlignment="CENTER" textFill="#000000a4">
+               <font>
+                  <Font name="System Italic" size="19.0" />
+               </font>
+            </Label>
+            <VBox layoutX="272.0" layoutY="113.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.99" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="115.0" styleClass="current-month" text="Sep" textAlignment="CENTER">
                      <font>
@@ -242,6 +247,16 @@
                   </DropShadow>
                </effect>
             </VBox>
+            <ImageView fx:id="leftCityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="112.0" layoutY="165.0" onMouseClicked="#changeLeftCity" onMouseEntered="#changeLeftCityOnMouseEntered" onMouseExited="#changeLeftCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon/system/city_32px.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="leftCountryImageView" blendMode="MULTIPLY" fitHeight="40.0" fitWidth="19.0" layoutX="112.0" layoutY="190.0" onMouseClicked="#changeLeftCountry" onMouseEntered="#leftCountryOnMouseEntered" onMouseExited="#leftCountryOnMouseExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon/system/location_32px.png" />
+               </image>
+            </ImageView>
          </children>
          <effect>
             <DropShadow />
@@ -257,15 +272,239 @@
                   <ColorAdjust brightness="0.46" saturation="0.14" />
                </effect>
             </ImageView>
-            <Pane layoutY="186.0" prefHeight="175.0" prefWidth="400.0" styleClass="btm-pane" AnchorPane.bottomAnchor="0.0" />
-            <ImageView fx:id="closeIconImageView" fitHeight="35.0" fitWidth="35.0" layoutX="351.0" layoutY="16.0" onMouseClicked="#closeApp" onMouseEntered="#changeBigCloseIcon" onMouseExited="#changeNormalCloseIcon" pickOnBounds="true" preserveRatio="true" styleClass="close-button">
+            <Pane layoutY="186.0" prefHeight="175.0" prefWidth="400.0" styleClass="next-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="225.0">
+               <children>
+                  <HBox prefHeight="175.0" prefWidth="400.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="175.0" prefWidth="108.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="TOP" lineSpacing="5.0" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="15" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                       <effect>
+                                          <InnerShadow />
+                                       </effect>
+                                    </Label>
+                                 </children>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </VBox>
+                              <ImageView fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/weather/cloudy_day_100px.png" />
+                                 </image>
+                                 <effect>
+                                    <ColorAdjust brightness="0.69" />
+                                 </effect>
+                              </ImageView>
+                              <Label styleClass="next-temperature" text="23°" textAlignment="CENTER" textFill="#005ff5">
+                                 <font>
+                                    <Font name="Calibri" size="50.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow blurType="GAUSSIAN">
+                                 <input>
+                                    <Blend />
+                                 </input>
+                              </DropShadow>
+                           </effect>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="175.0" prefWidth="108.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="16" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                       <effect>
+                                          <InnerShadow />
+                                       </effect>
+                                    </Label>
+                                 </children>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </VBox>
+                              <ImageView fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/weather/rain_100px.png" />
+                                 </image>
+                                 <effect>
+                                    <ColorAdjust brightness="0.69" />
+                                 </effect>
+                              </ImageView>
+                              <Label styleClass="next-temperature" text="14°" textAlignment="CENTER" textFill="#005ff5">
+                                 <font>
+                                    <Font name="Calibri" size="50.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow>
+                                 <input>
+                                    <Blend />
+                                 </input>
+                              </DropShadow>
+                           </effect>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="118.0" layoutY="10.0" prefHeight="175.0" prefWidth="108.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="17" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                       <effect>
+                                          <InnerShadow />
+                                       </effect>
+                                    </Label>
+                                 </children>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </VBox>
+                              <ImageView fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/weather/sun_100px.png" />
+                                 </image>
+                                 <effect>
+                                    <ColorAdjust brightness="0.69" />
+                                 </effect>
+                              </ImageView>
+                              <Label styleClass="next-temperature" text="19°" textAlignment="CENTER" textFill="#005ff5">
+                                 <font>
+                                    <Font name="Calibri" size="50.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow>
+                                 <input>
+                                    <Blend />
+                                 </input>
+                              </DropShadow>
+                           </effect>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="226.0" layoutY="10.0" prefHeight="175.0" prefWidth="108.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="18" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                       <effect>
+                                          <InnerShadow />
+                                       </effect>
+                                    </Label>
+                                 </children>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </VBox>
+                              <ImageView fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Icon/weather/storm_100px.png" />
+                                 </image>
+                                 <effect>
+                                    <ColorAdjust brightness="0.69" />
+                                 </effect>
+                              </ImageView>
+                              <Label styleClass="next-temperature" text="21°" textAlignment="CENTER" textFill="#005ff5">
+                                 <font>
+                                    <Font name="Calibri" size="50.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow>
+                                 <input>
+                                    <Blend />
+                                 </input>
+                              </DropShadow>
+                           </effect>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children></Pane>
+            <ImageView fx:id="closeAppImageView" blendMode="MULTIPLY" fitHeight="35.0" fitWidth="35.0" layoutX="351.0" layoutY="16.0" onMouseClicked="#closeApp" onMouseEntered="#closeAppOnMouseEntered" onMouseExited="#closeAppOnMouseExited" pickOnBounds="true" preserveRatio="true" styleClass="close-button">
                <image>
                   <Image url="@../Icon/system/cancel_32px.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="35.0" layoutX="14.0" layoutY="16.0" onMouseClicked="#refreshRightWeather" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="refreshRightImageView" blendMode="MULTIPLY" fitHeight="54.0" fitWidth="35.0" layoutX="14.0" layoutY="16.0" onMouseClicked="#refreshRightWeather" onMouseEntered="#refreshRightOnMouseEntered" onMouseExited="#refreshRightOnMouseExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/refresh_32px.png" />
+               </image>
+            </ImageView>
+            <ImageView blendMode="MULTIPLY" fitHeight="150.0" fitWidth="203.0" layoutX="114.0" layoutY="-24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon/weather/cloudy_day_100px.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <Label layoutX="21.0" layoutY="126.0" styleClass="current-temperature" text="23°" textFill="#005ff5">
+               <font>
+                  <Font name="Calibri" size="61.0" />
+               </font>
+            </Label>
+            <VBox layoutX="272.0" layoutY="116.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.99" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="115.0" styleClass="current-month" text="Sep" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="114.0" styleClass="current-day" text="Mo, 14">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow>
+                     <input>
+                        <Blend />
+                     </input>
+                  </DropShadow>
+               </effect>
+            </VBox>
+            <Label layoutX="118.0" layoutY="116.0" styleClass="current-weather-describe" text="Cloudy sky" textAlignment="CENTER" textFill="#000000a4">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="147.0" layoutY="193.0" styleClass="current-country" text="Poland" textAlignment="CENTER" textFill="#000000a4">
+               <font>
+                  <Font name="System Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="147.0" layoutY="162.0" styleClass="current-city" text="Poznan" textAlignment="CENTER" textFill="#000000a4">
+               <font>
+                  <Font name="System Italic" size="19.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="rightCityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="118.0" layoutY="167.0" onMouseEntered="#changeRightityOnMouseEntered" onMouseExited="#changeRightCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon/system/city_32px.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="rightCountryImageView" blendMode="MULTIPLY" fitHeight="40.0" fitWidth="19.0" layoutX="118.0" layoutY="191.0" onMouseClicked="#changeRightCountry" onMouseExited="#rightCountryOnMouseExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icon/system/location_32px.png" />
                </image>
             </ImageView>
          </children>
