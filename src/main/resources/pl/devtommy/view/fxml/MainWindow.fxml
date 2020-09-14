@@ -247,7 +247,7 @@
                   </DropShadow>
                </effect>
             </VBox>
-            <ImageView fx:id="leftCityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="112.0" layoutY="165.0" onMouseClicked="#changeLeftCity" onMouseEntered="#changeLeftCityOnMouseEntered" onMouseExited="#changeLeftCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="leftCityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="112.0" layoutY="165.0" onMouseClicked="#changeLeftCity" onMouseEntered="#leftCityOnMouseEntered" onMouseExited="#leftCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/city_32px.png" />
                </image>
@@ -497,12 +497,12 @@
                   <Font name="System Italic" size="19.0" />
                </font>
             </Label>
-            <ImageView fx:id="rightCityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="118.0" layoutY="167.0" onMouseEntered="#changeRightityOnMouseEntered" onMouseExited="#changeRightCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="rightCityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="118.0" layoutY="167.0" onMouseClicked="#changeRightCity" onMouseEntered="#rightCityOnMouseEntered" onMouseExited="#rightCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/city_32px.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="rightCountryImageView" blendMode="MULTIPLY" fitHeight="40.0" fitWidth="19.0" layoutX="118.0" layoutY="191.0" onMouseClicked="#changeRightCountry" onMouseExited="#rightCountryOnMouseExited" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="rightCountryImageView" blendMode="MULTIPLY" fitHeight="40.0" fitWidth="19.0" layoutX="118.0" layoutY="191.0" onMouseClicked="#changeRightCountry" onMouseEntered="#rightCountryOnMouseEntered" onMouseExited="#rightCountryOnMouseExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/location_32px.png" />
                </image>
