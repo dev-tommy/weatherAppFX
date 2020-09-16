@@ -4,8 +4,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class MainWindowController {
+
+    private double xMainWindowOffset;
+    private double yMainWindowOffset;
+
+    @FXML
+    private ImageView currentLeftImageView;
 
     @FXML
     private ImageView refreshLeftImageView;
@@ -170,6 +177,19 @@ public class MainWindowController {
         zoomOut(rightCountryImageView, 10);
     }
 
+    @FXML
+    void takeMouseOffsetOnMousePressed(MouseEvent event) {
+        Stage stage = (Stage) closeAppImageView.getScene().getWindow();
+        xMainWindowOffset = stage.getX() - event.getScreenX();
+        yMainWindowOffset = stage.getY() - event.getScreenY();
+    }
+
+    @FXML
+    void moveMainWindowOnMouseDragged(MouseEvent event) {
+        Stage stage = (Stage) closeAppImageView.getScene().getWindow();
+        stage.setX(event.getScreenX() + xMainWindowOffset);
+        stage.setY(event.getScreenY() + yMainWindowOffset);
+    }
 
     private void zoomIn(ImageView imageView, int size){
         imageView.setFitWidth(imageView.getFitWidth()+2*size);
