@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.devtommy.controller.MainWindowController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#moveMainWindowOnMouseDragged" onMousePressed="#takeMouseOffsetOnMousePressed" prefHeight="400.0" prefWidth="800.0" styleClass="main-hbox" stylesheets="@../css/leftColumnStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.devtommy.controller.MainWindowController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="400.0" styleClass="anchorpane" stylesheets="@../css/leftColumnStyle.css">
          <children>
-            <ImageView fitHeight="225.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="SRC_ATOP" fitHeight="225.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" styleClass="current-image">
                <image>
                   <Image url="@../background/pexels-digital-buggu.jpg" />
                </image>
@@ -27,7 +27,7 @@
                   <ColorAdjust brightness="0.46" saturation="0.14" />
                </effect>
             </ImageView>
-            <Pane layoutY="200.0" prefHeight="175.0" prefWidth="400.0" styleClass="next-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="225.0">
+            <Pane layoutY="225.0" prefHeight="175.0" prefWidth="400.0" styleClass="next-pane" AnchorPane.bottomAnchor="0.0">
                <children>
                   <HBox prefHeight="175.0" prefWidth="400.0">
                      <children>
@@ -190,7 +190,7 @@
                      </children>
                   </HBox>
                </children></Pane>
-            <ImageView blendMode="MULTIPLY" fitHeight="150.0" fitWidth="203.0" layoutX="101.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="currentLeftImageView" blendMode="MULTIPLY" fitHeight="130.0" fitWidth="114.0" layoutX="127.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/weather/cloudy_day_100px.png" />
                </image>
@@ -206,34 +206,34 @@
                   <Image url="@../Icon/system/refresh_32px.png" />
                </image>
             </ImageView>
-            <Label layoutX="14.0" layoutY="128.0" styleClass="current-temperature" text="23°" textFill="#005ff5">
+            <Label fx:id="currentLeftTempLabel" layoutX="14.0" layoutY="128.0" styleClass="current-temperature" text="23°" textFill="#005ff5">
                <font>
                   <Font name="Calibri" size="61.0" />
                </font>
             </Label>
-            <Label layoutX="112.0" layoutY="113.0" styleClass="current-weather-describe" text="Cloudy sky" textAlignment="CENTER" textFill="#000000a4">
+            <Label fx:id="leftDescribeLabel" layoutX="112.0" layoutY="113.0" styleClass="current-weather-describe" text="Cloudy sky" textAlignment="CENTER" textFill="#000000a4">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="138.0" layoutY="190.0" styleClass="current-country" text="Poland" textAlignment="CENTER" textFill="#000000a4">
+            <Label fx:id="leftCountryLabel" layoutX="138.0" layoutY="190.0" styleClass="current-country" text="Poland" textAlignment="CENTER" textFill="#000000a4">
                <font>
                   <Font name="System Italic" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="138.0" layoutY="161.0" styleClass="current-city" text="Poznan" textAlignment="CENTER" textFill="#000000a4">
+            <Label fx:id="leftCityLabel" layoutX="138.0" layoutY="161.0" styleClass="current-city" text="Poznan" textAlignment="CENTER" textFill="#000000a4">
                <font>
                   <Font name="System Italic" size="19.0" />
                </font>
             </Label>
             <VBox layoutX="272.0" layoutY="113.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.99" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="115.0" styleClass="current-month" text="Sep" textAlignment="CENTER">
+                  <Label fx:id="leftMonthLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="115.0" styleClass="current-month" text="Sep" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="114.0" styleClass="current-day" text="Mo, 14">
+                  <Label fx:id="leftDayLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="114.0" styleClass="current-day" text="Mo, 14">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
                      </font>
@@ -264,7 +264,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="400.0" prefWidth="400.0" styleClass="anchorpane" stylesheets="@../css/rightColumnStyle.css">
          <children>
-            <ImageView fitHeight="225.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="SRC_ATOP" fitHeight="225.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../background/pexels-digital-buggu.jpg" />
                </image>
@@ -272,7 +272,7 @@
                   <ColorAdjust brightness="0.46" saturation="0.14" />
                </effect>
             </ImageView>
-            <Pane layoutY="186.0" prefHeight="175.0" prefWidth="400.0" styleClass="next-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="225.0">
+            <Pane layoutY="225.0" prefHeight="175.0" prefWidth="400.0" styleClass="next-pane">
                <children>
                   <HBox prefHeight="175.0" prefWidth="400.0">
                      <children>
@@ -435,17 +435,17 @@
                      </children>
                   </HBox>
                </children></Pane>
-            <ImageView fx:id="closeAppImageView" blendMode="MULTIPLY" fitHeight="35.0" fitWidth="35.0" layoutX="351.0" layoutY="16.0" onMouseClicked="#closeApp" onMouseEntered="#closeAppOnMouseEntered" onMouseExited="#closeAppOnMouseExited" pickOnBounds="true" preserveRatio="true" styleClass="close-button">
+            <ImageView fx:id="closeAppImageView" blendMode="MULTIPLY" fitHeight="35.0" fitWidth="35.0" layoutX="351.0" layoutY="14.0" onMouseClicked="#closeApp" onMouseEntered="#closeAppOnMouseEntered" onMouseExited="#closeAppOnMouseExited" pickOnBounds="true" preserveRatio="true" styleClass="close-button">
                <image>
                   <Image url="@../Icon/system/cancel_32px.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="refreshRightImageView" blendMode="MULTIPLY" fitHeight="54.0" fitWidth="35.0" layoutX="14.0" layoutY="16.0" onMouseClicked="#refreshRightWeather" onMouseEntered="#refreshRightOnMouseEntered" onMouseExited="#refreshRightOnMouseExited" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="refreshRightImageView" blendMode="MULTIPLY" fitHeight="54.0" fitWidth="35.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#refreshRightWeather" onMouseEntered="#refreshRightOnMouseEntered" onMouseExited="#refreshRightOnMouseExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/refresh_32px.png" />
                </image>
             </ImageView>
-            <ImageView blendMode="MULTIPLY" fitHeight="150.0" fitWidth="203.0" layoutX="114.0" layoutY="-24.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="currentRightImageView" blendMode="MULTIPLY" fitHeight="130.0" fitWidth="114.0" layoutX="127.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/weather/cloudy_day_100px.png" />
                </image>
@@ -456,19 +456,19 @@
                   <Rectangle2D />
                </viewport>
             </ImageView>
-            <Label layoutX="21.0" layoutY="126.0" styleClass="current-temperature" text="23°" textFill="#005ff5">
+            <Label fx:id="currentRightTempLabel" layoutX="14.0" layoutY="128.0" styleClass="current-temperature" text="23°" textFill="#005ff5">
                <font>
                   <Font name="Calibri" size="61.0" />
                </font>
             </Label>
-            <VBox layoutX="272.0" layoutY="116.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.99" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
+            <VBox layoutX="272.0" layoutY="113.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.99" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="115.0" styleClass="current-month" text="Sep" textAlignment="CENTER">
+                  <Label fx:id="rightMonthLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="115.0" styleClass="current-month" text="Sep" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="114.0" styleClass="current-day" text="Mo, 14">
+                  <Label fx:id="rightDayLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="114.0" styleClass="current-day" text="Mo, 14">
                      <font>
                         <Font name="Arial Bold" size="24.0" />
                      </font>
@@ -482,27 +482,27 @@
                   </DropShadow>
                </effect>
             </VBox>
-            <Label layoutX="118.0" layoutY="116.0" styleClass="current-weather-describe" text="Cloudy sky" textAlignment="CENTER" textFill="#000000a4">
+            <Label fx:id="rightDescribeLabel" layoutX="112.0" layoutY="113.0" styleClass="current-weather-describe" text="Cloudy sky" textAlignment="CENTER" textFill="#000000a4">
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="147.0" layoutY="193.0" styleClass="current-country" text="Poland" textAlignment="CENTER" textFill="#000000a4">
+            <Label fx:id="rightCountryLabel" layoutX="138.0" layoutY="190.0" styleClass="current-country" text="Poland" textAlignment="CENTER" textFill="#000000a4">
                <font>
                   <Font name="System Italic" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="147.0" layoutY="162.0" styleClass="current-city" text="Poznan" textAlignment="CENTER" textFill="#000000a4">
+            <Label fx:id="rightCityLabel" layoutX="138.0" layoutY="161.0" styleClass="current-city" text="Poznan" textAlignment="CENTER" textFill="#000000a4">
                <font>
                   <Font name="System Italic" size="19.0" />
                </font>
             </Label>
-            <ImageView fx:id="rightCityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="118.0" layoutY="167.0" onMouseClicked="#changeRightCity" onMouseEntered="#rightCityOnMouseEntered" onMouseExited="#rightCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="rightCityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="112.0" layoutY="165.0" onMouseClicked="#changeRightCity" onMouseEntered="#rightCityOnMouseEntered" onMouseExited="#rightCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/city_32px.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="rightCountryImageView" blendMode="MULTIPLY" fitHeight="40.0" fitWidth="19.0" layoutX="118.0" layoutY="191.0" onMouseClicked="#changeRightCountry" onMouseEntered="#rightCountryOnMouseEntered" onMouseExited="#rightCountryOnMouseExited" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="rightCountryImageView" blendMode="MULTIPLY" fitHeight="40.0" fitWidth="19.0" layoutX="112.0" layoutY="190.0" onMouseClicked="#changeRightCountry" onMouseEntered="#rightCountryOnMouseEntered" onMouseExited="#rightCountryOnMouseExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/location_32px.png" />
                </image>
