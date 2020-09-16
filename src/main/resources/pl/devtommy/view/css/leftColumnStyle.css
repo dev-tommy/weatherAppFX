@@ -6,6 +6,11 @@
     -fx-background-color: #2E3335;
     -fx-background-radius: 0px 0px 0px 10px;
 }
+
+.current-image{
+    -fx-border-radius: 10px 0px 0px 10px;
+    -fx-background-radius: 10px 0px 0px 10px;
+}
 .current-calendar{
     -fx-background-radius: 5px;
 }
