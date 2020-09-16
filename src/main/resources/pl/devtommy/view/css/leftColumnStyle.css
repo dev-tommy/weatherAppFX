@@ -1,0 +1,57 @@
+.main-hbox {
+    -fx-border-radius: 10px 10px 10px 10px;
+    -fx-background-radius: 10px 10px 10px 10px;
+}
+.anchorpane {
+    -fx-border-radius: 10px 0px 0px 10px;
+    -fx-background-radius: 10px 0px 0px 10px;
+}
+.next-pane{
+    -fx-background-color: #2E3335;
+    -fx-border-radius: 0px 0px 0px 10px;
+    -fx-background-radius: 0px 0px 0px 10px;
+}
+
+.current-image{
+    -fx-border-radius: 10px 0px 0px 10px;
+    -fx-background-radius: 10px 0px 0px 10px;
+}
+.current-calendar{
+    -fx-background-radius: 5px;
+}
+.current-month{
+    -fx-background-color: darkblue;
+    -fx-text-fill: lightgray;
+    -fx-background-radius: 5px 5px 0px 0px;
+}
+
+.current-day{
+    -fx-background-color: lightgray;
+    -fx-text-fill: darkred;
+    -fx-background-radius: 0px 0px 5px 5px;
+}
+
+.current-temperature{
+    -fx-text-fill: darkred;
+}
+
+.current-weather-describe{
+    -fx-text-fill: black;
+}
+
+.current-city{
+    -fx-text-fill: black;
+}
+
+.current-country{
+    -fx-text-fill: black;
+}
+
+.next-days{
+    -fx-background-color: darksalmon;
+    -fx-text-fill: black;
+}
+
+.next-temperature{
+    -fx-text-fill: green;
+}
