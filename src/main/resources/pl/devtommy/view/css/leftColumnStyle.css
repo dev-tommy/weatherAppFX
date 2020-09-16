@@ -1,5 +1,5 @@
 .anchorpane {
-    -fx-background-color: white;
+    -fx-border-radius: 10px 0px 0px 10px;
     -fx-background-radius: 10px 0px 0px 10px;
 }
 .next-pane{
