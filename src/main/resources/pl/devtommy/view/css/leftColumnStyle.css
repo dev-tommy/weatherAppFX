@@ -1,3 +1,7 @@
+.main-hbox {
+    -fx-border-radius: 10px 10px 10px 10px;
+    -fx-background-radius: 10px 10px 10px 10px;
+}
 .anchorpane {
     -fx-border-radius: 10px 0px 0px 10px;
     -fx-background-radius: 10px 0px 0px 10px;
