@@ -8,6 +8,7 @@
 }
 .next-pane{
     -fx-background-color: #2E3335;
+    -fx-border-radius: 0px 0px 0px 10px;
     -fx-background-radius: 0px 0px 0px 10px;
 }
 
