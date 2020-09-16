@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import net.aksingh.owmjapis.api.APIException;
+import net.aksingh.owmjapis.core.OWM;
+import net.aksingh.owmjapis.model.CurrentWeather;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,9 +22,15 @@ public class Launcher extends Application {
     private static String API_KEY;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, APIException {
 
         getApiKeyFromConfigFile("config.properties");
+        OWM owm = new OWM(API_KEY);
+        owm.setUnit(OWM.Unit.METRIC);
+        owm.setLanguage(OWM.Language.POLISH);
+        CurrentWeather cwd = owm.currentWeatherByCityName("Poznan", OWM.Country.POLAND);
+        System.out.println("Miasto: " + cwd.getCityName());
+        System.out.println("Temp: " + cwd.getMainData().getTemp() + " \'C");
 
         scene = new Scene(loadFXML("MainWindow"));
         scene.setFill(Color.TRANSPARENT);
