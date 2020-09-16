@@ -1,6 +1,7 @@
 package pl.devtommy.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -10,16 +11,55 @@ public class MainWindowController {
     private ImageView refreshLeftImageView;
 
     @FXML
-    private ImageView closeAppImageView;
+    private Label currentLeftTempLabel;
 
     @FXML
-    private ImageView refreshRightImageView;
+    private Label leftDescribeLabel;
+
+    @FXML
+    private Label leftCountryLabel;
+
+    @FXML
+    private Label leftCityLabel;
+
+    @FXML
+    private Label leftMonthLabel;
+
+    @FXML
+    private Label leftDayLabel;
 
     @FXML
     private ImageView leftCityImageView;
 
     @FXML
     private ImageView leftCountryImageView;
+
+    @FXML
+    private ImageView closeAppImageView;
+
+    @FXML
+    private ImageView refreshRightImageView;
+
+    @FXML
+    private ImageView currentRightImageView;
+
+    @FXML
+    private Label currentRightTempLabel;
+
+    @FXML
+    private Label rightMonthLabel;
+
+    @FXML
+    private Label rightDayLabel;
+
+    @FXML
+    private Label rightDescribeLabel;
+
+    @FXML
+    private Label rightCountryLabel;
+
+    @FXML
+    private Label rightCityLabel;
 
     @FXML
     private ImageView rightCityImageView;
