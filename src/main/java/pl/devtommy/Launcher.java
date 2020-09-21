@@ -24,7 +24,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage stage) throws IOException, APIException {
 
-        getApiKeyFromConfigFile("config.properties");
+        API_KEY = getApiKeyFromConfigFile("config.properties");
         OWM owm = new OWM(API_KEY);
         owm.setUnit(OWM.Unit.METRIC);
         owm.setLanguage(OWM.Language.POLISH);
@@ -49,7 +49,8 @@ public class Launcher extends Application {
         launch();
     }
 
-    private static void getApiKeyFromConfigFile(String configFileName) {
+    private static String getApiKeyFromConfigFile(String configFileName) {
+        String apiKey = null;
         try (InputStream input = new FileInputStream(configFileName)) {
             /* config.properties:
                api.key=your_owm_api_key
@@ -58,11 +59,13 @@ public class Launcher extends Application {
             Properties prop = new Properties();
             prop.load(input);
 
-            API_KEY = prop.getProperty("api.key");
+            apiKey = prop.getProperty("api.key");
 
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
+        return apiKey;
     }
 
 }
