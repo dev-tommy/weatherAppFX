@@ -25,12 +25,6 @@ public class Launcher extends Application {
     public void start(Stage stage) throws IOException, APIException {
 
         API_KEY = getApiKeyFromConfigFile("config.properties");
-        OWM owm = new OWM(API_KEY);
-        owm.setUnit(OWM.Unit.METRIC);
-        owm.setLanguage(OWM.Language.POLISH);
-        CurrentWeather cwd = owm.currentWeatherByCityName("Poznan", OWM.Country.POLAND);
-        System.out.println("Miasto: " + cwd.getCityName());
-        System.out.println("Temp: " + cwd.getMainData().getTemp() + " \'C");
 
         showMainWindow(stage);
     }
