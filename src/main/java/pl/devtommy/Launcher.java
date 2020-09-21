@@ -32,6 +32,10 @@ public class Launcher extends Application {
         System.out.println("Miasto: " + cwd.getCityName());
         System.out.println("Temp: " + cwd.getMainData().getTemp() + " \'C");
 
+        showMainWindow(stage);
+    }
+
+    private void showMainWindow(Stage stage) throws IOException {
         scene = new Scene(loadFXML("MainWindow"));
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
