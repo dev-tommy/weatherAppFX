@@ -8,12 +8,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import net.aksingh.owmjapis.api.APIException;
-import net.aksingh.owmjapis.core.OWM;
-import net.aksingh.owmjapis.model.CurrentWeather;
+import pl.devtommy.model.City;
+import pl.devtommy.model.WeatherProvider;
+import pl.devtommy.model.weatherproviders.OWMProvider;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class Launcher extends Application {
