@@ -26,6 +26,14 @@ public class Launcher extends Application {
 
         API_KEY = getApiKeyFromConfigFile("config.properties");
 
+        //generateCountryJson();
+
+        WeatherProvider owmProvider = new OWMProvider(API_KEY);
+
+        City testCity = new City(7533329, "Września", "", "PL", new Coord(0.0, 0.0));
+
+        System.out.println(owmProvider.getCurrentWeatherByCity(testCity));
+
         showMainWindow(stage);
     }
 
