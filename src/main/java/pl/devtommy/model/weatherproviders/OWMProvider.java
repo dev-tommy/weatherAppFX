@@ -44,18 +44,4 @@ public class OWMProvider extends OWM implements WeatherProvider {
             oneDayWeather.setTempMax(cwd.getMainData().getTempMax());
         }
     }
-
-    @Override
-    public OneDayWeather getCurrentWeatherByCityId(int cityId) {
-        OneDayWeather oneDayWeather = new OneDayWeather();
-        try {
-            CurrentWeather cwd = owm.currentWeatherByCityId(cityId);
-            updateOneDayWeather(oneDayWeather, cwd);
-        } catch (Exception e) {
-            System.out.println("Wrong city id!");
-            //e.printStackTrace();
-        }
-        return oneDayWeather;
-    }
-
 }
