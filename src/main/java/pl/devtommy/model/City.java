@@ -7,6 +7,17 @@ public class City {
     private String country;
     private Coord coord;
 
+    public City() {
+    }
+
+    public City(int id, String name, String state, String country, Coord coord) {
+        this.id = id;
+        this.name = name;
+        this.state = state;
+        this.country = country;
+        this.coord = coord;
+    }
+
     public int getId() {
         return id;
     }
