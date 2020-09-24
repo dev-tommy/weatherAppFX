@@ -3,6 +3,7 @@ package pl.devtommy.model.weatherproviders;
 import net.aksingh.owmjapis.core.OWM;
 import net.aksingh.owmjapis.model.CurrentWeather;
 import org.jetbrains.annotations.NotNull;
+import pl.devtommy.model.City;
 import pl.devtommy.model.OneDayWeather;
 import pl.devtommy.model.WeatherProvider;
 
@@ -21,15 +22,33 @@ public class OWMProvider extends OWM implements WeatherProvider {
     }
 
     @Override
-    public OneDayWeather getCurrentWeatherByCityName(String cityName) {
+    public OneDayWeather getCurrentWeatherByCity(City city) {
         OneDayWeather oneDayWeather = new OneDayWeather();
+        int id = city.getId();
+        String name = city.getName();
+        String country = city.getCountry();
+        Double latitude = city.getCoord().getLat();
+        Double longitude = city.getCoord().getLon();
+        CurrentWeather currentWeather = null;
+
         try {
-            CurrentWeather cwd = owm.currentWeatherByCityName(cityName);
-            updateOneDayWeather(oneDayWeather, cwd);
+            if (id != 0) {
+                currentWeather = owm.currentWeatherByCityId(7533329);
+                updateOneDayWeather(oneDayWeather, currentWeather);
+            }
+            else if (latitude == 0 || longitude == 0) {
+                currentWeather = owm.currentWeatherByCityName(name + ", "+ country);
+                updateOneDayWeather(oneDayWeather, currentWeather);
+            } else {
+                currentWeather = owm.currentWeatherByCoords(latitude, longitude);
+
+            }
+
         } catch (Exception e) {
-            System.out.println("Wrong city name!");
-            e.printStackTrace();
+            System.out.println("Wrong city data!");
+            //e.printStackTrace();
         }
+        updateOneDayWeather(oneDayWeather, currentWeather);
         return oneDayWeather;
     }
 
