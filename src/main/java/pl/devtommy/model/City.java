@@ -37,4 +37,17 @@ public class City {
     public Coord getCoord() {
         return coord;
     }
+
+    @Override
+    public String toString() {
+        String answer = "";
+
+        answer += "ID: "+ getId() +"\n";
+        answer += "Name: "+ getName() +"\n";
+        answer += "Country: "+ getCountry() +"\n";
+        answer += "Coord: Lon: "+ getCoord().getLon() +"\n";
+        answer += "Coord: Lat: "+ getCoord().getLat()+"\n";
+        answer += "-------------------------------- \n";
+        return answer;
+    }
 }
