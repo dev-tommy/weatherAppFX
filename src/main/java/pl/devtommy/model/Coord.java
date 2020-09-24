@@ -1,14 +1,22 @@
 package pl.devtommy.model;
 
 public class Coord {
-    private Double lon;
-    private Double lat;
+    private double lon;
+    private double lat;
 
-    public Double getLon() {
+    public Coord() {
+    }
+
+    public Coord(double lat, double lon) {
+        this.lon = lon;
+        this.lat = lat;
+    }
+
+    public double getLon() {
         return lon;
     }
 
-    public Double getLat() {
+    public double getLat() {
         return lat;
     }
 }
