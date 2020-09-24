@@ -67,14 +67,16 @@ public class OneDayWeather {
 
     @Override
     public String toString() {
-        System.out.println("Id: " + getId());
-        System.out.println("Name: " + getName());
-        System.out.println("Humidity: " + getHumidity() + " %");
-        System.out.println("Pressure: " + getPressure() + " hPa");
-        System.out.println("Temp: " + getTemp() + " ℃");
-        System.out.println("TempMin: " + getTempMin() + " ℃");
-        System.out.println("TempMax: " + getTempMax() + " ℃");
+        String answer = "";
 
-        return "-----------------------";
+        answer += "Id: " + getId() +"\n";
+        answer += "Name: " + getName() +"\n";
+        answer += "Humidity: " + getHumidity() + " % \n";
+        answer += "Pressure: " + getPressure() + " hPa \n";
+        answer += "Temp: " + getTemp() + " ℃ \n";
+        answer += "TempMin: " + getTempMin() + " ℃ \n";
+        answer += "TempMax: " + getTempMax() + " ℃ \n";
+        answer += "-------------------------------- \n";
+        return answer;
     }
 }
