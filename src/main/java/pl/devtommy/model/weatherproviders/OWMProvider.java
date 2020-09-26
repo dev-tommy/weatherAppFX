@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class OWMProvider extends OWM implements WeatherProvider {
-    private int id;
-    private String name;
     private OWM owm;
     private String apiKey;
 
