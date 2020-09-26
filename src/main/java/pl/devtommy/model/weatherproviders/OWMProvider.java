@@ -10,7 +10,6 @@ import pl.devtommy.model.OneDayWeather;
 import pl.devtommy.model.WeatherProvider;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Date;
 
 public class OWMProvider extends OWM implements WeatherProvider {
