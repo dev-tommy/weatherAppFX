@@ -29,7 +29,6 @@ public class OWMProvider extends OWM implements WeatherProvider {
 
     @Override
     public OneDayWeather getCurrentWeatherByCity(City city) {
-        OneDayWeather oneDayWeather = new OneDayWeather();
         int id = city.getId();
         String name = city.getName();
         String country = city.getCountry();
@@ -39,23 +38,19 @@ public class OWMProvider extends OWM implements WeatherProvider {
 
         try {
             if (id != 0) {
-                currentWeather = owm.currentWeatherByCityId(7533329);
-                updateOneDayWeather(oneDayWeather, currentWeather);
+                currentWeather = owm.currentWeatherByCityId(id);
             }
             else if (latitude == 0 || longitude == 0) {
                 currentWeather = owm.currentWeatherByCityName(name + ", "+ country);
-                updateOneDayWeather(oneDayWeather, currentWeather);
             } else {
                 currentWeather = owm.currentWeatherByCoords(latitude, longitude);
-
             }
 
         } catch (Exception e) {
             System.out.println("Wrong city data!");
-            //e.printStackTrace();
+            e.printStackTrace();
         }
-        updateOneDayWeather(oneDayWeather, currentWeather);
-        return oneDayWeather;
+        return updateOneDayWeather(currentWeather);
     }
 
     private void updateOneDayWeather(OneDayWeather oneDayWeather, CurrentWeather cwd) {
