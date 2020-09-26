@@ -53,7 +53,33 @@ public class OWMProvider extends OWM implements WeatherProvider {
         return updateOneDayWeather(currentWeather);
     }
 
-    private void updateOneDayWeather(OneDayWeather oneDayWeather, CurrentWeather cwd) {
+    @Override
+    public OneDayWeather[] getForecastWeatherByCity(City city) {
+        int id = city.getId();
+        String name = city.getName();
+        String country = city.getCountry();
+        Double latitude = city.getCoord().getLat();
+        Double longitude = city.getCoord().getLon();
+        HourlyWeatherForecast forecastWeather = null;
+
+        try {
+            if (id != 0) {
+                forecastWeather = owm.hourlyWeatherForecastByCityId(id);
+            }
+            else if (latitude == 0 || longitude == 0) {
+                forecastWeather = owm.hourlyWeatherForecastByCityName(name + ", "+ country);
+            } else {
+                forecastWeather = owm.hourlyWeatherForecastByCoords(latitude, longitude);
+            }
+        } catch (Exception e) {
+            System.out.println("Wrong city data!");
+            e.printStackTrace();
+        }
+        return updateForecastWeather(forecastWeather);
+    }
+
+    private OneDayWeather updateOneDayWeather(CurrentWeather cwd) {
+        OneDayWeather oneDayWeather = new OneDayWeather();
         if (cwd.hasCityName()) oneDayWeather.setName(cwd.getCityName());
         if (cwd.hasCityId()) oneDayWeather.setId(cwd.getCityId());
         if (cwd.hasMainData()) {
@@ -63,5 +89,6 @@ public class OWMProvider extends OWM implements WeatherProvider {
             oneDayWeather.setTempMin(cwd.getMainData().getTempMin());
             oneDayWeather.setTempMax(cwd.getMainData().getTempMax());
         }
+        return oneDayWeather;
     }
 }
