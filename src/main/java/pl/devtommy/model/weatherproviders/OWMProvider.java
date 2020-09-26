@@ -31,8 +31,8 @@ public class OWMProvider extends OWM implements WeatherProvider {
         int id = city.getId();
         String name = city.getName();
         String country = city.getCountry();
-        Double latitude = city.getCoord().getLat();
-        Double longitude = city.getCoord().getLon();
+        double latitude = city.getCoord().getLat();
+        double longitude = city.getCoord().getLon();
         CurrentWeather currentWeather = null;
 
         try {
@@ -57,8 +57,8 @@ public class OWMProvider extends OWM implements WeatherProvider {
         int id = city.getId();
         String name = city.getName();
         String country = city.getCountry();
-        Double latitude = city.getCoord().getLat();
-        Double longitude = city.getCoord().getLon();
+        double latitude = city.getCoord().getLat();
+        double longitude = city.getCoord().getLon();
         HourlyWeatherForecast forecastWeather = null;
 
         try {
