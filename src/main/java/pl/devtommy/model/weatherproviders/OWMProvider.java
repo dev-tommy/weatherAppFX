@@ -91,4 +91,37 @@ public class OWMProvider extends OWM implements WeatherProvider {
         }
         return oneDayWeather;
     }
+
+    private OneDayWeather updateOneDayWeather(WeatherData wd) {
+        OneDayWeather oneDayWeather = new OneDayWeather();
+        if (wd.hasMainData()) {
+            oneDayWeather.setHumidity(wd.getMainData().getHumidity());
+            oneDayWeather.setPressure(wd.getMainData().getPressure());
+            oneDayWeather.setTemp(wd.getMainData().getTemp());
+        }
+        return oneDayWeather;
+    }
+
+    private OneDayWeather[] updateForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
+        OneDayWeather[] fiveDaysForecastWeather = new OneDayWeather[4];
+        int j = 0;
+        LocalDateTime today = LocalDateTime.now();
+        int currentDay = today.getDayOfMonth();
+
+        for (int i = 0; i < hourlyWeatherForecast.getDataCount(); i++) {
+            LocalDateTime hourlyWeatherDate =
+                    convertToLocalDateTimeViaSqlTimestamp(hourlyWeatherForecast.getDataList().get(i).getDateTime());
+            int dayOfMonth = hourlyWeatherDate.getDayOfMonth();
+            int hourOfHourlyWeather = hourlyWeatherDate.getHour();
+            if ((dayOfMonth > currentDay) && (hourOfHourlyWeather == 11)) {
+                fiveDaysForecastWeather[j++] = updateOneDayWeather(hourlyWeatherForecast.getDataList().get(i));
+            }
+        }
+        return fiveDaysForecastWeather;
+    }
+
+    public LocalDateTime convertToLocalDateTimeViaSqlTimestamp(Date dateToConvert) {
+        return new java.sql.Timestamp(
+                dateToConvert.getTime()).toLocalDateTime();
+    }
 }
