@@ -2,10 +2,16 @@ package pl.devtommy.model.weatherproviders;
 
 import net.aksingh.owmjapis.core.OWM;
 import net.aksingh.owmjapis.model.CurrentWeather;
+import net.aksingh.owmjapis.model.HourlyWeatherForecast;
+import net.aksingh.owmjapis.model.param.WeatherData;
 import org.jetbrains.annotations.NotNull;
 import pl.devtommy.model.City;
 import pl.devtommy.model.OneDayWeather;
 import pl.devtommy.model.WeatherProvider;
+
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Date;
 
 public class OWMProvider extends OWM implements WeatherProvider {
     private int id;
