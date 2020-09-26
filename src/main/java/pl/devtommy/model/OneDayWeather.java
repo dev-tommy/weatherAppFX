@@ -69,13 +69,15 @@ public class OneDayWeather {
     public String toString() {
         String answer = "";
 
-        answer += "Id: " + getId() +"\n";
-        answer += "Name: " + getName() +"\n";
+        if (id !=0) answer += "Id: " + getId() +"\n";
+        if (name != null) answer += "Name: " + getName() +"\n";
         answer += "Humidity: " + getHumidity() + " % \n";
         answer += "Pressure: " + getPressure() + " hPa \n";
         answer += "Temp: " + getTemp() + " ℃ \n";
-        answer += "TempMin: " + getTempMin() + " ℃ \n";
-        answer += "TempMax: " + getTempMax() + " ℃ \n";
+        if (tempMin != tempMax) {
+            answer += "TempMin: " + getTempMin() + " ℃ \n";
+            answer += "TempMax: " + getTempMax() + " ℃ \n";
+        }
         answer += "-------------------------------- \n";
         return answer;
     }
