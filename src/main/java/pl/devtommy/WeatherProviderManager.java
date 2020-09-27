@@ -11,12 +11,22 @@ import java.util.Arrays;
 
 public class WeatherProviderManager {
     private WeatherProvider weatherProvider;
+    City leftCity;
+    City rightCity;
 
     public WeatherProviderManager(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
     }
 
-    private City[] generateCityList() throws FileNotFoundException {
+    public void setLeftCity(City leftCity) {
+        this.leftCity = leftCity;
+    }
+
+    public void setRightCity(City rightCity) {
+        this.rightCity = rightCity;
+    }
+
+    private City[] generateCityList(){
         Gson gson = new Gson();
         City[] cityList = gson.fromJson(new FileReader("src/main/resources/pl/devtommy/json/city.list.json"),
                 City[].class);
