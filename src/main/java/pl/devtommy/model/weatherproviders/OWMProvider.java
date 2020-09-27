@@ -89,12 +89,14 @@ public class OWMProvider extends OWM implements WeatherProvider {
         return oneDayWeather;
     }
 
-    private OneDayWeather updateOneDayWeather(WeatherData wd) {
+    private OneDayWeather updateOneDayWeather(WeatherData weatherData) {
         OneDayWeather oneDayWeather = new OneDayWeather();
-        if (wd.hasMainData()) {
-            oneDayWeather.setHumidity(wd.getMainData().getHumidity());
-            oneDayWeather.setPressure(wd.getMainData().getPressure());
-            oneDayWeather.setTemp(wd.getMainData().getTemp());
+        if (weatherData.hasMainData()) {
+            oneDayWeather.setHumidity(weatherData.getMainData().getHumidity());
+            oneDayWeather.setPressure(weatherData.getMainData().getPressure());
+            oneDayWeather.setTemp(weatherData.getMainData().getTemp());
+            oneDayWeather.setTempMin(weatherData.getMainData().getTempMin());
+            oneDayWeather.setTempMax(weatherData.getMainData().getTempMax());
         }
         return oneDayWeather;
     }
