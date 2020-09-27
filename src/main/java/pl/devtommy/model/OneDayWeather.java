@@ -1,5 +1,7 @@
 package pl.devtommy.model;
 
+import static java.lang.Math.round;
+
 public class OneDayWeather {
     private String name;
     private int id;
@@ -25,40 +27,40 @@ public class OneDayWeather {
         this.id = id;
     }
 
-    public double getHumidity() {
-        return humidity;
+    public String getHumidity() {
+        return String.valueOf(round( humidity )) +"%";
     }
 
     public void setHumidity(double humidity) {
         this.humidity = humidity;
     }
 
-    public double getPressure() {
-        return pressure;
+    public String getPressure() {
+        return String.valueOf(round( pressure )) +"hPa";
     }
 
     public void setPressure(double pressure) {
         this.pressure = pressure;
     }
 
-    public double getTemp() {
-        return temp;
+    public String getTemp() {
+        return String.valueOf(round( temp )) + "°";
     }
 
     public void setTemp(double temp) {
         this.temp = temp;
     }
 
-    public double getTempMin() {
-        return tempMin;
+    public String getTempMin() {
+        return String.valueOf(round( tempMin )) + "°";
     }
 
     public void setTempMin(double tempMin) {
         this.tempMin = tempMin;
     }
 
-    public double getTempMax() {
-        return tempMax;
+    public String getTempMax() {
+        return String.valueOf(round( tempMax )) + "°";
     }
 
     public void setTempMax(double tempMax) {
@@ -71,12 +73,12 @@ public class OneDayWeather {
 
         if (id !=0) answer += "Id: " + getId() +"\n";
         if (name != null) answer += "Name: " + getName() +"\n";
-        answer += "Humidity: " + getHumidity() + " % \n";
-        answer += "Pressure: " + getPressure() + " hPa \n";
-        answer += "Temp: " + getTemp() + " ℃ \n";
+        answer += "Humidity: " + getHumidity() + "\n";
+        answer += "Pressure: " + getPressure() + "\n";
+        answer += "Temp: " + getTemp() + "\n";
         if (tempMin != tempMax) {
-            answer += "TempMin: " + getTempMin() + " ℃ \n";
-            answer += "TempMax: " + getTempMax() + " ℃ \n";
+            answer += "TempMin: " + getTempMin() + "\n";
+            answer += "TempMax: " + getTempMax() + "\n";
         }
         answer += "-------------------------------- \n";
         return answer;
