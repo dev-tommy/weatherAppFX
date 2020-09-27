@@ -2,14 +2,12 @@ package pl.devtommy;
 
 import com.google.gson.Gson;
 import pl.devtommy.model.City;
-import pl.devtommy.model.Coord;
 import pl.devtommy.model.OneDayWeather;
 import pl.devtommy.model.WeatherProvider;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class WeatherProviderManager {
     private WeatherProvider weatherProvider;
