@@ -10,6 +10,13 @@ public class MainWindowController {
 
     private double xMainWindowOffset;
     private double yMainWindowOffset;
+    WeatherProviderManager weatherProviderManager;
+    City leftCity;
+    City rightCity;
+
+    public MainWindowController(WeatherProviderManager weatherProviderManager) {
+        this.weatherProviderManager = weatherProviderManager;
+    }
 
     @FXML
     private ImageView currentLeftImageView;
