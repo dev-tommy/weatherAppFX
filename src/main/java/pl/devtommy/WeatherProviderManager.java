@@ -2,6 +2,8 @@ package pl.devtommy;
 
 import com.google.gson.Gson;
 import pl.devtommy.model.City;
+import pl.devtommy.model.Coord;
+import pl.devtommy.model.OneDayWeather;
 import pl.devtommy.model.WeatherProvider;
 
 import java.io.FileNotFoundException;
