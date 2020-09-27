@@ -18,6 +18,16 @@ public class WeatherProviderManager {
         this.weatherProvider = weatherProvider;
     }
 
+    public OneDayWeather getCurrentLeftCityWeather() {
+        return weatherProvider.getCurrentWeatherByCity(leftCity);
+    }
+
+    public OneDayWeather getCurrentRightCityWeather() {
+        return weatherProvider.getCurrentWeatherByCity(rightCity);
+    }
+
+
+
     public void setLeftCity(City leftCity) {
         this.leftCity = leftCity;
     }
