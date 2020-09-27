@@ -100,7 +100,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
     }
 
     private OneDayWeather[] updateForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
-        OneDayWeather[] fiveDaysForecastWeather = new OneDayWeather[4];
+        OneDayWeather[] fiveDaysForecastWeather = new OneDayWeather[5];
         int j = 0;
         LocalDateTime today = LocalDateTime.now();
         int currentDay = today.getDayOfMonth();
@@ -108,9 +108,9 @@ public class OWMProvider extends OWM implements WeatherProvider {
         for (int i = 0; i < hourlyWeatherForecast.getDataCount(); i++) {
             LocalDateTime hourlyWeatherDate =
                     convertToLocalDateTimeViaSqlTimestamp(hourlyWeatherForecast.getDataList().get(i).getDateTime());
-            int dayOfMonth = hourlyWeatherDate.getDayOfMonth();
+
             int hourOfHourlyWeather = hourlyWeatherDate.getHour();
-            if ((dayOfMonth > currentDay) && (hourOfHourlyWeather == 11)) {
+            if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == 14)) {
                 fiveDaysForecastWeather[j++] = updateOneDayWeather(hourlyWeatherForecast.getDataList().get(i));
             }
         }
