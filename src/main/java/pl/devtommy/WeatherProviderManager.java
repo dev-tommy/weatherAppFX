@@ -54,7 +54,7 @@ public class WeatherProviderManager {
         return cityList;
     }
 
-    private ArrayList<City> getCitiesContainsName(City[] cityList, String cityName) {
+    private ArrayList<City> getCitiesContainsName(String cityName) {
         ArrayList<City> citiesContains = new ArrayList<City>();
         for (City city: cityList) {
             if (city.getName().contains(cityName)) {
