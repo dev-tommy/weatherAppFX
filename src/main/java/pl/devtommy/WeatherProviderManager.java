@@ -28,8 +28,14 @@ public class WeatherProviderManager {
 
     private City[] generateCityList(){
         Gson gson = new Gson();
-        City[] cityList = gson.fromJson(new FileReader("src/main/resources/pl/devtommy/json/city.list.json"),
-                City[].class);
+        City[] cityList = new City[0];
+        try {
+            cityList = gson.fromJson(new FileReader("src/main/resources/pl/devtommy/json/city.list.json"),
+                    City[].class);
+        } catch (FileNotFoundException e) {
+            System.out.println("city.list.json not found");
+            //e.printStackTrace();
+        }
         return cityList;
     }
 
