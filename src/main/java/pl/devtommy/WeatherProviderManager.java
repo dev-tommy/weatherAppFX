@@ -15,9 +15,12 @@ public class WeatherProviderManager {
     private WeatherProvider weatherProvider;
     City leftCity;
     City rightCity;
+    City[] cityList;
 
     public WeatherProviderManager(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
+        cityList = generateCityList();
+
     }
 
     public OneDayWeather getCurrentLeftCityWeather() {
