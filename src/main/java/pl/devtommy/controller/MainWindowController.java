@@ -1,12 +1,18 @@
 package pl.devtommy.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import pl.devtommy.WeatherProviderManager;
+import pl.devtommy.model.City;
 
-public class MainWindowController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainWindowController implements Initializable {
 
     private double xMainWindowOffset;
     private double yMainWindowOffset;
