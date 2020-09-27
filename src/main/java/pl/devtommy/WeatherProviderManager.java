@@ -8,4 +8,11 @@ public class WeatherProviderManager {
     public WeatherProviderManager(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
     }
+
+    private City[] generateCityList() throws FileNotFoundException {
+        Gson gson = new Gson();
+        City[] cityList = gson.fromJson(new FileReader("src/main/resources/pl/devtommy/json/city.list.json"),
+                City[].class);
+        return cityList;
+    }
 }
