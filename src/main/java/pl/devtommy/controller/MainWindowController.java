@@ -211,6 +211,36 @@ public class MainWindowController {
         imageView.setLayoutX(imageView.getLayoutX()+size);
         imageView.setLayoutY(imageView.getLayoutY()+size);
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        getLeftSavedCityLocation();
+        getRightSavedCityLocation();
+        setLeftViewCityLocation();
+        setRightViewCityLocation();
+        updateLeftWeatherView();
+        updateRightWeatherView();
+    }
+
+    private void setLeftViewCityLocation() {
+    }
+
+    private void setRightViewCityLocation() {
+    }
+
+    private void getRightSavedCityLocation() {
+    }
+
+    private void getLeftSavedCityLocation() {
+    }
+
+    private void updateRightWeatherView() {
+    }
+
+    private void updateLeftWeatherView() {
+    }
+
+
 }
 
 
