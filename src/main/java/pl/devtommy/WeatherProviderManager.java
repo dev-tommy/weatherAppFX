@@ -27,8 +27,16 @@ public class WeatherProviderManager {
         return weatherProvider.getCurrentWeatherByCity(leftCity);
     }
 
+    public OneDayWeather[] getForecastLeftCityWeather() {
+        return weatherProvider.getForecastWeatherByCity(leftCity);
+    }
+
     public OneDayWeather getCurrentRightCityWeather() {
         return weatherProvider.getCurrentWeatherByCity(rightCity);
+    }
+
+    public OneDayWeather[] getForecastRightCityWeather() {
+        return weatherProvider.getForecastWeatherByCity(rightCity);
     }
 
 
