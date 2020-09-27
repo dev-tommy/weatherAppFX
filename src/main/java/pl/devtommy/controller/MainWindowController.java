@@ -19,6 +19,10 @@ public class MainWindowController implements Initializable {
     WeatherProviderManager weatherProviderManager;
     City leftCity;
     City rightCity;
+    OneDayWeather leftCityWeather;
+    OneDayWeather rightCityWeather;
+    OneDayWeather[] leftCityForecastWeather = new OneDayWeather[4];
+    OneDayWeather[] rightCityForecastWeather = new OneDayWeather[4];
 
     public MainWindowController(WeatherProviderManager weatherProviderManager) {
         this.weatherProviderManager = weatherProviderManager;

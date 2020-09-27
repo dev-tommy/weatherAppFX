@@ -1,6 +1,5 @@
 package pl.devtommy;
 
-import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import net.aksingh.owmjapis.api.APIException;
-import pl.devtommy.model.City;
+import pl.devtommy.controller.MainWindowController;
 import pl.devtommy.model.WeatherProvider;
 import pl.devtommy.model.weatherproviders.OWMProvider;
 
@@ -23,22 +22,16 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, APIException {
-
         API_KEY = getApiKeyFromConfigFile("config.properties");
+        WeatherProvider weatherProvider = new OWMProvider(API_KEY);
 
-        //generateCountryJson();
-
-        WeatherProvider owmProvider = new OWMProvider(API_KEY);
-
-        City testCity = new City(7533329, "Września", "", "PL", new Coord(0.0, 0.0));
-
-        System.out.println(owmProvider.getCurrentWeatherByCity(testCity));
-
-        showMainWindow(stage);
+        WeatherProviderManager weatherProviderManager = new WeatherProviderManager(weatherProvider);
+        showMainWindow(stage, weatherProviderManager);
     }
 
-    private void showMainWindow(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("MainWindow"));
+    private void showMainWindow(Stage stage, WeatherProviderManager weatherProviderManager) throws IOException {
+        MainWindowController controller = new MainWindowController(weatherProviderManager);
+        scene = new Scene(loadFXML("MainWindow", controller));
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -46,8 +39,9 @@ public class Launcher extends Application {
         stage.show();
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    private static Parent loadFXML(String fxml, Object controller) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("view/fxml/" + fxml + ".fxml"));
+        fxmlLoader.setController(controller);
         return fxmlLoader.load();
     }
 
