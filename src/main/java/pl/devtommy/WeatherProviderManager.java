@@ -45,6 +45,18 @@ public class WeatherProviderManager {
         return weatherImages;
     }
 
+    public City getLeftSavedCityLocation() {
+        return new City(7533329, "Września", "", "PL", new Coord(0.0, 0.0));
+    }
+
+    public City getRightSavedCityLocation() {
+        return new City(0, "Zakynthos", "", "", new Coord(0.0, 0.0));
+    }
+
+    public City getCity() {
+        return null;
+    }
+
     public Image getWeatherImage(String mainWeatherCondition) {
         try {
             return weatherImages.get(mainWeatherCondition);
