@@ -457,11 +457,11 @@ public class MainWindowController implements Initializable {
     }
 
     private void getLeftCity() {
-        leftCity = weatherProviderManager.getLeftCity();
+        leftCity = weatherProviderManager.getCity();
     }
 
     private void getRightCity() {
-        leftCity = weatherProviderManager.getRightCity();
+        rightCity = weatherProviderManager.getCity();
     }
 
 
