@@ -215,6 +215,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void refreshLeftWeather(MouseEvent event) {
+        updateLeftWeatherView();
     }
 
     @FXML
@@ -229,26 +230,27 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void refreshRightWeather(MouseEvent event) {
+        updateRightWeatherView();
     }
 
     @FXML
     void changeLeftCity(MouseEvent event) {
-
+        setLeftViewCityLocation();
     }
 
     @FXML
     void changeLeftCountry(MouseEvent event) {
-
+        setLeftViewCityLocation();
     }
 
     @FXML
     void changeRightCity(MouseEvent event) {
-
+        setRightViewCityLocation();
     }
 
     @FXML
     void changeRightCountry(MouseEvent event) {
-
+        setRightViewCityLocation();
     }
 
     @FXML
