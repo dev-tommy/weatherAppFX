@@ -3,6 +3,7 @@ package pl.devtommy;
 import com.google.gson.Gson;
 import javafx.scene.image.Image;
 import pl.devtommy.model.City;
+import pl.devtommy.model.Coord;
 import pl.devtommy.model.OneDayWeather;
 import pl.devtommy.model.WeatherProvider;
 
