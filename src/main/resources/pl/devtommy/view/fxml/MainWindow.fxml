@@ -35,7 +35,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
                                  <children>
-                                    <Label fx:id="leftDayOfMonth1Label" alignment="CENTER" contentDisplay="TOP" lineSpacing="5.0" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="15" textAlignment="CENTER">
+                                    <Label fx:id="leftDayOfMonthLabel1" alignment="CENTER" contentDisplay="TOP" lineSpacing="5.0" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="15" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -56,7 +56,7 @@
                                     <ColorAdjust brightness="0.69" />
                                  </effect>
                               </ImageView>
-                              <Label fx:id="leftTemp1Label" styleClass="next-temperature" text="23°" textAlignment="CENTER" textFill="#005ff5">
+                              <Label fx:id="leftTempLabel1" styleClass="next-temperature" text="23°" textAlignment="CENTER" textFill="#005ff5">
                                  <font>
                                     <Font name="Calibri" size="50.0" />
                                  </font>
@@ -74,7 +74,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
                                  <children>
-                                    <Label fx:id="leftDayOfMonth2Label" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="16" textAlignment="CENTER">
+                                    <Label fx:id="leftDayOfMonthLabel2" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="16" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -95,7 +95,7 @@
                                     <ColorAdjust brightness="0.69" />
                                  </effect>
                               </ImageView>
-                              <Label fx:id="leftTemp2Label" styleClass="next-temperature" text="14°" textAlignment="CENTER" textFill="#005ff5">
+                              <Label fx:id="leftTempLabel2" styleClass="next-temperature" text="14°" textAlignment="CENTER" textFill="#005ff5">
                                  <font>
                                     <Font name="Calibri" size="50.0" />
                                  </font>
@@ -113,7 +113,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
                                  <children>
-                                    <Label fx:id="leftDayOfMonth3Label" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="17" textAlignment="CENTER">
+                                    <Label fx:id="leftDayOfMonthLabel3" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="17" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -134,7 +134,7 @@
                                     <ColorAdjust brightness="0.69" />
                                  </effect>
                               </ImageView>
-                              <Label fx:id="leftTemp3Label" styleClass="next-temperature" text="19°" textAlignment="CENTER" textFill="#005ff5">
+                              <Label fx:id="leftTempLabel3" styleClass="next-temperature" text="19°" textAlignment="CENTER" textFill="#005ff5">
                                  <font>
                                     <Font name="Calibri" size="50.0" />
                                  </font>
@@ -152,7 +152,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
                                  <children>
-                                    <Label fx:id="leftDayOfMonth4Label" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="18" textAlignment="CENTER">
+                                    <Label fx:id="leftDayOfMonthLabel4" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="18" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -173,7 +173,7 @@
                                     <ColorAdjust brightness="0.69" />
                                  </effect>
                               </ImageView>
-                              <Label fx:id="leftTemp4Label" styleClass="next-temperature" text="21°" textAlignment="CENTER" textFill="#005ff5">
+                              <Label fx:id="leftTempLabel4" styleClass="next-temperature" text="21°" textAlignment="CENTER" textFill="#005ff5">
                                  <font>
                                     <Font name="Calibri" size="50.0" />
                                  </font>
