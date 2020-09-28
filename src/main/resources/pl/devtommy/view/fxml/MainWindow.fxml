@@ -211,7 +211,7 @@
                   <Font name="Calibri" size="61.0" />
                </font>
             </Label>
-            <Label fx:id="leftDescribeLabel" alignment="BOTTOM_CENTER" contentDisplay="CENTER" ellipsisString=".." layoutX="142.0" layoutY="107.0" prefHeight="58.0" prefWidth="245.0" styleClass="current-weather-describe" text="Cloudy sky Aaaaaaaaaaaaaaaaaaaaaa" textFill="#000000a4" wrapText="true">
+            <Label fx:id="leftDescribeLabel" alignment="BOTTOM_LEFT" contentDisplay="CENTER" ellipsisString=".." layoutX="142.0" layoutY="107.0" prefHeight="58.0" prefWidth="245.0" styleClass="current-weather-describe" text="Cloudy sky" textFill="#000000a4" wrapText="true">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -310,7 +310,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
                                  <children>
-                                    <Label fx:id="rightDayOfMonth1Label" alignment="CENTER" contentDisplay="TOP" lineSpacing="5.0" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="15" textAlignment="CENTER">
+                                    <Label fx:id="rightDayOfMonthLabel1" alignment="CENTER" contentDisplay="TOP" lineSpacing="5.0" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="15" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -323,7 +323,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <ImageView fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="rightWeatherImageView1" fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/weather/cloudy_day_100px.png" />
                                  </image>
@@ -331,7 +331,7 @@
                                     <ColorAdjust brightness="0.69" />
                                  </effect>
                               </ImageView>
-                              <Label styleClass="next-temperature" text="23°" textAlignment="CENTER" textFill="#005ff5">
+                              <Label fx:id="rightTempLabel1" styleClass="next-temperature" text="23°" textAlignment="CENTER" textFill="#005ff5">
                                  <font>
                                     <Font name="Calibri" size="50.0" />
                                  </font>
@@ -349,7 +349,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
                                  <children>
-                                    <Label fx:id="rightDayOfMonth2Label" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="16" textAlignment="CENTER">
+                                    <Label fx:id="rightDayOfMonthLabel2" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="16" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -362,7 +362,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <ImageView fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="rightWeatherImageView2" fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/weather/rain_100px.png" />
                                  </image>
@@ -370,7 +370,7 @@
                                     <ColorAdjust brightness="0.69" />
                                  </effect>
                               </ImageView>
-                              <Label styleClass="next-temperature" text="14°" textAlignment="CENTER" textFill="#005ff5">
+                              <Label fx:id="rightTempLabel2" styleClass="next-temperature" text="14°" textAlignment="CENTER" textFill="#005ff5">
                                  <font>
                                     <Font name="Calibri" size="50.0" />
                                  </font>
@@ -388,7 +388,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
                                  <children>
-                                    <Label fx:id="rightDayOfMonth3Label" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="17" textAlignment="CENTER">
+                                    <Label fx:id="rightDayOfMonthLabel3" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="17" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -401,7 +401,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <ImageView fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="rightWeatherImageView3" fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/weather/sun_100px.png" />
                                  </image>
@@ -409,7 +409,7 @@
                                     <ColorAdjust brightness="0.69" />
                                  </effect>
                               </ImageView>
-                              <Label styleClass="next-temperature" text="19°" textAlignment="CENTER" textFill="#005ff5">
+                              <Label fx:id="rightTempLabel3" styleClass="next-temperature" text="19°" textAlignment="CENTER" textFill="#005ff5">
                                  <font>
                                     <Font name="Calibri" size="50.0" />
                                  </font>
@@ -427,7 +427,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="32.0" prefWidth="108.0" styleClass="calendar">
                                  <children>
-                                    <Label fx:id="rightDayOfMonth4Label" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="18" textAlignment="CENTER">
+                                    <Label fx:id="rightDayOfMonthLabel4" alignment="CENTER" contentDisplay="TOP" opacity="0.8" prefHeight="9.0" prefWidth="108.0" styleClass="next-days" text="18" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -440,7 +440,7 @@
                                     <DropShadow />
                                  </effect>
                               </VBox>
-                              <ImageView fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="rightWeatherImageView4" fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Icon/weather/storm_100px.png" />
                                  </image>
@@ -448,7 +448,7 @@
                                     <ColorAdjust brightness="0.69" />
                                  </effect>
                               </ImageView>
-                              <Label styleClass="next-temperature" text="21°" textAlignment="CENTER" textFill="#005ff5">
+                              <Label fx:id="rightTempLabel4" styleClass="next-temperature" text="21°" textAlignment="CENTER" textFill="#005ff5">
                                  <font>
                                     <Font name="Calibri" size="50.0" />
                                  </font>
@@ -475,7 +475,7 @@
                   <Image url="@../Icon/system/refresh_32px.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="currentRightImageView" blendMode="MULTIPLY" fitHeight="130.0" fitWidth="114.0" layoutX="86.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="currentRightImageView" blendMode="MULTIPLY" fitHeight="130.0" fitWidth="114.0" layoutX="55.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/weather/cloudy_day_100px.png" />
                </image>
@@ -512,9 +512,9 @@
                   </DropShadow>
                </effect>
             </VBox>
-            <Label fx:id="rightDescribeLabel" layoutX="112.0" layoutY="113.0" styleClass="current-weather-describe" text="Cloudy sky" textAlignment="CENTER" textFill="#000000a4">
+            <Label fx:id="rightDescribeLabel" alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="142.0" layoutY="107.0" prefHeight="58.0" prefWidth="245.0" styleClass="current-weather-describe" text="Cloudy sky" textFill="#000000a4">
                <font>
-                  <Font name="System Bold" size="28.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Label fx:id="rightCountryLabel" layoutX="138.0" layoutY="190.0" styleClass="current-country" text="Poland" textAlignment="CENTER" textFill="#000000a4">
@@ -537,32 +537,32 @@
                   <Image url="@../Icon/system/location_32px.png" />
                </image>
             </ImageView>
-            <Label fx:id="leftHumidityLabel1" layoutX="239.0" layoutY="28.0" text="90%">
+            <Label fx:id="rightHumidityLabel" layoutX="202.0" layoutY="27.0" text="90%">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="215.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="178.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/water_32px.png" />
                </image>
             </ImageView>
-            <ImageView blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="215.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="178.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/barometer_32px.png" />
                </image>
             </ImageView>
-            <Label fx:id="leftPressureLabel1" layoutX="239.0" layoutY="53.0" text="1013hPa">
+            <Label fx:id="rightPressureLabel" layoutX="202.0" layoutY="52.0" text="1013hPa">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="215.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="178.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Icon/system/temperature_32px.png" />
                </image>
             </ImageView>
-            <Label fx:id="leftTempMinMaxLabel1" layoutX="239.0" layoutY="81.0" text="8° / 15°">
+            <Label fx:id="rightTempMinMaxLabel" layoutX="202.0" layoutY="80.0" text="8° / 15°">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
