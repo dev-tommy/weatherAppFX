@@ -456,7 +456,13 @@ public class MainWindowController implements Initializable {
         rightDescribeLabel.setText(rightCityWeather.getDescription());
     }
 
+    private void getLeftCity() {
+        leftCity = weatherProviderManager.getLeftCity();
+    }
 
+    private void getRightCity() {
+        leftCity = weatherProviderManager.getRightCity();
+    }
 
 
 }
