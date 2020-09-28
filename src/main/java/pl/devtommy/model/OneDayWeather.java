@@ -4,6 +4,8 @@ import static java.lang.Math.round;
 
 public class OneDayWeather {
     private String name;
+    private String description;
+    private String mainCondition;
     private int id;
     private double humidity;
     private double pressure;
@@ -25,6 +27,22 @@ public class OneDayWeather {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return firstCapitalLetter(description);
+    }
+
+    public void setDescription(String descriptionText) {
+        this.description = descriptionText;
+    }
+
+    public String getMainCondition() {
+        return mainCondition;
+    }
+
+    public void setMainCondition(String mainCondition) {
+        this.mainCondition = mainCondition;
     }
 
     public String getHumidity() {
@@ -67,6 +85,10 @@ public class OneDayWeather {
         this.tempMax = tempMax;
     }
 
+    private String firstCapitalLetter(String text) {
+        return text.substring(0,1).toUpperCase() + text.substring(1).toLowerCase();
+    }
+
     @Override
     public String toString() {
         String answer = "";
@@ -80,6 +102,8 @@ public class OneDayWeather {
             answer += "TempMin: " + getTempMin() + "\n";
             answer += "TempMax: " + getTempMax() + "\n";
         }
+        answer += "Main codition: " + getMainCondition() + "\n";
+        answer += "Description: " + getDescription() + "\n";
         answer += "-------------------------------- \n";
         return answer;
     }
