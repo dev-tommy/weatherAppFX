@@ -390,9 +390,11 @@ public class MainWindowController implements Initializable {
     }
 
     private void setLeftViewCityLocation() {
+        weatherProviderManager.setLeftCity(leftCity);
     }
 
     private void setRightViewCityLocation() {
+        weatherProviderManager.setRightCity(rightCity);
     }
 
     private void getRightSavedCityLocation() {
