@@ -338,7 +338,33 @@ public class MainWindowController implements Initializable {
     private void getRightSavedCityLocation() {
     }
 
-    private void getLeftSavedCityLocation() {
+    private void getRightSavedCityLocation() {
+        rightCity = new City(0, "Zakynthos", "", "", new Coord(0.0, 0.0));
+    }
+
+    private void updateLeftWeatherView() {
+        leftCityWeather = weatherProviderManager.getCurrentLeftCityWeather();
+        leftCityForecastWeather = weatherProviderManager.getForecastLeftCityWeather();
+
+        System.out.println(leftCityWeather);
+        System.out.println(Arrays.toString(leftCityForecastWeather));
+
+        leftCityLabel.setText(leftCityWeather.getName());
+        currentLeftTempLabel.setText( leftCityWeather.getTemp());
+        leftHumidityLabel.setText(leftCityWeather.getHumidity());
+        leftPressureLabel.setText(leftCityWeather.getPressure());
+        leftTempMinMaxLabel.setText(
+                leftCityWeather.getTempMin() +
+                " / " +
+                leftCityWeather.getTempMax()
+        );
+
+        leftTempLabel1.setText( leftCityForecastWeather[0].getTemp() );
+        leftTempLabel2.setText( leftCityForecastWeather[1].getTemp() );
+        leftTempLabel3.setText( leftCityForecastWeather[2].getTemp() );
+        leftTempLabel4.setText( leftCityForecastWeather[3].getTemp() );
+
+        leftDescribeLabel.setText(leftCityWeather.getDescription());
     }
 
     private void updateRightWeatherView() {
