@@ -34,10 +34,101 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
+    private Label leftTempLabel1;
+
+    @FXML
+    private Label leftTempLabel2;
+
+    @FXML
+    private Label leftTempLabel3;
+
+    @FXML
+    private Label leftTempLabel4;
+
+    @FXML
+    private Label rightTempLabel1;
+
+    @FXML
+    private Label rightTempLabel2;
+
+    @FXML
+    private Label rightTempLabel3;
+
+    @FXML
+    private Label rightTempLabel4;
+
+    @FXML
+    private Label leftHumidityLabel;
+
+    @FXML
+    private Label leftPressureLabel;
+
+    @FXML
+    private Label leftTempMinMaxLabel;
+
+    @FXML
+    private Label rightHumidityLabel;
+
+    @FXML
+    private Label rightPressureLabel;
+
+    @FXML
+    private Label rightTempMinMaxLabel;
+
+    @FXML
+    private Label leftDayOfMonthLabel1;
+
+    @FXML
+    private Label leftDayOfMonthLabel2;
+
+    @FXML
+    private Label leftDayOfMonthLabel3;
+
+    @FXML
+    private Label leftDayOfMonthLabel4;
+
+    @FXML
+    private Label rightDayOfMonthLabel1;
+
+    @FXML
+    private Label rightDayOfMonthLabel2;
+
+    @FXML
+    private Label rightDayOfMonthLabel3;
+
+    @FXML
+    private Label rightDayOfMonthLabel4;
+
+    @FXML
     private ImageView currentLeftImageView;
 
     @FXML
     private ImageView refreshLeftImageView;
+
+    @FXML
+    private ImageView leftWeatherImageView1;
+
+    @FXML
+    private ImageView leftWeatherImageView2;
+
+    @FXML
+    private ImageView leftWeatherImageView3;
+
+    @FXML
+    private ImageView leftWeatherImageView4;
+
+    @FXML
+    private ImageView rightWeatherImageView1;
+
+    @FXML
+    private ImageView rightWeatherImageView2;
+
+    @FXML
+    private ImageView rightWeatherImageView3;
+
+    @FXML
+    private ImageView rightWeatherImageView4;
+
 
     @FXML
     private Label currentLeftTempLabel;
