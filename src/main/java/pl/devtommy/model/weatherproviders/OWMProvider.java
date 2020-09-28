@@ -21,7 +21,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
         this.apiKey = apiKey;
         this.owm = new OWM(apiKey);
         this.owm.setUnit(OWM.Unit.METRIC);
-        this.owm.setLanguage(OWM.Language.POLISH);
+        this.owm.setLanguage(Language.ENGLISH);
     }
 
     @Override
