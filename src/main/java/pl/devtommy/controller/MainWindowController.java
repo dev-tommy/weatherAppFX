@@ -403,11 +403,12 @@ public class MainWindowController implements Initializable {
         weatherProviderManager.setRightCity(rightCity);
     }
 
-    private void getRightSavedCityLocation() {
+    private void getLeftSavedCityLocation() {
+        leftCity = weatherProviderManager.getLeftSavedCityLocation();
     }
 
     private void getRightSavedCityLocation() {
-        rightCity = new City(0, "Zakynthos", "", "", new Coord(0.0, 0.0));
+        rightCity = weatherProviderManager.getRightSavedCityLocation();
     }
 
     private void updateLeftWeatherView() {
