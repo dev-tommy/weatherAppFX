@@ -153,7 +153,7 @@ public class MainWindowController implements Initializable {
     private ImageView leftCityImageView;
 
     @FXML
-    private ImageView leftCountryImageView;
+    private ImageView rightCityImageView;
 
     @FXML
     private ImageView closeAppImageView;
@@ -181,12 +181,6 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Label rightCityLabel;
-
-    @FXML
-    private ImageView rightCityImageView;
-
-    @FXML
-    private ImageView rightCountryImageView;
 
     @FXML
     void closeAppOnMouseEntered(MouseEvent event) {
@@ -241,20 +235,10 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    void changeLeftCountry(MouseEvent event) {
-        setLeftViewCityLocation();
-    }
-
-    @FXML
     void changeRightCity(MouseEvent event) {
         setRightViewCityLocation();
         updateRightWeatherImages();
         updateRightWeatherView();
-    }
-
-    @FXML
-    void changeRightCountry(MouseEvent event) {
-        setRightViewCityLocation();
     }
 
     @FXML
@@ -268,16 +252,6 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    void leftCountryOnMouseEntered(MouseEvent event) {
-        zoomIn(leftCountryImageView, 10);
-    }
-
-    @FXML
-    void leftCountryOnMouseExited(MouseEvent event) {
-        zoomOut(leftCountryImageView, 10);
-    }
-
-    @FXML
     void rightCityOnMouseEntered(MouseEvent event) {
         zoomIn(rightCityImageView, 10);
     }
@@ -285,16 +259,6 @@ public class MainWindowController implements Initializable {
     @FXML
     void rightCityOnMouseExited(MouseEvent event) {
         zoomOut(rightCityImageView, 10);
-    }
-
-    @FXML
-    void rightCountryOnMouseEntered(MouseEvent event) {
-        zoomIn(rightCountryImageView, 10);
-    }
-
-    @FXML
-    void rightCountryOnMouseExited(MouseEvent event) {
-        zoomOut(rightCountryImageView, 10);
     }
 
     @FXML
