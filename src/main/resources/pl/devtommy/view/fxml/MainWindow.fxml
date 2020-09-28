@@ -211,7 +211,7 @@
                   <Font name="Calibri" size="61.0" />
                </font>
             </Label>
-            <Label fx:id="leftDescribeLabel" alignment="BOTTOM_LEFT" contentDisplay="CENTER" ellipsisString=".." layoutX="142.0" layoutY="107.0" prefHeight="58.0" prefWidth="245.0" styleClass="current-weather-describe" text="Cloudy sky" textFill="#000000a4" wrapText="true">
+            <Label fx:id="leftDescribeLabel" alignment="BOTTOM_LEFT" contentDisplay="CENTER" ellipsisString=".." layoutX="138.0" layoutY="107.0" prefHeight="58.0" prefWidth="245.0" styleClass="current-weather-describe" text="Cloudy sky" textFill="#000000a4" wrapText="true">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -491,7 +491,7 @@
                   <Font name="Calibri" size="61.0" />
                </font>
             </Label>
-            <VBox layoutX="272.0" layoutY="113.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.99" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
+            <VBox layoutX="273.0" layoutY="44.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.0" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
                <children>
                   <Label fx:id="rightMonthLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="115.0" styleClass="current-month" text="Sep" textAlignment="CENTER">
                      <font>
@@ -512,7 +512,7 @@
                   </DropShadow>
                </effect>
             </VBox>
-            <Label fx:id="rightDescribeLabel" alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="142.0" layoutY="107.0" prefHeight="58.0" prefWidth="245.0" styleClass="current-weather-describe" text="Cloudy sky" textFill="#000000a4">
+            <Label fx:id="rightDescribeLabel" alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="138.0" layoutY="107.0" prefHeight="58.0" prefWidth="245.0" styleClass="current-weather-describe" text="Cloudy sky" textFill="#000000a4" wrapText="true">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
