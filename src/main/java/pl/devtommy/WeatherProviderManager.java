@@ -1,6 +1,7 @@
 package pl.devtommy;
 
 import com.google.gson.Gson;
+import javafx.scene.image.Image;
 import pl.devtommy.model.City;
 import pl.devtommy.model.OneDayWeather;
 import pl.devtommy.model.WeatherProvider;
@@ -8,17 +9,47 @@ import pl.devtommy.model.WeatherProvider;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class WeatherProviderManager {
     private WeatherProvider weatherProvider;
     City leftCity;
     City rightCity;
     City[] cityList;
+    HashMap<String, Image> weatherImages = new HashMap<String, Image>();
 
     public WeatherProviderManager(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
         cityList = generateCityList();
+        weatherImages = addPathsOfWeatherImages();
+    }
 
+    private HashMap<String, Image> addPathsOfWeatherImages() {
+        HashMap<String, Image> weatherImages = new HashMap<String, Image>();
+
+        weatherImages.put("Thunderstorm",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+                "/storm_100px.png")));
+        weatherImages.put("Drizzle",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+                "/rain_100px.png")));
+        weatherImages.put("Rain",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+                "/rain_100px.png")));
+        weatherImages.put("Snow",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+                "/snow_100px.png")));
+        weatherImages.put("Clear",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+                "/sun_100px.png")));
+        weatherImages.put("Clouds",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+                "/cloudy_day_100px.png")));
+        weatherImages.put("Other",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+                "/dust_52px.png")));
+        return weatherImages;
+    }
+
+    public Image getWeatherImage(String mainWeatherCondition) {
+        try {
+            return weatherImages.get(mainWeatherCondition);
+        } catch (Exception e) {
+            return weatherImages.get("Other");
+        }
     }
 
     public OneDayWeather getCurrentLeftCityWeather() {
