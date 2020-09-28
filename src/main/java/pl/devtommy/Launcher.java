@@ -30,8 +30,7 @@ public class Launcher extends Application {
     }
 
     private void showMainWindow(Stage stage, WeatherProviderManager weatherProviderManager) throws IOException {
-        MainWindowController controller = new MainWindowController(weatherProviderManager);
-        scene = new Scene(loadFXML("MainWindow", controller));
+        scene = new Scene(loadFXML("MainWindow", new MainWindowController(weatherProviderManager)));
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
