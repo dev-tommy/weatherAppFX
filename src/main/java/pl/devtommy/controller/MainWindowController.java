@@ -342,10 +342,31 @@ public class MainWindowController implements Initializable {
     }
 
     private void updateRightWeatherView() {
+        rightCityWeather = weatherProviderManager.getCurrentRightCityWeather();
+        rightCityForecastWeather = weatherProviderManager.getForecastRightCityWeather();
+
+        System.out.println(rightCityWeather);
+        System.out.println(Arrays.toString(rightCityForecastWeather));
+
+        rightCityLabel.setText(rightCityWeather.getName());
+        currentRightTempLabel.setText( rightCityWeather.getTemp());
+        rightHumidityLabel.setText(rightCityWeather.getHumidity());
+        rightPressureLabel.setText(rightCityWeather.getPressure());
+        rightTempMinMaxLabel.setText(
+                rightCityWeather.getTempMin() +
+                        " / " +
+                        rightCityWeather.getTempMax()
+        );
+
+        rightTempLabel1.setText( rightCityForecastWeather[0].getTemp() );
+        rightTempLabel2.setText( rightCityForecastWeather[1].getTemp() );
+        rightTempLabel3.setText( rightCityForecastWeather[2].getTemp() );
+        rightTempLabel4.setText( rightCityForecastWeather[3].getTemp() );
+
+        rightDescribeLabel.setText(rightCityWeather.getDescription());
     }
 
-    private void updateLeftWeatherView() {
-    }
+
 
 
 }
