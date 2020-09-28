@@ -123,7 +123,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
         return fiveDaysForecastWeather;
     }
 
-    public LocalDateTime convertToLocalDateTimeViaSqlTimestamp(Date dateToConvert) {
+    private LocalDateTime convertToLocalDateTimeViaSqlTimestamp(Date dateToConvert) {
         return new java.sql.Timestamp(
                 dateToConvert.getTime()).toLocalDateTime();
     }
