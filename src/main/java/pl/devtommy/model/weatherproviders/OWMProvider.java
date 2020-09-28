@@ -75,26 +75,30 @@ public class OWMProvider extends OWM implements WeatherProvider {
         return updateForecastWeather(forecastWeather);
     }
 
-    private OneDayWeather updateOneDayWeather(CurrentWeather cwd) {
+    private OneDayWeather updateOneDayWeather(CurrentWeather currentWeather) {
         OneDayWeather oneDayWeather = new OneDayWeather();
-        if (cwd.hasCityName()) oneDayWeather.setName(cwd.getCityName());
-        if (cwd.hasCityId()) oneDayWeather.setId(cwd.getCityId());
-        if (cwd.hasMainData()) {
-            oneDayWeather.setHumidity(cwd.getMainData().getHumidity());
-            oneDayWeather.setPressure(cwd.getMainData().getPressure());
-            oneDayWeather.setTemp(cwd.getMainData().getTemp());
-            oneDayWeather.setTempMin(cwd.getMainData().getTempMin());
-            oneDayWeather.setTempMax(cwd.getMainData().getTempMax());
+        if (currentWeather.hasCityName()) oneDayWeather.setName(currentWeather.getCityName());
+        if (currentWeather.hasCityId()) oneDayWeather.setId(currentWeather.getCityId());
+        oneDayWeather.setDescription(currentWeather.getWeatherList().get(0).getMoreInfo());
+        oneDayWeather.setMainCondition(currentWeather.getWeatherList().get(0).getMainInfo());
+        if (currentWeather.hasMainData()) {
+            oneDayWeather.setHumidity(currentWeather.getMainData().getHumidity());
+            oneDayWeather.setPressure(currentWeather.getMainData().getPressure());
+            oneDayWeather.setTemp(currentWeather.getMainData().getTemp());
+            oneDayWeather.setTempMin(currentWeather.getMainData().getTempMin());
+            oneDayWeather.setTempMax(currentWeather.getMainData().getTempMax());
         }
         return oneDayWeather;
     }
 
     private OneDayWeather updateOneDayWeather(WeatherData weatherData) {
         OneDayWeather oneDayWeather = new OneDayWeather();
+        oneDayWeather.setDescription(weatherData.getWeatherList().get(0).getMoreInfo());
+        oneDayWeather.setMainCondition(weatherData.getWeatherList().get(0).getMainInfo());
         if (weatherData.hasMainData()) {
             oneDayWeather.setHumidity(weatherData.getMainData().getHumidity());
             oneDayWeather.setPressure(weatherData.getMainData().getPressure());
-            oneDayWeather.setTemp(weatherData.getMainData().getTemp());
+            oneDayWeather.setTemp(weatherData.getMainData().getTempMax());
             oneDayWeather.setTempMin(weatherData.getMainData().getTempMin());
             oneDayWeather.setTempMax(weatherData.getMainData().getTempMax());
         }
