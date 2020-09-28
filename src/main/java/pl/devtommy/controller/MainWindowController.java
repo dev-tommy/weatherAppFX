@@ -327,6 +327,66 @@ public class MainWindowController implements Initializable {
         setRightViewCityLocation();
         updateLeftWeatherView();
         updateRightWeatherView();
+        updateDates();
+        updateLeftWeatherImages();
+        updateRightWeatherImages();
+    }
+
+    private void updateLeftWeatherImages() {
+        String currentWeatherMainCondition = leftCityWeather.getMainCondition();
+        String forecastWeatherMainCondition1 = leftCityForecastWeather[0].getMainCondition();
+        String forecastWeatherMainCondition2 = leftCityForecastWeather[1].getMainCondition();
+        String forecastWeatherMainCondition3 = leftCityForecastWeather[2].getMainCondition();
+        String forecastWeatherMainCondition4 = leftCityForecastWeather[3].getMainCondition();
+
+        currentLeftImageView.setImage(weatherProviderManager.getWeatherImage(currentWeatherMainCondition));
+        leftWeatherImageView1.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition1));
+        leftWeatherImageView2.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition2));
+        leftWeatherImageView3.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition3));
+        leftWeatherImageView4.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition4));
+    }
+
+    private void updateRightWeatherImages() {
+        String currentWeatherMainCondition = rightCityWeather.getMainCondition();
+        String forecastWeatherMainCondition1 = rightCityForecastWeather[0].getMainCondition();
+        String forecastWeatherMainCondition2 = rightCityForecastWeather[1].getMainCondition();
+        String forecastWeatherMainCondition3 = rightCityForecastWeather[2].getMainCondition();
+        String forecastWeatherMainCondition4 = rightCityForecastWeather[3].getMainCondition();
+
+        currentRightImageView.setImage(weatherProviderManager.getWeatherImage(currentWeatherMainCondition));
+        rightWeatherImageView1.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition1));
+        rightWeatherImageView2.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition2));
+        rightWeatherImageView3.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition3));
+        rightWeatherImageView4.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition4));
+    }
+
+    private void updateDates() {
+        LocalDateTime today = LocalDateTime.now();
+        int day = today.getDayOfMonth();
+        int nextday1 = today.plusDays(1).getDayOfMonth();
+        int nextday2 = today.plusDays(2).getDayOfMonth();
+        int nextday3 = today.plusDays(3).getDayOfMonth();
+        int nextday4 = today.plusDays(4).getDayOfMonth();
+        Month month = today.getMonth();
+        DayOfWeek dayOfWeek = today.getDayOfWeek();
+
+        leftMonthLabel.setText(month.name().substring(0,1).toUpperCase() + month.name().substring(1,3).toLowerCase());
+        leftDayLabel.setText(dayOfWeek.name().substring(0,1).toUpperCase() + dayOfWeek.name().substring(1,3).toLowerCase() + "," +
+                " " + day);
+
+        rightMonthLabel.setText(month.name().substring(0,1).toUpperCase() + month.name().substring(1,3).toLowerCase());
+        rightDayLabel.setText(dayOfWeek.name().substring(0,1).toUpperCase() + dayOfWeek.name().substring(1,3).toLowerCase() + "," +
+                " " + day);
+
+        leftDayOfMonthLabel1.setText(String.valueOf(nextday1));
+        leftDayOfMonthLabel2.setText(String.valueOf(nextday2));
+        leftDayOfMonthLabel3.setText(String.valueOf(nextday3));
+        leftDayOfMonthLabel4.setText(String.valueOf(nextday4));
+
+        rightDayOfMonthLabel1.setText(String.valueOf(nextday1));
+        rightDayOfMonthLabel2.setText(String.valueOf(nextday2));
+        rightDayOfMonthLabel3.setText(String.valueOf(nextday3));
+        rightDayOfMonthLabel4.setText(String.valueOf(nextday4));
     }
 
     private void setLeftViewCityLocation() {
