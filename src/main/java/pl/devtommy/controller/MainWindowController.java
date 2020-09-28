@@ -15,6 +15,7 @@ import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
