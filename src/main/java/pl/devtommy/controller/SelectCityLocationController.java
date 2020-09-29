@@ -52,7 +52,10 @@ public class SelectCityLocationController {
     private Button cancelButton;
 
     @FXML
-    private TableView<City> citiesTableView;
+    void cancel() {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
+    }
 
     @FXML
     void okButton() {
