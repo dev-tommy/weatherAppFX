@@ -27,7 +27,7 @@
             <TableColumn fx:id="longitudeCol" editable="false" prefWidth="76.0" resizable="false" text="Longitude" />
         </columns>
       </TableView>
-      <Button defaultButton="true" layoutX="456.0" layoutY="435.0" mnemonicParsing="false" onAction="#okButton" prefHeight="39.0" prefWidth="113.0" text="Ok" textFill="#29ae5a" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="26.0">
+      <Button defaultButton="true" layoutX="456.0" layoutY="435.0" mnemonicParsing="false" onAction="#ok" prefHeight="39.0" prefWidth="113.0" text="Ok" textFill="#29ae5a" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="26.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
