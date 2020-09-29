@@ -25,13 +25,39 @@ public class SelectCityLocationController {
     private TextField nameLabel;
 
     @FXML
+    private TableView<City> citiesTableView;
+
+    @FXML
+    private TableColumn<City, Integer> cityIdCol;
+
+    @FXML
+    private TableColumn<City, String> cityNameCol;
+
+    @FXML
+    private TableColumn<City, String> countryCol;
+
+    @FXML
+    private TableColumn<City, Double> latitudeCol;
+
+    @FXML
+    private TableColumn<City, Double> longitudeCol;
+
+    @FXML
     private TextField latLabel;
 
     @FXML
     private TextField lonLabel;
 
     @FXML
+    private Button cancelButton;
+
+    @FXML
     private TableView<City> citiesTableView;
+
+    @FXML
+    void okButton() {
+
+    }
 
     @FXML
     void searchCities() {
