@@ -59,7 +59,20 @@ public class WeatherProviderManager {
     }
 
     public City getCity() {
-        return null;
+        Parent root;
+        try {
+            String fxml = "SelectCityLocationWindow";
+            FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("view/fxml/" + fxml + ".fxml"));
+            fxmlLoader.setController(new SelectCityLocationController(this));
+            Stage stage = new Stage();
+            root = fxmlLoader.load();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Select a city");
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Show SelectCityLocationWindow fail!");
+        }
+        return getLeftSavedCityLocation();
     }
 
     public Image getWeatherImage(String mainWeatherCondition) {
