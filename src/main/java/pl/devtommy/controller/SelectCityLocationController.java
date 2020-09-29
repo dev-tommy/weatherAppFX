@@ -19,10 +19,10 @@ public class SelectCityLocationController {
     }
 
     @FXML
-    private TextField idLabel;
+    private TextField idTextField;
 
     @FXML
-    private TextField nameLabel;
+    private TextField nameTextField;
 
     @FXML
     private TableView<City> citiesTableView;
@@ -43,10 +43,10 @@ public class SelectCityLocationController {
     private TableColumn<City, Double> longitudeCol;
 
     @FXML
-    private TextField latLabel;
+    private TextField latitudeTextField;
 
     @FXML
-    private TextField lonLabel;
+    private TextField longitudeTextField;
 
     @FXML
     private Button cancelButton;
