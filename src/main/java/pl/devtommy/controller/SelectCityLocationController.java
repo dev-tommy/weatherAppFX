@@ -58,8 +58,8 @@ public class SelectCityLocationController {
     }
 
     @FXML
-    void okButton() {
-
+    void ok() {
+        weatherProviderManager.setLeftCity(selectedCity);
     }
 
     @FXML
