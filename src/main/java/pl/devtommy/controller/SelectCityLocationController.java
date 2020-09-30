@@ -1,15 +1,18 @@
 package pl.devtommy.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import pl.devtommy.WeatherProviderManager;
 import pl.devtommy.model.City;
 
-public class SelectCityLocationController {
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class SelectCityLocationController implements Initializable {
 
     WeatherProviderManager weatherProviderManager;
     City selectedCity;
