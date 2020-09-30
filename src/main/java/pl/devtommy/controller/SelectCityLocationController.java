@@ -70,5 +70,16 @@ public class SelectCityLocationController implements Initializable {
     @FXML
     void searchCities() {
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setupTableView();
+    }
+
+    private void setupTableView() {
+        cityIdCol.setCellValueFactory(new PropertyValueFactory<City, Integer>("id"));
+        cityNameCol.setCellValueFactory(new PropertyValueFactory<City, String>("name"));
+        countryCol.setCellValueFactory(new PropertyValueFactory<City, String>("country"));
+        latitudeCol.setCellValueFactory(new PropertyValueFactory<City, Double>("latitude"));
+        longitudeCol.setCellValueFactory(new PropertyValueFactory<City, Double>("longitude"));
     }
 }
