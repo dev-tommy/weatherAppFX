@@ -128,14 +128,4 @@ public class WeatherProviderManager {
         }
         return citiesContains;
     }
-
-    private ArrayList<City> getCitiesEqualsName(String cityName) {
-        ArrayList<City> citiesEquals = new ArrayList<City>();
-        for (City city: cityList) {
-            if (city.getName().equals(cityName)) {
-                citiesEquals.add(city);
-            }
-        }
-        return citiesEquals;
-    }
 }
