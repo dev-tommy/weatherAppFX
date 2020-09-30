@@ -24,10 +24,10 @@ public class SelectCityLocationController implements Initializable {
     }
 
     @FXML
-    private TextField idTextField;
+    private TextField nameTextField;
 
     @FXML
-    private TextField nameTextField;
+    private Label foundCountLabel;
 
     @FXML
     private TableView<City> citiesTableView;
@@ -48,12 +48,6 @@ public class SelectCityLocationController implements Initializable {
     private TableColumn<City, Double> longitudeCol;
 
     @FXML
-    private TextField latitudeTextField;
-
-    @FXML
-    private TextField longitudeTextField;
-
-    @FXML
     private Button cancelButton;
 
     @FXML
@@ -70,10 +64,14 @@ public class SelectCityLocationController implements Initializable {
     @FXML
     void searchCities() {
         String cityName = nameTextField.getText();
-
-        foundCities = weatherProviderManager.getCitiesContainsName(cityName);
+        foundCountLabel.setText("");
         citiesTableView.getItems().clear();
-        citiesTableView.getItems().addAll(foundCities);
+
+        if (!cityName.isEmpty()) {
+            foundCities = weatherProviderManager.getCitiesContainsName(cityName);
+            citiesTableView.getItems().addAll(foundCities);
+            foundCountLabel.setText("Found locations: " + foundCities.size());
+        }
     }
 
     @Override
