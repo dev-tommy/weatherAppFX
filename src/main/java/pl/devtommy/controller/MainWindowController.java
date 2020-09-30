@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pl.devtommy.WeatherProviderManager;
 import pl.devtommy.model.City;
-import pl.devtommy.model.Coord;
 import pl.devtommy.model.OneDayWeather;
 
 import java.net.URL;
