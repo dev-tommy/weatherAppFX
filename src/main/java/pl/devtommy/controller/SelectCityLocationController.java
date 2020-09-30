@@ -17,6 +17,8 @@ public class SelectCityLocationController implements Initializable {
     WeatherProviderManager weatherProviderManager;
     City selectedCity;
 
+    private ArrayList<City> foundCities;
+
     public SelectCityLocationController(WeatherProviderManager weatherProviderManager) {
         this.weatherProviderManager = weatherProviderManager;
     }
