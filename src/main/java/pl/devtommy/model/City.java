@@ -38,6 +38,14 @@ public class City {
         return coord;
     }
 
+    public Double getLatitude() {
+        return coord.getLat();
+    }
+
+    public Double getLongitude() {
+        return coord.getLon();
+    }
+
     @Override
     public String toString() {
         String answer = "";
@@ -45,8 +53,8 @@ public class City {
         answer += "ID: "+ getId() +"\n";
         answer += "Name: "+ getName() +"\n";
         answer += "Country: "+ getCountry() +"\n";
-        answer += "Coord: Lon: "+ getCoord().getLon() +"\n";
-        answer += "Coord: Lat: "+ getCoord().getLat()+"\n";
+        answer += "Coord: Lon: "+ getLongitude() +"\n";
+        answer += "Coord: Lat: "+ getLatitude() +"\n";
         answer += "-------------------------------- \n";
         return answer;
     }
