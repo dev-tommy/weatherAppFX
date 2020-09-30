@@ -69,6 +69,12 @@ public class SelectCityLocationController implements Initializable {
 
     @FXML
     void searchCities() {
+        String cityName = nameTextField.getText();
+
+        foundCities = weatherProviderManager.getCitiesContainsName(cityName);
+        citiesTableView.getItems().clear();
+        citiesTableView.getItems().addAll(foundCities);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
