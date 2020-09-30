@@ -7,10 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import pl.devtommy.controller.SelectCityLocationController;
-import pl.devtommy.model.City;
-import pl.devtommy.model.Coord;
-import pl.devtommy.model.OneDayWeather;
-import pl.devtommy.model.WeatherProvider;
+import pl.devtommy.model.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
