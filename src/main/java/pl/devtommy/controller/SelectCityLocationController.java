@@ -51,7 +51,7 @@ public class SelectCityLocationController implements Initializable {
     private Button cancelButton;
 
     @FXML
-    void cancel() {
+    void closeWindow() {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
