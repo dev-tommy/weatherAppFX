@@ -380,6 +380,7 @@ public class MainWindowController implements Initializable {
         System.out.println(Arrays.toString(leftCityForecastWeather));
 
         leftCityLabel.setText(leftCityWeather.getName());
+        leftCountryLabel.setText(leftCityWeather.getCountry());
         currentLeftTempLabel.setText( leftCityWeather.getTemp());
         leftHumidityLabel.setText(leftCityWeather.getHumidity());
         leftPressureLabel.setText(leftCityWeather.getPressure());
@@ -405,6 +406,7 @@ public class MainWindowController implements Initializable {
         System.out.println(Arrays.toString(rightCityForecastWeather));
 
         rightCityLabel.setText(rightCityWeather.getName());
+        rightCountryLabel.setText(rightCityWeather.getCountry());
         currentRightTempLabel.setText( rightCityWeather.getTemp());
         rightHumidityLabel.setText(rightCityWeather.getHumidity());
         rightPressureLabel.setText(rightCityWeather.getPressure());
