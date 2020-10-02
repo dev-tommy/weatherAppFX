@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.devtommy.controller.SelectCityLocationController;
 import pl.devtommy.model.*;
@@ -56,7 +57,7 @@ public class WeatherProviderManager {
         return new City(0, "Zakynthos", "", "", new Coord(0.0, 0.0));
     }
 
-    public City getCity() {
+    public void getCity(Stage ownerStage) {
         Parent root;
         try {
             String fxml = "SelectCityLocationWindow";
@@ -64,13 +65,14 @@ public class WeatherProviderManager {
             fxmlLoader.setController(new SelectCityLocationController(this));
             Stage stage = new Stage();
             root = fxmlLoader.load();
+            stage.initOwner(ownerStage);
+            stage.initModality(Modality.WINDOW_MODAL);
             stage.setScene(new Scene(root));
             stage.setTitle("Select a city");
-            stage.show();
+            stage.showAndWait();
         } catch (Exception e) {
             System.out.println("Show SelectCityLocationWindow fail!");
         }
-        return getLeftSavedCityLocation();
     }
 
     public Image getWeatherImage(String mainWeatherCondition) {
