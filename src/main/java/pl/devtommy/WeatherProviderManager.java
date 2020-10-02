@@ -102,11 +102,15 @@ public class WeatherProviderManager {
 
 
     public void setLeftCity(City leftCity) {
-        this.leftCity = leftCity;
+        if (leftCity != null) {
+            this.leftCity = leftCity;
+        }
     }
 
     public void setRightCity(City rightCity) {
-        this.rightCity = rightCity;
+        if (rightCity != null) {
+            this.rightCity = rightCity;
+        }
     }
 
     private City[] generateCityList(){
