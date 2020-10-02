@@ -15,7 +15,7 @@
             <Font size="14.0" />
          </font></TextField>
       <Label layoutX="14.0" layoutY="24.0" prefHeight="17.0" prefWidth="38.0" text="Name" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="24.0" />
-      <TableView fx:id="citiesTableView" layoutX="14.0" layoutY="85.0" prefHeight="340.0" prefWidth="575.0" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
+      <TableView fx:id="citiesTableView" layoutX="14.0" layoutY="85.0" onMouseClicked="#doubleClickTableRow" prefHeight="340.0" prefWidth="575.0" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
         <columns>
           <TableColumn fx:id="cityIdCol" editable="false" prefWidth="102.0" resizable="false" text="Id" />
           <TableColumn fx:id="cityNameCol" editable="false" prefWidth="262.0" text="Name" />
