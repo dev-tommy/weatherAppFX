@@ -18,6 +18,7 @@ public class WeatherProviderManager {
     private WeatherProvider weatherProvider;
     City leftCity;
     City rightCity;
+    City selectedCity;
     City[] cityList;
     HashMap<String, Image> weatherImages = new HashMap<String, Image>();
 
