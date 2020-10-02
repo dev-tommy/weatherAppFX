@@ -113,6 +113,22 @@ public class WeatherProviderManager {
         }
     }
 
+    public City getLeftCity() {
+        return leftCity;
+    }
+
+    public City getRightCity() {
+        return rightCity;
+    }
+
+    public City getSelectedCity() {
+        return selectedCity;
+    }
+
+    public void setSelectedCity(City selectedCity) {
+        this.selectedCity = selectedCity;
+    }
+
     private City[] generateCityList(){
         Gson gson = new Gson();
         City[] cityList = new City[0];
