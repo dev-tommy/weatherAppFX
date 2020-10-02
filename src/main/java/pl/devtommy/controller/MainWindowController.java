@@ -207,8 +207,10 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    void refreshLeftWeather(MouseEvent event) {
+    void refreshLeftWeather() {
+        setLeftViewCityLocation();
         updateLeftWeatherView();
+        updateLeftWeatherImages();
     }
 
     @FXML
