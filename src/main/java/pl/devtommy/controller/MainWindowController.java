@@ -425,11 +425,17 @@ public class MainWindowController implements Initializable {
     }
 
     private void getLeftCity() {
-        leftCity = weatherProviderManager.getCity();
+        weatherProviderManager.setSelectedCity(null);
+        weatherProviderManager.getCity((Stage) currentLeftTempLabel.getScene().getWindow());
+        leftCity = weatherProviderManager.getSelectedCity();
+        refreshLeftWeather();
     }
 
     private void getRightCity() {
-        rightCity = weatherProviderManager.getCity();
+        weatherProviderManager.setSelectedCity(null);
+        weatherProviderManager.getCity((Stage) currentRightTempLabel.getScene().getWindow());
+        rightCity = weatherProviderManager.getSelectedCity();
+        refreshRightWeather();
     }
 
 
