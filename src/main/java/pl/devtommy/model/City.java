@@ -1,5 +1,7 @@
 package pl.devtommy.model;
 
+import java.util.Locale;
+
 public class City {
     private int id;
     private String name;
@@ -30,12 +32,24 @@ public class City {
         return state;
     }
 
-    public String getCountry() {
+    public String getCountryCode() {
         return country;
     }
 
-    public Coord getCoord() {
+    public String getCountry() {
+        return new Locale("", getCountryCode()).getDisplayCountry(new Locale("EN"));
+    }
+
+    public Coord  getCoord() {
         return coord;
+    }
+
+    public Double getLatitude() {
+        return coord.getLat();
+    }
+
+    public Double getLongitude() {
+        return coord.getLon();
     }
 
     @Override
@@ -44,9 +58,10 @@ public class City {
 
         answer += "ID: "+ getId() +"\n";
         answer += "Name: "+ getName() +"\n";
-        answer += "Country: "+ getCountry() +"\n";
-        answer += "Coord: Lon: "+ getCoord().getLon() +"\n";
-        answer += "Coord: Lat: "+ getCoord().getLat()+"\n";
+        answer += "Country code: "+ getCountryCode() +"\n";
+        answer += "Country name: "+ getCountry() +"\n";
+        answer += "Coord: Lon: "+ getLongitude() +"\n";
+        answer += "Coord: Lat: "+ getLatitude() +"\n";
         answer += "-------------------------------- \n";
         return answer;
     }

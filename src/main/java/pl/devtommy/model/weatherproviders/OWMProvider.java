@@ -28,7 +28,8 @@ public class OWMProvider extends OWM implements WeatherProvider {
     public OneDayWeather getCurrentWeatherByCity(City city) {
         int id = city.getId();
         String name = city.getName();
-        String country = city.getCountry();
+        String countryCode = city.getCountryCode();
+        String countryName = city.getCountry();
         double latitude = city.getCoord().getLat();
         double longitude = city.getCoord().getLon();
         CurrentWeather currentWeather = null;
@@ -38,7 +39,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
                 currentWeather = owm.currentWeatherByCityId(id);
             }
             else if (latitude == 0 || longitude == 0) {
-                currentWeather = owm.currentWeatherByCityName(name + ", "+ country);
+                currentWeather = owm.currentWeatherByCityName(name + ", "+ countryCode);
             } else {
                 currentWeather = owm.currentWeatherByCoords(latitude, longitude);
             }
@@ -47,14 +48,14 @@ public class OWMProvider extends OWM implements WeatherProvider {
             System.out.println("Wrong city data!");
             e.printStackTrace();
         }
-        return updateOneDayWeather(currentWeather);
+        return updateOneDayWeather(currentWeather, countryName);
     }
 
     @Override
     public OneDayWeather[] getForecastWeatherByCity(City city) {
         int id = city.getId();
         String name = city.getName();
-        String country = city.getCountry();
+        String countryCode = city.getCountryCode();
         double latitude = city.getCoord().getLat();
         double longitude = city.getCoord().getLon();
         HourlyWeatherForecast forecastWeather = null;
@@ -64,7 +65,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
                 forecastWeather = owm.hourlyWeatherForecastByCityId(id);
             }
             else if (latitude == 0 || longitude == 0) {
-                forecastWeather = owm.hourlyWeatherForecastByCityName(name + ", "+ country);
+                forecastWeather = owm.hourlyWeatherForecastByCityName(name + ", "+ countryCode);
             } else {
                 forecastWeather = owm.hourlyWeatherForecastByCoords(latitude, longitude);
             }
@@ -75,10 +76,11 @@ public class OWMProvider extends OWM implements WeatherProvider {
         return updateForecastWeather(forecastWeather);
     }
 
-    private OneDayWeather updateOneDayWeather(CurrentWeather currentWeather) {
+    private OneDayWeather updateOneDayWeather(CurrentWeather currentWeather, String countryName) {
         OneDayWeather oneDayWeather = new OneDayWeather();
         if (currentWeather.hasCityName()) oneDayWeather.setName(currentWeather.getCityName());
         if (currentWeather.hasCityId()) oneDayWeather.setId(currentWeather.getCityId());
+        oneDayWeather.setCountry(countryName);
         oneDayWeather.setDescription(currentWeather.getWeatherList().get(0).getMoreInfo());
         oneDayWeather.setMainCondition(currentWeather.getWeatherList().get(0).getMainInfo());
         if (currentWeather.hasMainData()) {

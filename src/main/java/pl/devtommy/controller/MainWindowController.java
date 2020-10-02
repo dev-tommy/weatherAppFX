@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pl.devtommy.WeatherProviderManager;
 import pl.devtommy.model.City;
-import pl.devtommy.model.Coord;
 import pl.devtommy.model.OneDayWeather;
 
 import java.net.URL;
@@ -208,8 +207,10 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    void refreshLeftWeather(MouseEvent event) {
+    void refreshLeftWeather() {
+        setLeftViewCityLocation();
         updateLeftWeatherView();
+        updateLeftWeatherImages();
     }
 
     @FXML
@@ -223,22 +224,20 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    void refreshRightWeather(MouseEvent event) {
-        updateRightWeatherView();
-    }
-
-    @FXML
-    void changeLeftCity(MouseEvent event) {
-        setLeftViewCityLocation();
-        updateLeftWeatherImages();
-        updateLeftWeatherView();
-    }
-
-    @FXML
-    void changeRightCity(MouseEvent event) {
+    void refreshRightWeather() {
         setRightViewCityLocation();
+        updateRightWeatherView();;
         updateRightWeatherImages();
-        updateRightWeatherView();
+    }
+
+    @FXML
+    void changeLeftCity() {
+        getLeftCity();
+    }
+
+    @FXML
+    void changeRightCity() {
+        getRightCity();
     }
 
     @FXML
@@ -295,11 +294,9 @@ public class MainWindowController implements Initializable {
         getRightSavedCityLocation();
         setLeftViewCityLocation();
         setRightViewCityLocation();
-        updateLeftWeatherView();
-        updateRightWeatherView();
+        refreshLeftWeather();
+        refreshRightWeather();
         updateDates();
-        updateLeftWeatherImages();
-        updateRightWeatherImages();
     }
 
     private void updateLeftWeatherImages() {
@@ -383,6 +380,7 @@ public class MainWindowController implements Initializable {
         System.out.println(Arrays.toString(leftCityForecastWeather));
 
         leftCityLabel.setText(leftCityWeather.getName());
+        leftCountryLabel.setText(leftCityWeather.getCountry());
         currentLeftTempLabel.setText( leftCityWeather.getTemp());
         leftHumidityLabel.setText(leftCityWeather.getHumidity());
         leftPressureLabel.setText(leftCityWeather.getPressure());
@@ -408,6 +406,7 @@ public class MainWindowController implements Initializable {
         System.out.println(Arrays.toString(rightCityForecastWeather));
 
         rightCityLabel.setText(rightCityWeather.getName());
+        rightCountryLabel.setText(rightCityWeather.getCountry());
         currentRightTempLabel.setText( rightCityWeather.getTemp());
         rightHumidityLabel.setText(rightCityWeather.getHumidity());
         rightPressureLabel.setText(rightCityWeather.getPressure());
@@ -426,11 +425,17 @@ public class MainWindowController implements Initializable {
     }
 
     private void getLeftCity() {
-        leftCity = weatherProviderManager.getCity();
+        weatherProviderManager.setSelectedCity(null);
+        weatherProviderManager.getCity((Stage) currentLeftTempLabel.getScene().getWindow());
+        leftCity = weatherProviderManager.getSelectedCity();
+        refreshLeftWeather();
     }
 
     private void getRightCity() {
-        rightCity = weatherProviderManager.getCity();
+        weatherProviderManager.setSelectedCity(null);
+        weatherProviderManager.getCity((Stage) currentRightTempLabel.getScene().getWindow());
+        rightCity = weatherProviderManager.getSelectedCity();
+        refreshRightWeather();
     }
 
 

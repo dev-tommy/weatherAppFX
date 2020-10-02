@@ -1,11 +1,14 @@
 package pl.devtommy;
 
 import com.google.gson.Gson;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import pl.devtommy.model.City;
-import pl.devtommy.model.Coord;
-import pl.devtommy.model.OneDayWeather;
-import pl.devtommy.model.WeatherProvider;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import pl.devtommy.controller.SelectCityLocationController;
+import pl.devtommy.model.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,6 +19,7 @@ public class WeatherProviderManager {
     private WeatherProvider weatherProvider;
     City leftCity;
     City rightCity;
+    City selectedCity;
     City[] cityList;
     HashMap<String, Image> weatherImages = new HashMap<String, Image>();
 
@@ -50,11 +54,25 @@ public class WeatherProviderManager {
     }
 
     public City getRightSavedCityLocation() {
-        return new City(0, "Zakynthos", "", "", new Coord(0.0, 0.0));
+        return new City(0, "Zakynthos", "", "GR", new Coord(0.0, 0.0));
     }
 
-    public City getCity() {
-        return null;
+    public void getCity(Stage ownerStage) {
+        Parent root;
+        try {
+            String fxml = "SelectCityLocationWindow";
+            FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("view/fxml/" + fxml + ".fxml"));
+            fxmlLoader.setController(new SelectCityLocationController(this));
+            Stage stage = new Stage();
+            root = fxmlLoader.load();
+            stage.initOwner(ownerStage);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.setScene(new Scene(root));
+            stage.setTitle("Select a city");
+            stage.showAndWait();
+        } catch (Exception e) {
+            System.out.println("Show SelectCityLocationWindow fail!");
+        }
     }
 
     public Image getWeatherImage(String mainWeatherCondition) {
@@ -84,11 +102,31 @@ public class WeatherProviderManager {
 
 
     public void setLeftCity(City leftCity) {
-        this.leftCity = leftCity;
+        if (leftCity != null) {
+            this.leftCity = leftCity;
+        }
     }
 
     public void setRightCity(City rightCity) {
-        this.rightCity = rightCity;
+        if (rightCity != null) {
+            this.rightCity = rightCity;
+        }
+    }
+
+    public City getLeftCity() {
+        return leftCity;
+    }
+
+    public City getRightCity() {
+        return rightCity;
+    }
+
+    public City getSelectedCity() {
+        return selectedCity;
+    }
+
+    public void setSelectedCity(City selectedCity) {
+        this.selectedCity = selectedCity;
     }
 
     private City[] generateCityList(){
@@ -104,23 +142,16 @@ public class WeatherProviderManager {
         return cityList;
     }
 
-    private ArrayList<City> getCitiesContainsName(String cityName) {
+    public ArrayList<City> getCitiesContainsName(String cityName) {
         ArrayList<City> citiesContains = new ArrayList<City>();
         for (City city: cityList) {
-            if (city.getName().contains(cityName)) {
+            if (city.getName().equals(cityName)) {
+                citiesContains.add(0, city);
+            }
+            else if (city.getName().contains(cityName)) {
                 citiesContains.add(city);
             }
         }
         return citiesContains;
-    }
-
-    private ArrayList<City> getCitiesEqualsName(String cityName) {
-        ArrayList<City> citiesEquals = new ArrayList<City>();
-        for (City city: cityList) {
-            if (city.getName().equals(cityName)) {
-                citiesEquals.add(city);
-            }
-        }
-        return citiesEquals;
     }
 }
