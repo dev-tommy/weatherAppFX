@@ -294,11 +294,9 @@ public class MainWindowController implements Initializable {
         getRightSavedCityLocation();
         setLeftViewCityLocation();
         setRightViewCityLocation();
-        updateLeftWeatherView();
-        updateRightWeatherView();
+        refreshLeftWeather();
+        refreshRightWeather();
         updateDates();
-        updateLeftWeatherImages();
-        updateRightWeatherImages();
     }
 
     private void updateLeftWeatherImages() {
