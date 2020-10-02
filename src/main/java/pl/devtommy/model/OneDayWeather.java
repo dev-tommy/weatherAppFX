@@ -4,6 +4,7 @@ import static java.lang.Math.round;
 
 public class OneDayWeather {
     private String name;
+    private String country;
     private String description;
     private String mainCondition;
     private int id;
@@ -19,6 +20,14 @@ public class OneDayWeather {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public int getId() {
@@ -95,6 +104,7 @@ public class OneDayWeather {
 
         if (id !=0) answer += "Id: " + getId() +"\n";
         if (name != null) answer += "Name: " + getName() +"\n";
+        if (country != null) answer += "Country: " + getCountry() +"\n";
         answer += "Humidity: " + getHumidity() + "\n";
         answer += "Pressure: " + getPressure() + "\n";
         answer += "Temp: " + getTemp() + "\n";
