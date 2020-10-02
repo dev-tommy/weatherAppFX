@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pl.devtommy.WeatherProviderManager;
 import pl.devtommy.model.City;
@@ -48,6 +49,13 @@ public class SelectCityLocationController implements Initializable {
 
     @FXML
     private Button cancelButton;
+
+    @FXML
+    void doubleClickTableRow(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            ok();
+        }
+    }
 
     @FXML
     void closeWindow() {
