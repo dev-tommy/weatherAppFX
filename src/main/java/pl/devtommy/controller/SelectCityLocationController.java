@@ -15,7 +15,6 @@ import java.util.ResourceBundle;
 public class SelectCityLocationController implements Initializable {
 
     WeatherProviderManager weatherProviderManager;
-    City selectedCity;
 
     private ArrayList<City> foundCities;
 
@@ -58,7 +57,11 @@ public class SelectCityLocationController implements Initializable {
 
     @FXML
     void ok() {
-        weatherProviderManager.setLeftCity(selectedCity);
+        City selectedCity = citiesTableView.getSelectionModel().getSelectedItem();
+        if (selectedCity != null) {
+            weatherProviderManager.setSelectedCity(selectedCity);
+            closeWindow();
+        }
     }
 
     @FXML
