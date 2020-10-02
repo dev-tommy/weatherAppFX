@@ -54,7 +54,7 @@ public class WeatherProviderManager {
     }
 
     public City getRightSavedCityLocation() {
-        return new City(0, "Zakynthos", "", "", new Coord(0.0, 0.0));
+        return new City(0, "Zakynthos", "", "GR", new Coord(0.0, 0.0));
     }
 
     public void getCity(Stage ownerStage) {
