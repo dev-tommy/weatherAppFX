@@ -57,24 +57,6 @@ public class WeatherManager {
         return new City(0, "Zakynthos", "", "GR", new Coord(0.0, 0.0));
     }
 
-    public void getCity(Stage ownerStage) {
-        Parent root;
-        try {
-            String fxml = "SelectCityLocationWindow";
-            FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("view/fxml/" + fxml + ".fxml"));
-            fxmlLoader.setController(new SelectCityLocationController(this));
-            Stage stage = new Stage();
-            root = fxmlLoader.load();
-            stage.initOwner(ownerStage);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.setScene(new Scene(root));
-            stage.setTitle("Select a city");
-            stage.showAndWait();
-        } catch (Exception e) {
-            System.out.println("Show SelectCityLocationWindow fail!");
-        }
-    }
-
     public Image getWeatherImage(String mainWeatherCondition) {
         try {
             return weatherImages.get(mainWeatherCondition);
