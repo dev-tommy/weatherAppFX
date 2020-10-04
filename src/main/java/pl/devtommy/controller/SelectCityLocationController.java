@@ -8,19 +8,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.model.City;
+import pl.devtommy.view.ViewFactory;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SelectCityLocationController implements Initializable {
-
-    WeatherManager weatherManager;
+public class SelectCityLocationController extends BaseController implements Initializable {
 
     private ArrayList<City> foundCities;
 
-    public SelectCityLocationController(WeatherManager weatherManager) {
-        this.weatherManager = weatherManager;
+    public SelectCityLocationController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
+        super(weatherManager, viewFactory, fxmlName);
     }
 
     @FXML
