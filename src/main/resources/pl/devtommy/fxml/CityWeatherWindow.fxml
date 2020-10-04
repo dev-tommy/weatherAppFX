@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="400.0" styleClass="anchorpane" stylesheets="@../css/leftColumnStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" styleClass="anchorpane" stylesheets="@../css/cityWeather.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView blendMode="SRC_ATOP" fitHeight="225.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" styleClass="current-image">
          <image>
@@ -47,7 +47,7 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <ImageView fx:id="refreshImageView" blendMode="MULTIPLY" fitHeight="54.0" fitWidth="35.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#refreshLeftWeather" onMouseEntered="#refreshLeftOnMouseEntered" onMouseExited="#refreshLeftOnMouseExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="refreshImageView" blendMode="MULTIPLY" fitHeight="54.0" fitWidth="35.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#refreshWeather" onMouseEntered="#refreshOnMouseEntered" onMouseExited="#refreshOnMouseExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icon/system/refresh_32px.png" />
          </image>
@@ -72,7 +72,7 @@
             <Font name="System Italic" size="19.0" />
          </font>
       </Label>
-      <VBox layoutX="272.0" layoutY="16.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.99" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
+      <VBox layoutX="272.0" layoutY="62.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.99" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
          <children>
             <Label fx:id="monthLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="115.0" styleClass="current-month" text="Sep" textAlignment="CENTER">
                <font>
@@ -93,7 +93,7 @@
             </DropShadow>
          </effect>
       </VBox>
-      <ImageView fx:id="cityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="112.0" layoutY="165.0" onMouseClicked="#changeLeftCity" onMouseEntered="#leftCityOnMouseEntered" onMouseExited="#leftCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="112.0" layoutY="165.0" onMouseClicked="#changeCity" onMouseEntered="#changeCityOnMouseEntered" onMouseExited="#changeCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icon/system/city_32px.png" />
          </image>
@@ -128,6 +128,11 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <ImageView fx:id="closeAppImageView" blendMode="MULTIPLY" fitHeight="35.0" fitWidth="35.0" layoutX="351.0" layoutY="14.0" onMouseClicked="#closeApp" onMouseEntered="#closeAppOnMouseEntered" onMouseExited="#closeAppOnMouseExited" pickOnBounds="true" preserveRatio="true" styleClass="close-button">
+         <image>
+            <Image url="@../Icon/system/cancel_32px.png" />
+         </image>
+      </ImageView>
    </children>
    <effect>
       <DropShadow />
