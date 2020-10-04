@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WeatherManager {
-    private String ICON_WEATHER_PATH = "/pl/devtommy/view/Icon/weather";
+    private String ICON_WEATHER_PATH = "/pl/devtommy/Icon/weather";
     private WeatherProvider weatherProvider;
     private City leftCity;
     private City rightCity;

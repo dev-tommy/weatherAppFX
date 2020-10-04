@@ -68,7 +68,7 @@ public class ViewFactory {
     }
 
     private FXMLLoader loadFxml(BaseController baseController) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("view/fxml/" + baseController.getFxmlName()));
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("fxml/" + baseController.getFxmlName()));
         fxmlLoader.setController(baseController);
         return fxmlLoader;
     }
