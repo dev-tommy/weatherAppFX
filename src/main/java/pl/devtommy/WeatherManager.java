@@ -1,13 +1,7 @@
 package pl.devtommy;
 
 import com.google.gson.Gson;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import pl.devtommy.controller.SelectCityLocationController;
 import pl.devtommy.model.*;
 
 import java.io.FileNotFoundException;
