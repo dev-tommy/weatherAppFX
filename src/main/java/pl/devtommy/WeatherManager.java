@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WeatherManager {
+    private String ICON_WEATHER_PATH = "/pl/devtommy/view/Icon/weather";
     private WeatherProvider weatherProvider;
-    City leftCity;
-    City rightCity;
-    City selectedCity;
-    City[] cityList;
-    HashMap<String, Image> weatherImages = new HashMap<String, Image>();
+    private City leftCity;
+    private City rightCity;
+    private City selectedCity;
+    private City[] cityList;
+    private HashMap<String, Image> weatherImages = new HashMap<String, Image>();
 
     public WeatherManager(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
@@ -26,19 +27,19 @@ public class WeatherManager {
     private HashMap<String, Image> addPathsOfWeatherImages() {
         HashMap<String, Image> weatherImages = new HashMap<String, Image>();
 
-        weatherImages.put("Thunderstorm",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+        weatherImages.put("Thunderstorm",  new Image(this.getClass().getResourceAsStream( ICON_WEATHER_PATH +
                 "/storm_100px.png")));
-        weatherImages.put("Drizzle",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+        weatherImages.put("Drizzle",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PATH +
                 "/rain_100px.png")));
-        weatherImages.put("Rain",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+        weatherImages.put("Rain",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PATH +
                 "/rain_100px.png")));
-        weatherImages.put("Snow",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+        weatherImages.put("Snow",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PATH +
                 "/snow_100px.png")));
-        weatherImages.put("Clear",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+        weatherImages.put("Clear",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PATH +
                 "/sun_100px.png")));
-        weatherImages.put("Clouds",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+        weatherImages.put("Clouds",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PATH +
                 "/cloudy_day_100px.png")));
-        weatherImages.put("Other",  new Image(this.getClass().getResourceAsStream("/pl/devtommy/view/Icon/weather" +
+        weatherImages.put("Other",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PATH +
                 "/dust_52px.png")));
         return weatherImages;
     }
@@ -74,8 +75,6 @@ public class WeatherManager {
     public OneDayWeather[] getForecastRightCityWeather() {
         return weatherProvider.getForecastWeatherByCity(rightCity);
     }
-
-
 
     public void setLeftCity(City leftCity) {
         if (leftCity != null) {
@@ -113,7 +112,6 @@ public class WeatherManager {
                     City[].class);
         } catch (FileNotFoundException e) {
             System.out.println("city.list.json not found");
-            //e.printStackTrace();
         }
         return cityList;
     }
