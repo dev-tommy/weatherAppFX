@@ -3,13 +3,13 @@
     -fx-background-radius: 10px 10px 10px 10px;
 }
 .anchorpane {
-    -fx-border-radius: 10px 0px 0px 10px;
-    -fx-background-radius: 10px 0px 0px 10px;
+    -fx-border-radius: 10px 10px 10px 10px;
+    -fx-background-radius: 10px 10px 10px 10px;
 }
 .next-pane{
     -fx-background-color: #2E3335;
-    -fx-border-radius: 0px 0px 0px 10px;
-    -fx-background-radius: 0px 0px 0px 10px;
+    -fx-border-radius: 10px 10px 10px 10px;
+    -fx-background-radius: 10px 10px 10px 10px;
 }
 
 .current-image{
