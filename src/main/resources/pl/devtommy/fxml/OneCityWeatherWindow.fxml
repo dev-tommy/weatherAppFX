@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="400.0" styleClass="anchorpane" stylesheets="@../css/leftColumnStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView blendMode="SRC_ATOP" fitHeight="225.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" styleClass="current-image">
+         <image>
+            <Image url="@../background/pexels-digital-buggu.jpg" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="0.46" saturation="0.14" />
+         </effect>
+      </ImageView>
+      <Pane layoutY="225.0" prefHeight="175.0" prefWidth="400.0" styleClass="next-pane" AnchorPane.bottomAnchor="0.0">
+         <children>
+            <HBox fx:id="forecastHBox" prefHeight="175.0" prefWidth="400.0" />
+         </children>
+      </Pane>
+      <ImageView fx:id="currentImageView" blendMode="MULTIPLY" fitHeight="130.0" fitWidth="114.0" layoutX="45.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/weather/cloudy_day_100px.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <ImageView fx:id="refreshImageView" blendMode="MULTIPLY" fitHeight="54.0" fitWidth="35.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#refreshLeftWeather" onMouseEntered="#refreshLeftOnMouseEntered" onMouseExited="#refreshLeftOnMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/system/refresh_32px.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="currentTempLabel" layoutX="19.0" layoutY="126.0" styleClass="current-temperature" text="23°" textFill="#005ff5">
+         <font>
+            <Font name="Calibri" size="61.0" />
+         </font>
+      </Label>
+      <Label fx:id="describeLabel" alignment="BOTTOM_LEFT" contentDisplay="CENTER" ellipsisString=".." layoutX="138.0" layoutY="107.0" prefHeight="58.0" prefWidth="245.0" styleClass="current-weather-describe" text="Cloudy sky" textFill="#000000a4" wrapText="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="countryLabel" layoutX="138.0" layoutY="190.0" prefHeight="19.0" prefWidth="245.0" styleClass="current-country" text="Poland" textAlignment="CENTER" textFill="#000000a4">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="cityLabel" layoutX="138.0" layoutY="161.0" prefHeight="28.0" prefWidth="245.0" styleClass="current-city" text="Poznan" textAlignment="CENTER" textFill="#000000a4">
+         <font>
+            <Font name="System Italic" size="19.0" />
+         </font>
+      </Label>
+      <VBox layoutX="272.0" layoutY="16.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.99" prefHeight="91.0" prefWidth="114.0" styleClass="current-calendar">
+         <children>
+            <Label fx:id="monthLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="115.0" styleClass="current-month" text="Sep" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="dayLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="114.0" styleClass="current-day" text="Mo, 14">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow>
+               <input>
+                  <Blend />
+               </input>
+            </DropShadow>
+         </effect>
+      </VBox>
+      <ImageView fx:id="cityImageView" blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="112.0" layoutY="165.0" onMouseClicked="#changeLeftCity" onMouseEntered="#leftCityOnMouseEntered" onMouseExited="#leftCityOnMouseExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/system/city_32px.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="humidityLabel" layoutX="202.0" layoutY="26.0" text="90%">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="178.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/system/water_32px.png" />
+         </image>
+      </ImageView>
+      <ImageView blendMode="MULTIPLY" fitHeight="19.0" fitWidth="20.0" layoutX="178.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/system/barometer_32px.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="pressureLabel" layoutX="202.0" layoutY="51.0" text="1013hPa">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="19.0" fitWidth="20.0" layoutX="178.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icon/system/temperature_32px.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="tempMinMaxLabel" layoutX="202.0" layoutY="79.0" text="8° / 15°">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>
