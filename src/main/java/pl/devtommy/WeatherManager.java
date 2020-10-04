@@ -15,7 +15,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class WeatherProviderManager {
+public class WeatherManager {
     private WeatherProvider weatherProvider;
     City leftCity;
     City rightCity;
@@ -23,7 +23,7 @@ public class WeatherProviderManager {
     City[] cityList;
     HashMap<String, Image> weatherImages = new HashMap<String, Image>();
 
-    public WeatherProviderManager(WeatherProvider weatherProvider) {
+    public WeatherManager(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
         cityList = generateCityList();
         weatherImages = addPathsOfWeatherImages();

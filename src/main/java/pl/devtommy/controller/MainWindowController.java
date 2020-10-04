@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pl.devtommy.WeatherProviderManager;
+import pl.devtommy.WeatherManager;
 import pl.devtommy.model.City;
 import pl.devtommy.model.OneDayWeather;
 
@@ -21,7 +21,7 @@ public class MainWindowController implements Initializable {
 
     private double xMainWindowOffset;
     private double yMainWindowOffset;
-    WeatherProviderManager weatherProviderManager;
+    WeatherManager weatherManager;
     City leftCity;
     City rightCity;
     OneDayWeather leftCityWeather;
@@ -29,8 +29,8 @@ public class MainWindowController implements Initializable {
     OneDayWeather[] leftCityForecastWeather = new OneDayWeather[4];
     OneDayWeather[] rightCityForecastWeather = new OneDayWeather[4];
 
-    public MainWindowController(WeatherProviderManager weatherProviderManager) {
-        this.weatherProviderManager = weatherProviderManager;
+    public MainWindowController(WeatherManager weatherManager) {
+        this.weatherManager = weatherManager;
     }
 
     @FXML
@@ -306,11 +306,11 @@ public class MainWindowController implements Initializable {
         String forecastWeatherMainCondition3 = leftCityForecastWeather[2].getMainCondition();
         String forecastWeatherMainCondition4 = leftCityForecastWeather[3].getMainCondition();
 
-        currentLeftImageView.setImage(weatherProviderManager.getWeatherImage(currentWeatherMainCondition));
-        leftWeatherImageView1.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition1));
-        leftWeatherImageView2.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition2));
-        leftWeatherImageView3.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition3));
-        leftWeatherImageView4.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition4));
+        currentLeftImageView.setImage(weatherManager.getWeatherImage(currentWeatherMainCondition));
+        leftWeatherImageView1.setImage(weatherManager.getWeatherImage(forecastWeatherMainCondition1));
+        leftWeatherImageView2.setImage(weatherManager.getWeatherImage(forecastWeatherMainCondition2));
+        leftWeatherImageView3.setImage(weatherManager.getWeatherImage(forecastWeatherMainCondition3));
+        leftWeatherImageView4.setImage(weatherManager.getWeatherImage(forecastWeatherMainCondition4));
     }
 
     private void updateRightWeatherImages() {
@@ -320,11 +320,11 @@ public class MainWindowController implements Initializable {
         String forecastWeatherMainCondition3 = rightCityForecastWeather[2].getMainCondition();
         String forecastWeatherMainCondition4 = rightCityForecastWeather[3].getMainCondition();
 
-        currentRightImageView.setImage(weatherProviderManager.getWeatherImage(currentWeatherMainCondition));
-        rightWeatherImageView1.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition1));
-        rightWeatherImageView2.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition2));
-        rightWeatherImageView3.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition3));
-        rightWeatherImageView4.setImage(weatherProviderManager.getWeatherImage(forecastWeatherMainCondition4));
+        currentRightImageView.setImage(weatherManager.getWeatherImage(currentWeatherMainCondition));
+        rightWeatherImageView1.setImage(weatherManager.getWeatherImage(forecastWeatherMainCondition1));
+        rightWeatherImageView2.setImage(weatherManager.getWeatherImage(forecastWeatherMainCondition2));
+        rightWeatherImageView3.setImage(weatherManager.getWeatherImage(forecastWeatherMainCondition3));
+        rightWeatherImageView4.setImage(weatherManager.getWeatherImage(forecastWeatherMainCondition4));
     }
 
     private void updateDates() {
@@ -357,24 +357,24 @@ public class MainWindowController implements Initializable {
     }
 
     private void setLeftViewCityLocation() {
-        weatherProviderManager.setLeftCity(leftCity);
+        weatherManager.setLeftCity(leftCity);
     }
 
     private void setRightViewCityLocation() {
-        weatherProviderManager.setRightCity(rightCity);
+        weatherManager.setRightCity(rightCity);
     }
 
     private void getLeftSavedCityLocation() {
-        leftCity = weatherProviderManager.getLeftSavedCityLocation();
+        leftCity = weatherManager.getLeftSavedCityLocation();
     }
 
     private void getRightSavedCityLocation() {
-        rightCity = weatherProviderManager.getRightSavedCityLocation();
+        rightCity = weatherManager.getRightSavedCityLocation();
     }
 
     private void updateLeftWeatherView() {
-        leftCityWeather = weatherProviderManager.getCurrentLeftCityWeather();
-        leftCityForecastWeather = weatherProviderManager.getForecastLeftCityWeather();
+        leftCityWeather = weatherManager.getCurrentLeftCityWeather();
+        leftCityForecastWeather = weatherManager.getForecastLeftCityWeather();
 
         System.out.println(leftCityWeather);
         System.out.println(Arrays.toString(leftCityForecastWeather));
@@ -399,8 +399,8 @@ public class MainWindowController implements Initializable {
     }
 
     private void updateRightWeatherView() {
-        rightCityWeather = weatherProviderManager.getCurrentRightCityWeather();
-        rightCityForecastWeather = weatherProviderManager.getForecastRightCityWeather();
+        rightCityWeather = weatherManager.getCurrentRightCityWeather();
+        rightCityForecastWeather = weatherManager.getForecastRightCityWeather();
 
         System.out.println(rightCityWeather);
         System.out.println(Arrays.toString(rightCityForecastWeather));
@@ -425,16 +425,16 @@ public class MainWindowController implements Initializable {
     }
 
     private void getLeftCity() {
-        weatherProviderManager.setSelectedCity(null);
-        weatherProviderManager.getCity((Stage) currentLeftTempLabel.getScene().getWindow());
-        leftCity = weatherProviderManager.getSelectedCity();
+        weatherManager.setSelectedCity(null);
+        weatherManager.getCity((Stage) currentLeftTempLabel.getScene().getWindow());
+        leftCity = weatherManager.getSelectedCity();
         refreshLeftWeather();
     }
 
     private void getRightCity() {
-        weatherProviderManager.setSelectedCity(null);
-        weatherProviderManager.getCity((Stage) currentRightTempLabel.getScene().getWindow());
-        rightCity = weatherProviderManager.getSelectedCity();
+        weatherManager.setSelectedCity(null);
+        weatherManager.getCity((Stage) currentRightTempLabel.getScene().getWindow());
+        rightCity = weatherManager.getSelectedCity();
         refreshRightWeather();
     }
 

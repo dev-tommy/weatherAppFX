@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pl.devtommy.WeatherProviderManager;
+import pl.devtommy.WeatherManager;
 import pl.devtommy.model.City;
 
 import java.net.URL;
@@ -15,12 +15,12 @@ import java.util.ResourceBundle;
 
 public class SelectCityLocationController implements Initializable {
 
-    WeatherProviderManager weatherProviderManager;
+    WeatherManager weatherManager;
 
     private ArrayList<City> foundCities;
 
-    public SelectCityLocationController(WeatherProviderManager weatherProviderManager) {
-        this.weatherProviderManager = weatherProviderManager;
+    public SelectCityLocationController(WeatherManager weatherManager) {
+        this.weatherManager = weatherManager;
     }
 
     @FXML
@@ -67,7 +67,7 @@ public class SelectCityLocationController implements Initializable {
     void ok() {
         City selectedCity = citiesTableView.getSelectionModel().getSelectedItem();
         if (selectedCity != null) {
-            weatherProviderManager.setSelectedCity(selectedCity);
+            weatherManager.setSelectedCity(selectedCity);
             closeWindow();
         }
     }
@@ -79,7 +79,7 @@ public class SelectCityLocationController implements Initializable {
         citiesTableView.getItems().clear();
 
         if (!cityName.isEmpty()) {
-            foundCities = weatherProviderManager.getCitiesContainsName(cityName);
+            foundCities = weatherManager.getCitiesContainsName(cityName);
             citiesTableView.getItems().addAll(foundCities);
             foundCountLabel.setText("Found locations: " + foundCities.size());
         }

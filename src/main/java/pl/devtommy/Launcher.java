@@ -25,12 +25,12 @@ public class Launcher extends Application {
         API_KEY = getApiKeyFromConfigFile("config.properties");
         WeatherProvider weatherProvider = new OWMProvider(API_KEY);
 
-        WeatherProviderManager weatherProviderManager = new WeatherProviderManager(weatherProvider);
-        showMainWindow(stage, weatherProviderManager);
+        WeatherManager weatherManager = new WeatherManager(weatherProvider);
+        showMainWindow(stage, weatherManager);
     }
 
-    private void showMainWindow(Stage stage, WeatherProviderManager weatherProviderManager) throws IOException {
-        scene = new Scene(loadFXML("MainWindow", new MainWindowController(weatherProviderManager)));
+    private void showMainWindow(Stage stage, WeatherManager weatherManager) throws IOException {
+        scene = new Scene(loadFXML("MainWindow", new MainWindowController(weatherManager)));
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
