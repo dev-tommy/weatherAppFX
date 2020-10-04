@@ -22,12 +22,12 @@ public class MainWindowController extends BaseController implements Initializabl
 
     private double xMainWindowOffset;
     private double yMainWindowOffset;
-    City leftCity;
-    City rightCity;
-    OneDayWeather leftCityWeather;
-    OneDayWeather rightCityWeather;
-    OneDayWeather[] leftCityForecastWeather = new OneDayWeather[4];
-    OneDayWeather[] rightCityForecastWeather = new OneDayWeather[4];
+    private City leftCity;
+    private City rightCity;
+    private OneDayWeather leftCityWeather;
+    private OneDayWeather rightCityWeather;
+    private OneDayWeather[] leftCityForecastWeather = new OneDayWeather[4];
+    private OneDayWeather[] rightCityForecastWeather = new OneDayWeather[4];
 
     public MainWindowController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
         super(weatherManager, viewFactory, fxmlName);
@@ -426,14 +426,14 @@ public class MainWindowController extends BaseController implements Initializabl
 
     private void getLeftCity() {
         weatherManager.setSelectedCity(null);
-        weatherManager.getCity((Stage) currentLeftTempLabel.getScene().getWindow());
+        viewFactory.showSelectCityLocationWindow();
         leftCity = weatherManager.getSelectedCity();
         refreshLeftWeather();
     }
 
     private void getRightCity() {
         weatherManager.setSelectedCity(null);
-        weatherManager.getCity((Stage) currentRightTempLabel.getScene().getWindow());
+        viewFactory.showSelectCityLocationWindow();
         rightCity = weatherManager.getSelectedCity();
         refreshRightWeather();
     }
