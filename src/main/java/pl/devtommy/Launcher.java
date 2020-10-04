@@ -11,6 +11,7 @@ import net.aksingh.owmjapis.api.APIException;
 import pl.devtommy.controller.MainWindowController;
 import pl.devtommy.model.WeatherProvider;
 import pl.devtommy.model.weatherproviders.OWMProvider;
+import pl.devtommy.view.ViewFactory;
 
 import java.io.*;
 import java.util.Properties;
@@ -26,22 +27,8 @@ public class Launcher extends Application {
         WeatherProvider weatherProvider = new OWMProvider(API_KEY);
 
         WeatherManager weatherManager = new WeatherManager(weatherProvider);
-        showMainWindow(stage, weatherManager);
-    }
-
-    private void showMainWindow(Stage stage, WeatherManager weatherManager) throws IOException {
-        scene = new Scene(loadFXML("MainWindow", new MainWindowController(weatherManager)));
-        scene.setFill(Color.TRANSPARENT);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setResizable(false);
-        stage.show();
-    }
-
-    private static Parent loadFXML(String fxml, Object controller) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("view/fxml/" + fxml + ".fxml"));
-        fxmlLoader.setController(controller);
-        return fxmlLoader.load();
+        ViewFactory viewFactory = new ViewFactory(stage, weatherManager);
+        viewFactory.showMainWindow();
     }
 
     public static void main(String[] args) {
