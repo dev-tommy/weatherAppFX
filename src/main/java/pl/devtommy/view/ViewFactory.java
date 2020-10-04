@@ -9,6 +9,7 @@ import javafx.stage.StageStyle;
 import pl.devtommy.Launcher;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.controller.BaseController;
+import pl.devtommy.controller.MainWindowController;
 
 import java.io.IOException;
 
@@ -19,6 +20,11 @@ public class ViewFactory {
     public ViewFactory(Stage stage, WeatherManager weatherManager) {
         this.weatherManager = weatherManager;
         this.ownerStage = stage;
+    }
+
+    public void showMainWindow() {
+        BaseController controller = new MainWindowController(weatherManager, this, "MainWindow.fxml");
+        mainStageInit(controller);
     }
 
     private void mainStageInit(BaseController baseController) {
