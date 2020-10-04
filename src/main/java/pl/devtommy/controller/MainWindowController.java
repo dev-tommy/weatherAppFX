@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.model.City;
 import pl.devtommy.model.OneDayWeather;
+import pl.devtommy.view.ViewFactory;
 
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -17,11 +18,10 @@ import java.time.Month;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class MainWindowController implements Initializable {
+public class MainWindowController extends BaseController implements Initializable {
 
     private double xMainWindowOffset;
     private double yMainWindowOffset;
-    WeatherManager weatherManager;
     City leftCity;
     City rightCity;
     OneDayWeather leftCityWeather;
@@ -29,8 +29,8 @@ public class MainWindowController implements Initializable {
     OneDayWeather[] leftCityForecastWeather = new OneDayWeather[4];
     OneDayWeather[] rightCityForecastWeather = new OneDayWeather[4];
 
-    public MainWindowController(WeatherManager weatherManager) {
-        this.weatherManager = weatherManager;
+    public MainWindowController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
+        super(weatherManager, viewFactory, fxmlName);
     }
 
     @FXML
