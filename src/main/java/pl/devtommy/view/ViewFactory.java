@@ -28,12 +28,10 @@ public class ViewFactory {
     }
 
     private void mainStageInit(BaseController baseController) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("view/fxml/" + baseController.getFxmlName()));
-        fxmlLoader.setController(baseController);
-
         Parent parent;
+
         try {
-            parent = fxmlLoader.load();
+            parent = loadFxml(baseController).load();
         } catch (IOException e) {
             e.printStackTrace();
             return;
@@ -45,5 +43,11 @@ public class ViewFactory {
         ownerStage.initStyle(StageStyle.TRANSPARENT);
         ownerStage.setResizable(false);
         ownerStage.show();
+    }
+
+    private FXMLLoader loadFxml(BaseController baseController) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("view/fxml/" + baseController.getFxmlName()));
+        fxmlLoader.setController(baseController);
+        return fxmlLoader;
     }
 }
