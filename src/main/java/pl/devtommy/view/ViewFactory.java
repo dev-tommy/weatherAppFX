@@ -28,6 +28,11 @@ public class ViewFactory {
         mainStageInit(controller);
     }
 
+    public void showSelectCityLocationWindow() {
+        BaseController controller = new MainWindowController(weatherManager, this, "SelectCityLocationWindow.fxml");
+        stageInit(controller, "Select city");
+    }
+
     private void stageInit(BaseController baseController, String title) {
         Parent parent;
         try {
