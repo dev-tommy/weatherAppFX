@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.devtommy.Launcher;
@@ -27,9 +28,24 @@ public class ViewFactory {
         mainStageInit(controller);
     }
 
+    private void stageInit(BaseController baseController, String title) {
+        Parent parent;
+        try {
+            parent = loadFxml(baseController).load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        Stage stage = new Stage();
+        stage.initOwner(ownerStage);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setScene(new Scene(parent));
+        stage.setTitle(title);
+        stage.showAndWait();
+    }
+
     private void mainStageInit(BaseController baseController) {
         Parent parent;
-
         try {
             parent = loadFxml(baseController).load();
         } catch (IOException e) {
