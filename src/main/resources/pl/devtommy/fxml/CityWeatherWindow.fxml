@@ -26,7 +26,14 @@
       </ImageView>
       <Pane layoutY="225.0" prefHeight="175.0" prefWidth="400.0" styleClass="next-pane" AnchorPane.bottomAnchor="0.0">
          <children>
-            <HBox fx:id="forecastHBox" prefHeight="175.0" prefWidth="400.0" />
+            <HBox fx:id="forecastHBox" prefHeight="175.0" prefWidth="400.0">
+               <children>
+                  <fx:include source="ForecastDayWindow.fxml" />
+                  <fx:include source="ForecastDayWindow.fxml" />
+                  <fx:include source="ForecastDayWindow.fxml" />
+                  <fx:include source="ForecastDayWindow.fxml" />
+               </children>
+            </HBox>
          </children>
       </Pane>
       <ImageView fx:id="currentImageView" blendMode="MULTIPLY" fitHeight="130.0" fitWidth="114.0" layoutX="45.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
