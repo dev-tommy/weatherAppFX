@@ -11,6 +11,7 @@ import pl.devtommy.Launcher;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.controller.BaseController;
 import pl.devtommy.controller.MainWindowController;
+import pl.devtommy.controller.SelectCityLocationController;
 
 import java.io.IOException;
 
@@ -29,7 +30,7 @@ public class ViewFactory {
     }
 
     public void showSelectCityLocationWindow() {
-        BaseController controller = new MainWindowController(weatherManager, this, "SelectCityLocationWindow.fxml");
+        BaseController controller = new SelectCityLocationController(weatherManager, this, "SelectCityLocationWindow.fxml");
         stageInit(controller, "Select city");
     }
 
