@@ -1,14 +1,9 @@
 package pl.devtommy;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import net.aksingh.owmjapis.api.APIException;
-import pl.devtommy.controller.MainWindowController;
 import pl.devtommy.model.WeatherProvider;
 import pl.devtommy.model.weatherproviders.OWMProvider;
 import pl.devtommy.view.ViewFactory;
