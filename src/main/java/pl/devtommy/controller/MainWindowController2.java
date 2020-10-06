@@ -4,12 +4,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.view.ViewFactory;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MainWindowController2 extends BaseController implements Initializable {
@@ -55,7 +57,13 @@ public class MainWindowController2 extends BaseController implements Initializab
 
     @FXML
     void refreshWeather() {
+        updateCurrentDate();
+    }
 
+    private void updateCurrentDate() {
+        SimpleDateFormat formatter= new SimpleDateFormat("EE dd MMM yyyy - [HH:mm] ", Locale.US);
+        Date date = new Date(System.currentTimeMillis());
+        currentDate.setText(formatter.format(date));
     }
 
 
@@ -65,7 +73,7 @@ public class MainWindowController2 extends BaseController implements Initializab
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        refreshWeather();
     }
 
     private void zoomIn(ImageView imageView, int size){
