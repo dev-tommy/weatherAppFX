@@ -28,7 +28,7 @@ public class MainWindowController2 extends BaseController implements Initializab
 
     @FXML
     void closeApp(MouseEvent event) {
-
+        System.exit(0);
     }
 
     @FXML
