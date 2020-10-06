@@ -14,6 +14,8 @@ import java.util.ResourceBundle;
 
 public class MainWindowController2 extends BaseController implements Initializable {
 
+    private int zoomIconSize = 5;
+
     @FXML
     private ImageView refreshIcon;
 
@@ -33,22 +35,22 @@ public class MainWindowController2 extends BaseController implements Initializab
 
     @FXML
     void closeIconOnMouseEntered(MouseEvent event) {
-        zoomIn(closeIcon, 10);
+        zoomIn(closeIcon, zoomIconSize);
     }
 
     @FXML
     void closeIconOnMouseExited(MouseEvent event) {
-        zoomOut(closeIcon, 10);
+        zoomOut(closeIcon, zoomIconSize);
     }
 
     @FXML
     void refreshIconOnMouseEntered(MouseEvent event) {
-        zoomIn(refreshIcon, 10);
+        zoomIn(refreshIcon, zoomIconSize);
     }
 
     @FXML
     void refreshIconOnMouseExited(MouseEvent event) {
-        zoomOut(refreshIcon, 10);
+        zoomOut(refreshIcon, zoomIconSize);
     }
 
     @FXML
