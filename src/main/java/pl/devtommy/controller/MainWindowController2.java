@@ -33,22 +33,22 @@ public class MainWindowController2 extends BaseController implements Initializab
 
     @FXML
     void closeIconOnMouseEntered(MouseEvent event) {
-
+        zoomIn(closeIcon, 10);
     }
 
     @FXML
     void closeIconOnMouseExited(MouseEvent event) {
-
+        zoomOut(closeIcon, 10);
     }
 
     @FXML
     void refreshIconOnMouseEntered(MouseEvent event) {
-
+        zoomIn(refreshIcon, 10);
     }
 
     @FXML
     void refreshIconOnMouseExited(MouseEvent event) {
-
+        zoomOut(refreshIcon, 10);
     }
 
     @FXML
