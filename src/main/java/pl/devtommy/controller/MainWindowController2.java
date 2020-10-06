@@ -2,8 +2,10 @@ package pl.devtommy.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.view.ViewFactory;
 
@@ -13,10 +15,16 @@ import java.util.ResourceBundle;
 public class MainWindowController2 extends BaseController implements Initializable {
 
     @FXML
-    private ImageView refreshLeftImageView;
+    private ImageView refreshIcon;
 
     @FXML
-    private ImageView closeAppImageView;
+    private ImageView closeIcon;
+
+    @FXML
+    private HBox citiesWeatherHbox;
+
+    @FXML
+    private Label currentDate;
 
     @FXML
     void closeApp(MouseEvent event) {
@@ -24,27 +32,27 @@ public class MainWindowController2 extends BaseController implements Initializab
     }
 
     @FXML
-    void closeAppOnMouseEntered(MouseEvent event) {
+    void closeIconOnMouseEntered(MouseEvent event) {
 
     }
 
     @FXML
-    void closeAppOnMouseExited(MouseEvent event) {
+    void closeIconOnMouseExited(MouseEvent event) {
 
     }
 
     @FXML
-    void refreshLeftOnMouseEntered(MouseEvent event) {
+    void refreshIconOnMouseEntered(MouseEvent event) {
 
     }
 
     @FXML
-    void refreshLeftOnMouseExited(MouseEvent event) {
+    void refreshIconOnMouseExited(MouseEvent event) {
 
     }
 
     @FXML
-    void refreshLeftWeather(MouseEvent event) {
+    void refreshWeather(MouseEvent event) {
 
     }
 
