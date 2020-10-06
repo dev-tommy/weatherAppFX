@@ -65,4 +65,18 @@ public class MainWindowController2 extends BaseController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+    private void zoomIn(ImageView imageView, int size){
+        imageView.setFitWidth(imageView.getFitWidth()+2*size);
+        imageView.setFitHeight(imageView.getFitHeight()+2*size);
+        imageView.setLayoutX(imageView.getLayoutX()-size);
+        imageView.setLayoutY(imageView.getLayoutY()-size);
+    }
+
+    private void zoomOut(ImageView imageView, int size){
+        imageView.setFitWidth(imageView.getFitWidth()-2*size);
+        imageView.setFitHeight(imageView.getFitHeight()-2*size);
+        imageView.setLayoutX(imageView.getLayoutX()+size);
+        imageView.setLayoutY(imageView.getLayoutY()+size);
+    }
 }
