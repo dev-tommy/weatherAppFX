@@ -29,32 +29,32 @@ public class MainWindowController2 extends BaseController implements Initializab
     private Label currentDate;
 
     @FXML
-    void closeApp(MouseEvent event) {
+    void closeApp() {
         System.exit(0);
     }
 
     @FXML
-    void closeIconOnMouseEntered(MouseEvent event) {
+    void closeIconOnMouseEntered() {
         zoomIn(closeIcon, zoomIconSize);
     }
 
     @FXML
-    void closeIconOnMouseExited(MouseEvent event) {
+    void closeIconOnMouseExited() {
         zoomOut(closeIcon, zoomIconSize);
     }
 
     @FXML
-    void refreshIconOnMouseEntered(MouseEvent event) {
+    void refreshIconOnMouseEntered() {
         zoomIn(refreshIcon, zoomIconSize);
     }
 
     @FXML
-    void refreshIconOnMouseExited(MouseEvent event) {
+    void refreshIconOnMouseExited() {
         zoomOut(refreshIcon, zoomIconSize);
     }
 
     @FXML
-    void refreshWeather(MouseEvent event) {
+    void refreshWeather() {
 
     }
 
