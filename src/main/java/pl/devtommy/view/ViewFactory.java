@@ -79,13 +79,13 @@ public class ViewFactory {
         ownerStage.show();
     }
 
-    private FXMLLoader loadFxml(BaseController baseController) {
+    private static FXMLLoader loadFxml(BaseController baseController) {
         FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("fxml/" + baseController.getFxmlName()));
         fxmlLoader.setController(baseController);
         return fxmlLoader;
     }
 
-    private FXMLLoader loadFxml(BaseController baseController, String fxmlName) {
+    private static FXMLLoader loadFxml(BaseController baseController, String fxmlName) {
         FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("fxml/" + fxmlName));
         fxmlLoader.setController(baseController);
         return fxmlLoader;
