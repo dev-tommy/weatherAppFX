@@ -7,11 +7,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import pl.devtommy.WeatherManager;
+import pl.devtommy.view.ViewFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CityWeatherWindowController extends BaseController implements Initializable {
+
+    private int FORECAST_DAYS_AMOUNT = 4;
+    private WeatherManager cityWeather;
 
     @FXML
     private HBox forecastHBox;
@@ -54,6 +58,8 @@ public class CityWeatherWindowController extends BaseController implements Initi
 
     @FXML
     private ImageView closeAppImageView;
+
+
 
     @FXML
     void changeCity(MouseEvent event) {
@@ -106,6 +112,12 @@ public class CityWeatherWindowController extends BaseController implements Initi
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addForecastDays();
+    }
 
+    private void addForecastDays() {
+        for (int i=0; i< FORECAST_DAYS_AMOUNT; i++){
+            forecastHBox.getChildren().add(ViewFactory.addForecastDay(cityWeather));
+        }
     }
 }
