@@ -11,33 +11,34 @@ import javafx.stage.StageStyle;
 import pl.devtommy.Launcher;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.controller.*;
+import pl.devtommy.model.WeatherProvider;
 
 import java.io.IOException;
 
 public class ViewFactory {
-    private WeatherManager weatherManager;
+    private WeatherProvider[] weatherProviders;
     private Stage ownerStage;
 
-    public ViewFactory(Stage stage, WeatherManager weatherManager) {
-        this.weatherManager = weatherManager;
+    public ViewFactory(Stage stage, WeatherProvider[] weatherProviders) {
+        this.weatherProviders = weatherProviders;
         this.ownerStage = stage;
     }
 
     public void showMainWindow() {
-        BaseController controller = new MainWindowController(weatherManager, this, "MainWindow.fxml");
+        BaseController controller = new MainWindowController(weatherProviders, this, "MainWindow.fxml");
         mainStageInit(controller);
     }
 
-    public void showSelectCityLocationWindow() {
-        BaseController controller = new SelectCityLocationController(weatherManager, this, "SelectCityLocationWindow.fxml");
-        stageInit(controller, "Select city");
+    public void showSelectCityLocationWindow(WeatherManager cityWeather) {
+        BaseController controller = new SelectCityLocationController(cityWeather);
+        stageInit(controller, "Select city", "SelectCityLocationWindow.fxml");
     }
 
-    public Node addCityWindow(WeatherManager weather) {
-        BaseController controller = new CityWeatherWindowController(weather, this, "CityWeatherWindow.fxml");
+    public Node addCityWindow(WeatherManager cityWeather) {
+        BaseController controller = new CityWeatherWindowController(cityWeather);
         Node node = null;
         try {
-            node = loadFxml(controller).load();
+            node = loadFxml(controller, "CityWeatherWindow.fxml").load();
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -45,10 +46,10 @@ public class ViewFactory {
         return node;
     }
 
-    private void stageInit(BaseController baseController, String title) {
+    private void stageInit(BaseController controller, String title, String fxmlName) {
         Parent parent;
         try {
-            parent = loadFxml(baseController).load();
+            parent = loadFxml(controller, fxmlName).load();
         } catch (IOException e) {
             e.printStackTrace();
             return;
