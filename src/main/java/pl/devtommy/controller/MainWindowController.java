@@ -78,8 +78,8 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 
 
-    public MainWindowController(WeatherManager weatherManager, ViewFactory viewFactory, String fxmlName) {
-        super(weatherManager, viewFactory, fxmlName);
+    public MainWindowController(WeatherProvider[] weathers, ViewFactory viewFactory, String fxmlName) {
+        super(weathers, viewFactory, fxmlName);
     }
 
     @Override
