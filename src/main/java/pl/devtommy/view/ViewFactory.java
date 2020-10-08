@@ -9,9 +9,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.devtommy.Launcher;
 import pl.devtommy.WeatherManager;
-import pl.devtommy.controller.BaseController;
-import pl.devtommy.controller.MainWindowController;
-import pl.devtommy.controller.SelectCityLocationController;
+import pl.devtommy.controller.*;
 
 import java.io.IOException;
 
@@ -32,6 +30,18 @@ public class ViewFactory {
     public void showSelectCityLocationWindow() {
         BaseController controller = new SelectCityLocationController(weatherManager, this, "SelectCityLocationWindow.fxml");
         stageInit(controller, "Select city");
+    }
+
+    public Node addCityWindow(WeatherManager weather) {
+        BaseController controller = new CityWeatherWindowController(weather, this, "CityWeatherWindow.fxml");
+        Node node = null;
+        try {
+            node = loadFxml(controller).load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        return node;
     }
 
     private void stageInit(BaseController baseController, String title) {
