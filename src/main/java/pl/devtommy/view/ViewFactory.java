@@ -46,6 +46,18 @@ public class ViewFactory {
         return node;
     }
 
+    public static Node addForecastDay(WeatherManager cityWeather) {
+        BaseController controller = new ForecastDayWindowController(cityWeather);
+        Node node = null;
+        try {
+            node = loadFxml(controller, "ForecastDayWindow.fxml").load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(2);
+        }
+        return node;
+    }
+
     private void stageInit(BaseController controller, String title, String fxmlName) {
         Parent parent;
         try {
