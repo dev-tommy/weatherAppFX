@@ -5,11 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import pl.devtommy.Launcher;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.model.WeatherProvider;
-import pl.devtommy.model.weatherproviders.OWMProvider;
 import pl.devtommy.view.ViewFactory;
 
 import java.net.URL;
@@ -19,12 +16,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MainWindowController extends BaseController implements Initializable {
-
-    private final int  CONFIG_CITIES_AMOUNT = 2;
-    private WeatherManager[] weathers = new WeatherManager[CONFIG_CITIES_AMOUNT];
-    private String owmApiKey = Launcher.getApiKeyFromConfigFile("config.properties");
-    private WeatherProvider owmWeatherProvider = new OWMProvider(owmApiKey);
-    private int  FORECAST_DAYS_AMOUNT = 4;
+    private int CITIES_WEATHER_AMOUNT = 2;
+    private int FORECAST_DAYS_AMOUNT = 4;
     private int zoomIconSize = 5;
 
 
@@ -89,12 +82,9 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 
     private void addCitiesWeathers() {
-        weathers[0] = new WeatherManager(owmWeatherProvider);
-        weathers[1] = new WeatherManager(owmWeatherProvider);
-
-        ViewFactory viewFactory = new ViewFactory(new Stage(), weathers[0]);
-        for (int i=0; i<CONFIG_CITIES_AMOUNT; i++){
-            citiesWeatherHbox.getChildren().add(viewFactory.addCityWindow(weathers[i]));
+        for (int i=0; i< CITIES_WEATHER_AMOUNT; i++){
+            WeatherManager cityWeather = new WeatherManager(weathers[0]);
+            citiesWeatherHbox.getChildren().add(viewFactory.addCityWindow(cityWeather));
         }
     }
 
