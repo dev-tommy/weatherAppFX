@@ -35,8 +35,8 @@ public class ViewFactory {
         stageInit(controller, "Select city", "SelectCityLocationWindow.fxml");
     }
 
-    public static Node addCityWindow(WeatherManager cityWeather) {
-        CityWeatherWindowController controller = new CityWeatherWindowController(cityWeather);
+    public static Node addCityWindow(WeatherManager cityWeather, int maxForecastWeather) {
+        CityWeatherWindowController controller = new CityWeatherWindowController(cityWeather, maxForecastWeather);
         return getNode(controller, "CityWeatherWindow.fxml");
     }
 

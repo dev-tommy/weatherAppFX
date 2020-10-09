@@ -15,6 +15,7 @@ import java.util.Date;
 public class OWMProvider extends OWM implements WeatherProvider {
     private OWM owm;
     private String apiKey;
+    private int MAX_FORECAST_DAYS = 5;
 
     public OWMProvider(@NotNull String apiKey) {
         super(apiKey);
@@ -22,6 +23,11 @@ public class OWMProvider extends OWM implements WeatherProvider {
         this.owm = new OWM(apiKey);
         this.owm.setUnit(OWM.Unit.METRIC);
         this.owm.setLanguage(Language.ENGLISH);
+    }
+
+    @Override
+    public int getMaxForecastDays() {
+        return MAX_FORECAST_DAYS;
     }
 
     @Override

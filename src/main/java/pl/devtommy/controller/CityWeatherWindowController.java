@@ -17,8 +17,9 @@ public class CityWeatherWindowController implements Initializable {
     private int FORECAST_DAYS_AMOUNT = 4;
     private WeatherManager cityWeather;
 
-    public CityWeatherWindowController(WeatherManager cityWeather) {
+    public CityWeatherWindowController(WeatherManager cityWeather, int maxForecastDays) {
         this.cityWeather = cityWeather;
+        this.FORECAST_DAYS_AMOUNT = maxForecastDays;
     }
 
     @Override
