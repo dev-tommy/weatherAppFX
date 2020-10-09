@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.jetbrains.annotations.Nullable;
 import pl.devtommy.Launcher;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.controller.*;
@@ -25,20 +26,24 @@ public class ViewFactory {
     }
 
     public void showMainWindow() {
-        BaseController controller = new MainWindowController(weatherProviders, this, "MainWindow.fxml");
-        mainStageInit(controller);
+        MainWindowController controller = new MainWindowController(weatherProviders);
+        mainStageInit(controller, "MainWindow.fxml");
     }
 
     public void showSelectCityLocationWindow(WeatherManager cityWeather) {
-        BaseController controller = new SelectCityLocationController(cityWeather);
+        SelectCityLocationController controller = new SelectCityLocationController(cityWeather);
         stageInit(controller, "Select city", "SelectCityLocationWindow.fxml");
     }
 
-    public Node addCityWindow(WeatherManager cityWeather) {
-        BaseController controller = new CityWeatherWindowController(cityWeather);
+    public static Node addCityWindow(WeatherManager cityWeather) {
+        CityWeatherWindowController controller = new CityWeatherWindowController(cityWeather);
+        return getNode(controller, "CityWeatherWindow.fxml");
+    }
+
+    private static Node getNode(Object controller, String fxmlName) {
         Node node = null;
         try {
-            node = loadFxml(controller, "CityWeatherWindow.fxml").load();
+            node = loadFxml(controller, fxmlName).load();
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -47,25 +52,14 @@ public class ViewFactory {
     }
 
     public static Node addForecastDay(WeatherManager cityWeather) {
-        BaseController controller = new ForecastDayWindowController(cityWeather);
-        Node node = null;
-        try {
-            node = loadFxml(controller, "ForecastDayWindow.fxml").load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(2);
-        }
-        return node;
+        ForecastDayWindowController controller = new ForecastDayWindowController(cityWeather);
+        return getNode(controller, "ForecastDayWindow.fxml");
     }
 
-    private void stageInit(BaseController controller, String title, String fxmlName) {
-        Parent parent;
-        try {
-            parent = loadFxml(controller, fxmlName).load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
+    private void stageInit(Object controller, String title, String fxmlName) {
+        Parent parent = getParent(controller, fxmlName);
+        if (parent == null) return;
+
         Stage stage = new Stage();
         stage.initOwner(ownerStage);
         stage.initModality(Modality.WINDOW_MODAL);
@@ -74,14 +68,9 @@ public class ViewFactory {
         stage.showAndWait();
     }
 
-    private void mainStageInit(BaseController baseController) {
-        Parent parent;
-        try {
-            parent = loadFxml(baseController).load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
+    private void mainStageInit(Object controller, String fxmlName) {
+        Parent parent = getParent(controller, fxmlName);
+        if (parent == null) return;
 
         Scene scene = new Scene(parent);
         scene.setFill(Color.TRANSPARENT);
@@ -91,15 +80,22 @@ public class ViewFactory {
         ownerStage.show();
     }
 
-    private static FXMLLoader loadFxml(BaseController baseController) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("fxml/" + baseController.getFxmlName()));
-        fxmlLoader.setController(baseController);
-        return fxmlLoader;
+    @Nullable
+    private Parent getParent(Object controller, String fxmlName) {
+        Parent parent;
+        try {
+            parent = loadFxml(controller, fxmlName).load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(4);
+            return null;
+        }
+        return parent;
     }
 
-    private static FXMLLoader loadFxml(BaseController baseController, String fxmlName) {
+    private static FXMLLoader loadFxml(Object controller, String fxmlName) {
         FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("fxml/" + fxmlName));
-        fxmlLoader.setController(baseController);
+        fxmlLoader.setController(controller);
         return fxmlLoader;
     }
 }

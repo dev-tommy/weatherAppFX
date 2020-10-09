@@ -12,10 +12,20 @@ import pl.devtommy.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CityWeatherWindowController extends BaseController implements Initializable {
+public class CityWeatherWindowController implements Initializable {
 
     private int FORECAST_DAYS_AMOUNT = 4;
     private WeatherManager cityWeather;
+
+    public CityWeatherWindowController(WeatherManager cityWeather) {
+        this.cityWeather = cityWeather;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        addForecastDays();
+    }
+
 
     @FXML
     private HBox forecastHBox;
@@ -106,14 +116,6 @@ public class CityWeatherWindowController extends BaseController implements Initi
 
     }
 
-    public CityWeatherWindowController(WeatherManager cityWeather) {
-        super(cityWeather);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        addForecastDays();
-    }
 
     private void addForecastDays() {
         for (int i=0; i< FORECAST_DAYS_AMOUNT; i++){

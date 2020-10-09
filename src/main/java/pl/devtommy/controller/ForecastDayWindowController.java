@@ -5,7 +5,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import pl.devtommy.WeatherManager;
 
-public class ForecastDayWindowController extends BaseController{
+public class ForecastDayWindowController {
+    private  WeatherManager cityWeather;
     @FXML
     private Label forecastDayOfMonthLabel;
 
@@ -16,6 +17,6 @@ public class ForecastDayWindowController extends BaseController{
     private Label forecastTempLabel;
 
     public ForecastDayWindowController(WeatherManager weatherManager) {
-        super(weatherManager);
+       this.cityWeather = weatherManager;
     }
 }

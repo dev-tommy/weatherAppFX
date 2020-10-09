@@ -15,12 +15,22 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class MainWindowController extends BaseController implements Initializable {
+public class MainWindowController implements Initializable {
+
     private int CITIES_WEATHER_AMOUNT = 2;
     private int FORECAST_DAYS_AMOUNT = 4;
     private int zoomIconSize = 5;
+    private WeatherProvider[] weathers;
 
+    public MainWindowController(WeatherProvider[] weathers) {
+        this.weathers = weathers;
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        addCitiesWeathers();
+        refreshWeather();
+    }
 
     @FXML
     private ImageView refreshIcon;
@@ -70,21 +80,10 @@ public class MainWindowController extends BaseController implements Initializabl
         currentDate.setText(formatter.format(date));
     }
 
-
-    public MainWindowController(WeatherProvider[] weathers, ViewFactory viewFactory, String fxmlName) {
-        super(weathers, viewFactory, fxmlName);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        addCitiesWeathers();
-        refreshWeather();
-    }
-
     private void addCitiesWeathers() {
         for (int i=0; i< CITIES_WEATHER_AMOUNT; i++){
             WeatherManager cityWeather = new WeatherManager(weathers[0]);
-            citiesWeatherHbox.getChildren().add(viewFactory.addCityWindow(cityWeather));
+            citiesWeatherHbox.getChildren().add(ViewFactory.addCityWindow(cityWeather));
         }
     }
 
