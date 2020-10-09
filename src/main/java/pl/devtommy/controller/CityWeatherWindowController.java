@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import pl.devtommy.WeatherManager;
+import pl.devtommy.model.OneDayWeather;
 import pl.devtommy.view.ViewFactory;
 
 import java.net.URL;
@@ -120,7 +121,8 @@ public class CityWeatherWindowController implements Initializable {
 
     private void addForecastDays() {
         for (int i=0; i< FORECAST_DAYS_AMOUNT; i++){
-            forecastHBox.getChildren().add(ViewFactory.addForecastDay(cityWeather));
+            OneDayWeather forecastDay = cityWeather.getForecastLeftCityWeather()[i];
+            forecastHBox.getChildren().add(ViewFactory.addForecastDay(forecastDay));
         }
     }
 }

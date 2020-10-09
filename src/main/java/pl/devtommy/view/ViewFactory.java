@@ -8,10 +8,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.jetbrains.annotations.Nullable;
 import pl.devtommy.Launcher;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.controller.*;
+import pl.devtommy.model.OneDayWeather;
 import pl.devtommy.model.WeatherProvider;
 
 import java.io.IOException;
@@ -51,8 +51,8 @@ public class ViewFactory {
         return node;
     }
 
-    public static Node addForecastDay(WeatherManager cityWeather) {
-        ForecastDayWindowController controller = new ForecastDayWindowController(cityWeather);
+    public static Node addForecastDay(OneDayWeather forecastDay) {
+        ForecastDayWindowController controller = new ForecastDayWindowController(forecastDay);
         return getNode(controller, "ForecastDayWindow.fxml");
     }
 

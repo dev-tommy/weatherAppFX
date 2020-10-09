@@ -3,10 +3,15 @@ package pl.devtommy.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import pl.devtommy.WeatherManager;
+import pl.devtommy.model.OneDayWeather;
 
 public class ForecastDayWindowController {
-    private  WeatherManager cityWeather;
+    private  OneDayWeather forecastDay;
+
+    public ForecastDayWindowController(OneDayWeather forecastDay) {
+        this.forecastDay = forecastDay;
+    }
+
     @FXML
     private Label forecastDayOfMonthLabel;
 
@@ -15,8 +20,4 @@ public class ForecastDayWindowController {
 
     @FXML
     private Label forecastTempLabel;
-
-    public ForecastDayWindowController(WeatherManager weatherManager) {
-       this.cityWeather = weatherManager;
-    }
 }
