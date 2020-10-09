@@ -4,7 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import pl.devtommy.WeatherManager;
 import pl.devtommy.model.WeatherProvider;
 import pl.devtommy.view.ViewFactory;
@@ -18,9 +20,10 @@ import java.util.ResourceBundle;
 public class MainWindowController implements Initializable {
 
     private int CITIES_AMOUNT = 2;
-    private int FORECAST_DAYS_AMOUNT = 4;
     private int zoomIconSize = 5;
     private WeatherProvider[] weathers;
+    private double xMainWindowOffset;
+    private double yMainWindowOffset;
 
     public MainWindowController(WeatherProvider[] weathers) {
         this.weathers = weathers;
@@ -47,6 +50,20 @@ public class MainWindowController implements Initializable {
     @FXML
     void closeApp() {
         System.exit(0);
+    }
+
+    @FXML
+    void moveMainWindowOnMouseDragged(MouseEvent event) {
+          Stage stage = (Stage) closeIcon.getScene().getWindow();
+          stage.setX(event.getScreenX() + xMainWindowOffset);
+          stage.setY(event.getScreenY() + yMainWindowOffset);
+    }
+
+    @FXML
+    void takeMouseOffsetOnMousePressed(MouseEvent event) {
+        Stage stage = (Stage) closeIcon.getScene().getWindow();
+        xMainWindowOffset = stage.getX() - event.getScreenX();
+        yMainWindowOffset = stage.getY() - event.getScreenY();
     }
 
     @FXML
