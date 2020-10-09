@@ -12,8 +12,7 @@ import java.util.HashMap;
 public class WeatherManager {
     private String ICON_WEATHER_PATH = "/pl/devtommy/Icon/weather";
     private WeatherProvider weatherProvider;
-    private City leftCity;
-    private City rightCity;
+    private City city;
     private City selectedCity;
     private City[] cityList;
     private HashMap<String, Image> weatherImages = new HashMap<String, Image>();
@@ -44,12 +43,8 @@ public class WeatherManager {
         return weatherImages;
     }
 
-    public City getLeftSavedCityLocation() {
+    public City getSavedCityLocation() {
         return new City(7533329, "Września", "", "PL", new Coord(0.0, 0.0));
-    }
-
-    public City getRightSavedCityLocation() {
-        return new City(0, "Zakynthos", "", "GR", new Coord(0.0, 0.0));
     }
 
     public Image getWeatherImage(String mainWeatherCondition) {
@@ -61,39 +56,21 @@ public class WeatherManager {
     }
 
     public OneDayWeather getCurrentLeftCityWeather() {
-        return weatherProvider.getCurrentWeatherByCity(leftCity);
+        return weatherProvider.getCurrentWeatherByCity(city);
     }
 
     public OneDayWeather[] getForecastLeftCityWeather() {
-        return weatherProvider.getForecastWeatherByCity(leftCity);
+        return weatherProvider.getForecastWeatherByCity(city);
     }
 
-    public OneDayWeather getCurrentRightCityWeather() {
-        return weatherProvider.getCurrentWeatherByCity(rightCity);
-    }
-
-    public OneDayWeather[] getForecastRightCityWeather() {
-        return weatherProvider.getForecastWeatherByCity(rightCity);
-    }
-
-    public void setLeftCity(City leftCity) {
-        if (leftCity != null) {
-            this.leftCity = leftCity;
+    public void setCity(City city) {
+        if (city != null) {
+            this.city = city;
         }
     }
 
-    public void setRightCity(City rightCity) {
-        if (rightCity != null) {
-            this.rightCity = rightCity;
-        }
-    }
-
-    public City getLeftCity() {
-        return leftCity;
-    }
-
-    public City getRightCity() {
-        return rightCity;
+    public City getCity() {
+        return city;
     }
 
     public City getSelectedCity() {
