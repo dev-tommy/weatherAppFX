@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
 
-    private int CITIES_WEATHER_AMOUNT = 2;
+    private int CITIES_AMOUNT = 2;
     private int FORECAST_DAYS_AMOUNT = 4;
     private int zoomIconSize = 5;
     private WeatherProvider[] weathers;
@@ -81,7 +81,7 @@ public class MainWindowController implements Initializable {
     }
 
     private void addCitiesWeathers() {
-        for (int i=0; i< CITIES_WEATHER_AMOUNT; i++){
+        for (int i = 0; i< CITIES_AMOUNT; i++){
             int maxForecastDays = weathers[0].getMaxForecastDays();
             WeatherManager cityWeather = new WeatherManager(weathers[0]);
             citiesWeatherHbox.getChildren().add(ViewFactory.addCityWindow(cityWeather, maxForecastDays));
