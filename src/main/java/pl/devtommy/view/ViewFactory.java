@@ -57,40 +57,27 @@ public class ViewFactory {
     }
 
     private void stageInit(Object controller, String title, String fxmlName) {
-        Parent parent = getParent(controller, fxmlName);
+        Node parent = getNode(controller, fxmlName);
         if (parent == null) return;
 
         Stage stage = new Stage();
         stage.initOwner(ownerStage);
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.setScene(new Scene(parent));
+        stage.setScene(new Scene((Parent)parent));
         stage.setTitle(title);
         stage.showAndWait();
     }
 
     private void mainStageInit(Object controller, String fxmlName) {
-        Parent parent = getParent(controller, fxmlName);
+        Node parent = getNode(controller, fxmlName);
         if (parent == null) return;
 
-        Scene scene = new Scene(parent);
+        Scene scene = new Scene((Parent) parent);
         scene.setFill(Color.TRANSPARENT);
         ownerStage.setScene(scene);
         ownerStage.initStyle(StageStyle.TRANSPARENT);
         ownerStage.setResizable(false);
         ownerStage.show();
-    }
-
-    @Nullable
-    private Parent getParent(Object controller, String fxmlName) {
-        Parent parent;
-        try {
-            parent = loadFxml(controller, fxmlName).load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(4);
-            return null;
-        }
-        return parent;
     }
 
     private static FXMLLoader loadFxml(Object controller, String fxmlName) {
