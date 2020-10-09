@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class ViewFactory {
     private WeatherProvider[] weatherProviders;
-    private Stage ownerStage;
+    private static Stage ownerStage;
 
     public ViewFactory(Stage stage, WeatherProvider[] weatherProviders) {
         this.weatherProviders = weatherProviders;
@@ -30,7 +30,7 @@ public class ViewFactory {
         mainStageInit(controller, "MainWindow.fxml");
     }
 
-    public void showSelectCityLocationWindow(WeatherManager cityWeather) {
+    public static void showSelectCityLocationWindow(WeatherManager cityWeather) {
         SelectCityLocationController controller = new SelectCityLocationController(cityWeather);
         stageInit(controller, "Select city", "SelectCityLocationWindow.fxml");
     }
@@ -56,7 +56,7 @@ public class ViewFactory {
         return getNode(controller, "ForecastDayWindow.fxml");
     }
 
-    private void stageInit(Object controller, String title, String fxmlName) {
+    private static void stageInit(Object controller, String title, String fxmlName) {
         Node parent = getNode(controller, fxmlName);
         if (parent == null) return;
 
