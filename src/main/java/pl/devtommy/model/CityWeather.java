@@ -1,4 +1,4 @@
-package pl.devtommy;
+package pl.devtommy.model;
 
 import com.google.gson.Gson;
 import javafx.scene.image.Image;

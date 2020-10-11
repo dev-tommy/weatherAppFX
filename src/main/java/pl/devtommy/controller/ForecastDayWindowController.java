@@ -3,7 +3,8 @@ package pl.devtommy.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import pl.devtommy.model.OneDayWeather;
+import pl.devtommy.model.CityWeather;
+import pl.devtommy.model.DayWeather;
 
 public class ForecastDayWindowController {
     private  OneDayWeather forecastDay;

@@ -7,7 +7,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import pl.devtommy.WeatherManager;
+import pl.devtommy.model.CityWeather;
+import pl.devtommy.model.City;
+import pl.devtommy.model.Coord;
 import pl.devtommy.model.WeatherProvider;
 import pl.devtommy.view.ViewFactory;
 

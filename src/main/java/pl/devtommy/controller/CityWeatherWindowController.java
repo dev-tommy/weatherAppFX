@@ -6,8 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import pl.devtommy.WeatherManager;
-import pl.devtommy.model.OneDayWeather;
+import pl.devtommy.model.CityWeather;
+import pl.devtommy.model.City;
+import pl.devtommy.model.DayWeather;
 import pl.devtommy.view.ViewFactory;
 
 import java.net.URL;
