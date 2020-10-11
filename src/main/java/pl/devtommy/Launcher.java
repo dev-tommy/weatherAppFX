@@ -1,57 +1,30 @@
 package pl.devtommy;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import net.aksingh.owmjapis.api.APIException;
-import pl.devtommy.controller.MainWindowController;
 import pl.devtommy.model.WeatherProvider;
 import pl.devtommy.model.weatherproviders.OWMProvider;
+import pl.devtommy.view.ViewFactory;
 
 import java.io.*;
 import java.util.Properties;
 
 public class Launcher extends Application {
-
-    private static Scene scene;
-    private static String API_KEY;
-
     @Override
     public void start(Stage stage) throws IOException, APIException {
-        API_KEY = getApiKeyFromConfigFile("config.properties");
-        WeatherProvider weatherProvider = new OWMProvider(API_KEY);
-
-        WeatherProviderManager weatherProviderManager = new WeatherProviderManager(weatherProvider);
-        showMainWindow(stage, weatherProviderManager);
-    }
-
-    private void showMainWindow(Stage stage, WeatherProviderManager weatherProviderManager) throws IOException {
-        scene = new Scene(loadFXML("MainWindow", new MainWindowController(weatherProviderManager)));
-        scene.setFill(Color.TRANSPARENT);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setResizable(false);
-        stage.show();
-    }
-
-    private static Parent loadFXML(String fxml, Object controller) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher.class.getResource("view/fxml/" + fxml + ".fxml"));
-        fxmlLoader.setController(controller);
-        return fxmlLoader.load();
+        ViewFactory viewFactory = new ViewFactory(stage, loadWeatherProviders());
+        viewFactory.showMainWindow();
     }
 
     public static void main(String[] args) {
         launch();
     }
 
-    private static String getApiKeyFromConfigFile(String configFileName) {
+    public static String getApiKeyFromConfigFile(String configFileName) {
         String apiKey = null;
         try (InputStream input = new FileInputStream(configFileName)) {
-            /* config.properties:
+            /* config.properties file:
                api.key=your_owm_api_key
              */
 
@@ -65,6 +38,14 @@ public class Launcher extends Application {
         }
 
         return apiKey;
+    }
+
+    private WeatherProvider[] loadWeatherProviders() {
+        String owmApiKey;
+        WeatherProvider[] weatherProviders = new WeatherProvider[1];
+        owmApiKey = getApiKeyFromConfigFile("config.properties");
+        weatherProviders[0] = new OWMProvider(owmApiKey);
+        return weatherProviders;
     }
 
 }

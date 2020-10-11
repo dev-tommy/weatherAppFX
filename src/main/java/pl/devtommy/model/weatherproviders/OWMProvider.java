@@ -6,15 +6,17 @@ import net.aksingh.owmjapis.model.HourlyWeatherForecast;
 import net.aksingh.owmjapis.model.param.WeatherData;
 import org.jetbrains.annotations.NotNull;
 import pl.devtommy.model.City;
-import pl.devtommy.model.OneDayWeather;
+import pl.devtommy.model.DayWeather;
 import pl.devtommy.model.WeatherProvider;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 public class OWMProvider extends OWM implements WeatherProvider {
     private OWM owm;
     private String apiKey;
+    private int MAX_FORECAST_DAYS = 4;
 
     public OWMProvider(@NotNull String apiKey) {
         super(apiKey);
@@ -25,7 +27,12 @@ public class OWMProvider extends OWM implements WeatherProvider {
     }
 
     @Override
-    public OneDayWeather getCurrentWeatherByCity(City city) {
+    public int getMaxForecastDays() {
+        return MAX_FORECAST_DAYS;
+    }
+
+    @Override
+    public DayWeather getCurrentWeatherByCity(City city) {
         int id = city.getId();
         String name = city.getName();
         String countryCode = city.getCountryCode();
@@ -52,7 +59,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
     }
 
     @Override
-    public OneDayWeather[] getForecastWeatherByCity(City city) {
+    public DayWeather[] getForecastWeatherByCity(City city) {
         int id = city.getId();
         String name = city.getName();
         String countryCode = city.getCountryCode();
@@ -76,42 +83,43 @@ public class OWMProvider extends OWM implements WeatherProvider {
         return updateForecastWeather(forecastWeather);
     }
 
-    private OneDayWeather updateOneDayWeather(CurrentWeather currentWeather, String countryName) {
-        OneDayWeather oneDayWeather = new OneDayWeather();
-        if (currentWeather.hasCityName()) oneDayWeather.setName(currentWeather.getCityName());
-        if (currentWeather.hasCityId()) oneDayWeather.setId(currentWeather.getCityId());
-        oneDayWeather.setCountry(countryName);
-        oneDayWeather.setDescription(currentWeather.getWeatherList().get(0).getMoreInfo());
-        oneDayWeather.setMainCondition(currentWeather.getWeatherList().get(0).getMainInfo());
+    private DayWeather updateOneDayWeather(CurrentWeather currentWeather, String countryName) {
+        DayWeather dayWeather = new DayWeather();
+        if (currentWeather.hasCityName()) dayWeather.setName(currentWeather.getCityName());
+        if (currentWeather.hasCityId()) dayWeather.setId(currentWeather.getCityId());
+        dayWeather.setDate(currentWeather.getDateTime());
+        dayWeather.setCountry(countryName);
+        dayWeather.setDescription(currentWeather.getWeatherList().get(0).getMoreInfo());
+        dayWeather.setMainCondition(currentWeather.getWeatherList().get(0).getMainInfo());
         if (currentWeather.hasMainData()) {
-            oneDayWeather.setHumidity(currentWeather.getMainData().getHumidity());
-            oneDayWeather.setPressure(currentWeather.getMainData().getPressure());
-            oneDayWeather.setTemp(currentWeather.getMainData().getTemp());
-            oneDayWeather.setTempMin(currentWeather.getMainData().getTempMin());
-            oneDayWeather.setTempMax(currentWeather.getMainData().getTempMax());
+            dayWeather.setHumidity(currentWeather.getMainData().getHumidity());
+            dayWeather.setPressure(currentWeather.getMainData().getPressure());
+            dayWeather.setTemp(currentWeather.getMainData().getTemp());
+            dayWeather.setTempMin(currentWeather.getMainData().getTempMin());
+            dayWeather.setTempMax(currentWeather.getMainData().getTempMax());
         }
-        return oneDayWeather;
+        return dayWeather;
     }
 
-    private OneDayWeather updateOneDayWeather(WeatherData weatherData) {
-        OneDayWeather oneDayWeather = new OneDayWeather();
-        oneDayWeather.setDescription(weatherData.getWeatherList().get(0).getMoreInfo());
-        oneDayWeather.setMainCondition(weatherData.getWeatherList().get(0).getMainInfo());
+    private DayWeather updateOneDayWeather(WeatherData weatherData) {
+        DayWeather dayWeather = new DayWeather();
+        dayWeather.setDescription(weatherData.getWeatherList().get(0).getMoreInfo());
+        dayWeather.setMainCondition(weatherData.getWeatherList().get(0).getMainInfo());
+        dayWeather.setDate(weatherData.getDateTime());
         if (weatherData.hasMainData()) {
-            oneDayWeather.setHumidity(weatherData.getMainData().getHumidity());
-            oneDayWeather.setPressure(weatherData.getMainData().getPressure());
-            oneDayWeather.setTemp(weatherData.getMainData().getTempMax());
-            oneDayWeather.setTempMin(weatherData.getMainData().getTempMin());
-            oneDayWeather.setTempMax(weatherData.getMainData().getTempMax());
+            dayWeather.setHumidity(weatherData.getMainData().getHumidity());
+            dayWeather.setPressure(weatherData.getMainData().getPressure());
+            dayWeather.setTemp(weatherData.getMainData().getTempMax());
+            dayWeather.setTempMin(weatherData.getMainData().getTempMin());
+            dayWeather.setTempMax(weatherData.getMainData().getTempMax());
         }
-        return oneDayWeather;
+        return dayWeather;
     }
 
-    private OneDayWeather[] updateForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
-        OneDayWeather[] fiveDaysForecastWeather = new OneDayWeather[5];
+    private DayWeather[] updateForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
+        DayWeather[] fiveDaysForecastWeather = new DayWeather[5];
         int j = 0;
-        LocalDateTime today = LocalDateTime.now();
-        int currentDay = today.getDayOfMonth();
+        LocalDateTime today = LocalDate.now().atTime(23,59,59);
 
         for (int i = 0; i < hourlyWeatherForecast.getDataCount(); i++) {
             LocalDateTime hourlyWeatherDate =

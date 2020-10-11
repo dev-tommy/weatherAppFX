@@ -1,13 +1,19 @@
 package pl.devtommy.model;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+
 import static java.lang.Math.round;
 
-public class OneDayWeather {
+public class DayWeather {
     private String name;
     private String country;
     private String description;
     private String mainCondition;
     private int id;
+    private LocalDateTime date;
     private double humidity;
     private double pressure;
     private double temp;
@@ -36,6 +42,18 @@ public class OneDayWeather {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public void setDate(Date date) {
+        setDate(convertDateToLocaldatetime(date));
+    }
+
+    public LocalDateTime getDate(){
+        return date;
     }
 
     public String getDescription() {
@@ -96,6 +114,10 @@ public class OneDayWeather {
 
     private String firstCapitalLetter(String text) {
         return text.substring(0,1).toUpperCase() + text.substring(1).toLowerCase();
+    }
+
+    private LocalDateTime convertDateToLocaldatetime(Date date) {
+        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     @Override
