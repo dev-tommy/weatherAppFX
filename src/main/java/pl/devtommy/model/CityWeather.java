@@ -2,14 +2,13 @@ package pl.devtommy;
 
 import com.google.gson.Gson;
 import javafx.scene.image.Image;
-import pl.devtommy.model.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class WeatherManager {
+public class CityWeather {
     private String ICON_WEATHER_PATH = "/pl/devtommy/Icon/weather";
     private WeatherProvider weatherProvider;
     private City city;
@@ -17,7 +16,7 @@ public class WeatherManager {
     private City[] cityList;
     private static HashMap<String, Image> weatherImages = new HashMap<String, Image>();
 
-    public WeatherManager(WeatherProvider weatherProvider) {
+    public CityWeather(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
         cityList = generateCityList();
         weatherImages = addPathsOfWeatherImages();
