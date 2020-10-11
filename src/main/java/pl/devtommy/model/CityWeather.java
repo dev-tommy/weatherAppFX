@@ -43,7 +43,9 @@ public class CityWeather {
     }
 
     public City getCityLocation() {
-        return city;
+        if (city == null) {
+            return new City(0, "Zakynthos", "", "GR", new Coord(0.0, 0.0));
+        } else return city;
     }
 
     public static Image getWeatherImage(String mainWeatherCondition) {
