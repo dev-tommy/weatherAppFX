@@ -8,10 +8,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import pl.devtommy.model.CityWeather;
 import pl.devtommy.Launcher;
-import pl.devtommy.WeatherManager;
 import pl.devtommy.controller.*;
-import pl.devtommy.model.OneDayWeather;
+import pl.devtommy.model.DayWeather;
 import pl.devtommy.model.WeatherProvider;
 
 import java.io.IOException;
@@ -30,12 +30,12 @@ public class ViewFactory {
         mainStageInit(controller, "MainWindow.fxml");
     }
 
-    public static void showSelectCityLocationWindow(WeatherManager cityWeather) {
+    public static void showSelectCityLocationWindow(CityWeather cityWeather) {
         SelectCityLocationController controller = new SelectCityLocationController(cityWeather);
         stageInit(controller, "Select city", "SelectCityLocationWindow.fxml");
     }
 
-    public static Node addCityWindow(WeatherManager cityWeather, int maxForecastWeather) {
+    public static Node addCityWindow(CityWeather cityWeather, int maxForecastWeather) {
         CityWeatherWindowController controller = new CityWeatherWindowController(cityWeather, maxForecastWeather);
         return getNode(controller, "CityWeatherWindow.fxml");
     }
@@ -51,7 +51,7 @@ public class ViewFactory {
         return node;
     }
 
-    public static Node addForecastDay(OneDayWeather forecastDay) {
+    public static Node addForecastDay(DayWeather forecastDay) {
         ForecastDayWindowController controller = new ForecastDayWindowController(forecastDay);
         return getNode(controller, "ForecastDayWindow.fxml");
     }
