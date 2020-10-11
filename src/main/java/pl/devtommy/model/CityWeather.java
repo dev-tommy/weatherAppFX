@@ -54,11 +54,11 @@ public class CityWeather {
         }
     }
 
-    public OneDayWeather getCurrentLeftCityWeather() {
+    public DayWeather getCurrentLeftCityWeather() {
         return weatherProvider.getCurrentWeatherByCity(city);
     }
 
-    public OneDayWeather[] getForecastWeather() {
+    public DayWeather[] getForecastWeather() {
         return weatherProvider.getForecastWeatherByCity(city);
     }
 
