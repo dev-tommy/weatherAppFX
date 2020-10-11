@@ -15,7 +15,7 @@ import java.util.Date;
 public class OWMProvider extends OWM implements WeatherProvider {
     private OWM owm;
     private String apiKey;
-    private int MAX_FORECAST_DAYS = 5;
+    private int MAX_FORECAST_DAYS = 4;
 
     public OWMProvider(@NotNull String apiKey) {
         super(apiKey);
@@ -86,6 +86,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
         OneDayWeather oneDayWeather = new OneDayWeather();
         if (currentWeather.hasCityName()) oneDayWeather.setName(currentWeather.getCityName());
         if (currentWeather.hasCityId()) oneDayWeather.setId(currentWeather.getCityId());
+        oneDayWeather.setDate(currentWeather.getDateTime());
         oneDayWeather.setCountry(countryName);
         oneDayWeather.setDescription(currentWeather.getWeatherList().get(0).getMoreInfo());
         oneDayWeather.setMainCondition(currentWeather.getWeatherList().get(0).getMainInfo());
@@ -103,6 +104,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
         OneDayWeather oneDayWeather = new OneDayWeather();
         oneDayWeather.setDescription(weatherData.getWeatherList().get(0).getMoreInfo());
         oneDayWeather.setMainCondition(weatherData.getWeatherList().get(0).getMainInfo());
+        oneDayWeather.setDate(weatherData.getDateTime());
         if (weatherData.hasMainData()) {
             oneDayWeather.setHumidity(weatherData.getMainData().getHumidity());
             oneDayWeather.setPressure(weatherData.getMainData().getPressure());
