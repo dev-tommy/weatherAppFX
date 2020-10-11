@@ -22,10 +22,21 @@ import java.util.ResourceBundle;
 public class MainWindowController implements Initializable {
 
     private int CITIES_AMOUNT = 2;
-    private int zoomIconSize = 5;
+    private int zoomIconSize = 2;
+    private City[] cities;
     private WeatherProvider[] weathers;
     private double xMainWindowOffset;
     private double yMainWindowOffset;
+
+
+    @FXML
+    private ImageView closeIcon;
+
+    @FXML
+    private HBox citiesWeatherHbox;
+
+    @FXML
+    private Label currentDate;
 
     public MainWindowController(WeatherProvider[] weathers) {
         this.weathers = weathers;
@@ -36,18 +47,6 @@ public class MainWindowController implements Initializable {
         addCitiesWeathers();
         refreshWeather();
     }
-
-    @FXML
-    private ImageView refreshIcon;
-
-    @FXML
-    private ImageView closeIcon;
-
-    @FXML
-    private HBox citiesWeatherHbox;
-
-    @FXML
-    private Label currentDate;
 
     @FXML
     void closeApp() {
@@ -79,16 +78,6 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    void refreshIconOnMouseEntered() {
-        zoomIn(refreshIcon, zoomIconSize);
-    }
-
-    @FXML
-    void refreshIconOnMouseExited() {
-        zoomOut(refreshIcon, zoomIconSize);
-    }
-
-    @FXML
     void refreshWeather() {
         updateCurrentDate();
     }
@@ -100,11 +89,20 @@ public class MainWindowController implements Initializable {
     }
 
     private void addCitiesWeathers() {
-        for (int i = 0; i< CITIES_AMOUNT; i++){
+        cities = getCitiesLocation();
+        for (int i = 0; i< cities.length; i++){
             int maxForecastDays = weathers[0].getMaxForecastDays();
-            WeatherManager cityWeather = new WeatherManager(weathers[0]);
+            CityWeather cityWeather = new CityWeather(weathers[0]);
+            cityWeather.setCity(cities[i]);
             citiesWeatherHbox.getChildren().add(ViewFactory.addCityWindow(cityWeather, maxForecastDays));
         }
+    }
+
+    private City[] getCitiesLocation() {
+        City[] cities = new City[CITIES_AMOUNT];
+        //example
+        cities[0] = new City(7533329, "", "", "PL", new Coord(0.0, 0.0));
+        return cities;
     }
 
     private void zoomIn(ImageView imageView, int size){
