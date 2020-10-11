@@ -9,8 +9,17 @@ import pl.devtommy.model.DayWeather;
 public class ForecastDayWindowController {
     private  OneDayWeather forecastDay;
 
-    public ForecastDayWindowController(OneDayWeather forecastDay) {
+public class ForecastDayWindowController implements Initializable {
+    private DayWeather forecastDay;
+
+    public ForecastDayWindowController(DayWeather forecastDay) {
         this.forecastDay = forecastDay;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        refreshWeather();
+        updateDate();
     }
 
     @FXML
