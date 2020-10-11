@@ -9,6 +9,7 @@ import pl.devtommy.model.City;
 import pl.devtommy.model.OneDayWeather;
 import pl.devtommy.model.WeatherProvider;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -118,8 +119,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
     private OneDayWeather[] updateForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
         OneDayWeather[] fiveDaysForecastWeather = new OneDayWeather[5];
         int j = 0;
-        LocalDateTime today = LocalDateTime.now();
-        int currentDay = today.getDayOfMonth();
+        LocalDateTime today = LocalDate.now().atTime(23,59,59);
 
         for (int i = 0; i < hourlyWeatherForecast.getDataCount(); i++) {
             LocalDateTime hourlyWeatherDate =
