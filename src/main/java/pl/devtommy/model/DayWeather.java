@@ -7,7 +7,7 @@ import java.util.Date;
 
 import static java.lang.Math.round;
 
-public class OneDayWeather {
+public class DayWeather {
     private String name;
     private String country;
     private String description;
