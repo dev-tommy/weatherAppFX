@@ -15,7 +15,7 @@ public class WeatherManager {
     private City city;
     private City selectedCity;
     private City[] cityList;
-    private HashMap<String, Image> weatherImages = new HashMap<String, Image>();
+    private static HashMap<String, Image> weatherImages = new HashMap<String, Image>();
 
     public WeatherManager(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
@@ -43,11 +43,11 @@ public class WeatherManager {
         return weatherImages;
     }
 
-    public City getSavedCityLocation() {
-        return new City(7533329, "Września", "", "PL", new Coord(0.0, 0.0));
+    public City getCityLocation() {
+        return city;
     }
 
-    public Image getWeatherImage(String mainWeatherCondition) {
+    public static Image getWeatherImage(String mainWeatherCondition) {
         try {
             return weatherImages.get(mainWeatherCondition);
         } catch (Exception e) {
@@ -59,7 +59,7 @@ public class WeatherManager {
         return weatherProvider.getCurrentWeatherByCity(city);
     }
 
-    public OneDayWeather[] getForecastLeftCityWeather() {
+    public OneDayWeather[] getForecastWeather() {
         return weatherProvider.getForecastWeatherByCity(city);
     }
 
