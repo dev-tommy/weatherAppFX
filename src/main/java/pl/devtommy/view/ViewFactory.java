@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -14,6 +15,7 @@ import pl.devtommy.controller.*;
 import pl.devtommy.model.DayWeather;
 import pl.devtommy.model.WeatherProvider;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ViewFactory {
@@ -54,6 +56,23 @@ public class ViewFactory {
     public static Node addForecastDay(DayWeather forecastDay) {
         ForecastDayWindowController controller = new ForecastDayWindowController(forecastDay);
         return getNode(controller, "ForecastDayWindow.fxml");
+    }
+
+    public static File getFileDialog() {
+        File existDirectory;
+        try {
+            existDirectory = new File(ClassLoader.getSystemClassLoader().getResource(".").getPath());
+        } catch (Exception e) {
+            existDirectory = new File(System.getProperty("user.home"));
+        }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Config File");
+        fileChooser.setInitialDirectory(existDirectory);
+        fileChooser.setInitialFileName("config.properties");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Config Files", "*.properties"));
+        File selectedFile = fileChooser.showOpenDialog(ownerStage);
+        return selectedFile;
     }
 
     private static void stageInit(Object controller, String title, String fxmlName) {
