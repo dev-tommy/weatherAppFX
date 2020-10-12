@@ -34,7 +34,18 @@ public class Launcher extends Application {
             apiKey = prop.getProperty("api.key");
 
         } catch (IOException ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
+            System.out.println(configFileName + " not found!");
+
+            try {
+                Properties prop = new Properties();
+                prop.load(new FileInputStream(ViewFactory.getFileDialog()));
+
+                apiKey = prop.getProperty("api.key");
+            } catch (Exception e) {
+                System.out.println("File error");
+                System.exit(123);
+            }
         }
 
         return apiKey;
