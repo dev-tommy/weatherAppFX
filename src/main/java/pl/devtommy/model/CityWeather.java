@@ -89,7 +89,14 @@ public class CityWeather {
             cityList = gson.fromJson(new FileReader("src/main/resources/pl/devtommy/json/city.list.json"),
                     City[].class);
         } catch (FileNotFoundException e) {
-            System.out.println("city.list.json not found");
+            System.out.println("city.list.json not found in jar file. Try open from folder with jar file");
+            try {
+                cityList = gson.fromJson(new FileReader("city.list.json"),
+                        City[].class);
+            } catch (FileNotFoundException fileNotFoundException) {
+                System.out.println("city.list.json not found in folder!!");
+                System.exit(404);
+            }
         }
         return cityList;
     }
