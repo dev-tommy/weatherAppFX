@@ -1,10 +1,10 @@
 package pl.devtommy.model;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 import javafx.scene.image.Image;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -86,17 +86,15 @@ public class CityWeather {
         Gson gson = new Gson();
         City[] cityList = new City[0];
         try {
-            cityList = gson.fromJson(new FileReader("src/main/resources/pl/devtommy/json/city.list.json"),
+            cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream("/pl/devtommy/json" +
+                            "/city.list.json")),
                     City[].class);
-        } catch (FileNotFoundException e) {
-            System.out.println("city.list.json not found in jar file. Try open from folder with jar file");
-            try {
-                cityList = gson.fromJson(new FileReader("city.list.json"),
-                        City[].class);
-            } catch (FileNotFoundException fileNotFoundException) {
-                System.out.println("city.list.json not found in folder!!");
-                System.exit(404);
-            }
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+            System.exit(300);
+        } catch (JsonIOException e) {
+            e.printStackTrace();
+            System.exit(300);
         }
         return cityList;
     }
