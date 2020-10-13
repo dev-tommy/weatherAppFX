@@ -102,10 +102,10 @@ public class CityWeather {
     public ArrayList<City> getCitiesContainsName(String cityName) {
         ArrayList<City> citiesContains = new ArrayList<City>();
         for (City city: cityList) {
-            if (city.getName().equals(cityName)) {
+            if (city.getName().toLowerCase().equals(cityName.toLowerCase())) {
                 citiesContains.add(0, city);
             }
-            else if (city.getName().contains(cityName)) {
+            else if (city.getName().toLowerCase().contains(cityName.toLowerCase())) {
                 citiesContains.add(city);
             }
         }
