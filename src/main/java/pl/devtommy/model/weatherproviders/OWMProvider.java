@@ -1,5 +1,6 @@
 package pl.devtommy.model.weatherproviders;
 
+import net.aksingh.owmjapis.api.APIException;
 import net.aksingh.owmjapis.core.OWM;
 import net.aksingh.owmjapis.model.CurrentWeather;
 import net.aksingh.owmjapis.model.HourlyWeatherForecast;
@@ -22,6 +23,8 @@ public class OWMProvider extends OWM implements WeatherProvider {
         super(apiKey);
         this.apiKey = apiKey;
         this.owm = new OWM(apiKey);
+        validateApiKey();
+
         this.owm.setUnit(OWM.Unit.METRIC);
         this.owm.setLanguage(Language.ENGLISH);
     }
@@ -81,6 +84,15 @@ public class OWMProvider extends OWM implements WeatherProvider {
             e.printStackTrace();
         }
         return updateForecastWeather(forecastWeather);
+    }
+
+    private void validateApiKey() {
+        try {
+            owm.currentWeatherByCityName("Rome", Country.ITALY);
+        } catch (APIException e) {
+            System.out.println("Wrong API key! API call gave error: 401 - Unauthorized");
+            System.exit(401);
+        }
     }
 
     private DayWeather updateOneDayWeather(CurrentWeather currentWeather, String countryName) {
