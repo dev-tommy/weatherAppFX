@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -17,6 +18,7 @@ import pl.devtommy.model.WeatherProvider;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 public class ViewFactory {
     private WeatherProvider[] weatherProviders;
@@ -73,6 +75,20 @@ public class ViewFactory {
                 new FileChooser.ExtensionFilter("Config Files", "*.properties"));
         File selectedFile = fileChooser.showOpenDialog(ownerStage);
         return selectedFile;
+    }
+
+    public static String getApiDialog() {
+        String apiKey = "";
+        TextInputDialog dialog = new TextInputDialog("...");
+        dialog.setTitle("Get Weather Provider API key");
+        dialog.setHeaderText("File config.properties not found! The weather provider requires a valid API key to run!");
+        dialog.setContentText("Please enter API key:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            apiKey = result.get();
+        }
+        return apiKey;
     }
 
     private static void stageInit(Object controller, String title, String fxmlName) {
