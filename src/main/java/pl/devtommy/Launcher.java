@@ -22,7 +22,7 @@ public class Launcher extends Application {
     }
 
     public static String getApiKeyFromConfigFile(String configFileName) {
-        String apiKey = null;
+        String apiKey = "";
         try (InputStream input = new FileInputStream(configFileName)) {
             /* config.properties file:
                api.key=your_owm_api_key
@@ -34,17 +34,22 @@ public class Launcher extends Application {
             apiKey = prop.getProperty("api.key");
 
         } catch (IOException ex) {
-            //ex.printStackTrace();
-            System.out.println(configFileName + " not found!");
+            System.out.println("OWM API key not found!");
+            while(apiKey.length() != 32) {
+                System.out.println("API key must be 32 characters long!");
+                apiKey = ViewFactory.getApiDialog();
+                if (apiKey.isEmpty()) {
+                    try {
+                        Properties prop = new Properties();
+                        prop.load(new FileInputStream(ViewFactory.getFileDialog()));
 
-            try {
-                Properties prop = new Properties();
-                prop.load(new FileInputStream(ViewFactory.getFileDialog()));
-
-                apiKey = prop.getProperty("api.key");
-            } catch (Exception e) {
-                System.out.println("File error");
-                System.exit(123);
+                        apiKey = prop.getProperty("api.key");
+                    } catch (Exception e) {
+                        System.out.println("File error");
+                        System.exit(123);
+                    }
+                    break;
+                }
             }
         }
 
