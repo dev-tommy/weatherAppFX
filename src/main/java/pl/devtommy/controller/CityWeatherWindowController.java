@@ -70,7 +70,7 @@ public class CityWeatherWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        getCityLocation();
+        city = getCityLocation();
         refreshWeather();
     }
 
@@ -125,8 +125,8 @@ public class CityWeatherWindowController implements Initializable {
         cityWeather.setCity(city);
     }
 
-    private void getCityLocation() {
-        city = cityWeather.getCityLocation();
+    private City getCityLocation() {
+        return cityWeather.getCityLocation();
     }
 
     private void updateForecastWeather() {
