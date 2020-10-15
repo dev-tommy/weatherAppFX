@@ -27,7 +27,7 @@ public class Launcher extends Application {
         return weatherProviders;
     }
 
-    public static String getApiKeyFromConfigFile(String configFileName) {
+    private static String getApiKeyFromConfigFile(String configFileName) {
         String apiKey = "";
         try (InputStream input = new FileInputStream(configFileName)) {
             Properties prop = new Properties();
