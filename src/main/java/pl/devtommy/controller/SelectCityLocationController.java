@@ -89,10 +89,10 @@ public class SelectCityLocationController implements Initializable {
     }
 
     private void setupTableView() {
-        cityIdCol.setCellValueFactory(new PropertyValueFactory<City, Integer>("id"));
-        cityNameCol.setCellValueFactory(new PropertyValueFactory<City, String>("name"));
-        countryCol.setCellValueFactory(new PropertyValueFactory<City, String>("country"));
-        latitudeCol.setCellValueFactory(new PropertyValueFactory<City, Double>("latitude"));
-        longitudeCol.setCellValueFactory(new PropertyValueFactory<City, Double>("longitude"));
+        cityIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        cityNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
+        latitudeCol.setCellValueFactory(new PropertyValueFactory<>("latitude"));
+        longitudeCol.setCellValueFactory(new PropertyValueFactory<>("longitude"));
     }
 }
