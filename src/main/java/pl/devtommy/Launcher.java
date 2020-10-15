@@ -36,9 +36,9 @@ public class Launcher extends Application {
             apiKey = prop.getProperty("api.key");
 
         } catch (IOException ex) {
-            System.out.println("OWM API key not found!");
+            System.err.println("OWM API key not found!");
             while(apiKey.length() != 32) {
-                System.out.println("API key must be 32 characters long!");
+                System.err.println("API key must be 32 characters long!");
                 apiKey = ViewFactory.getApiDialog();
                 if (apiKey.isEmpty()) {
                     try {
@@ -46,8 +46,8 @@ public class Launcher extends Application {
                         prop.load(new FileInputStream(ViewFactory.getFileDialog()));
                         apiKey = prop.getProperty("api.key");
                     } catch (Exception e) {
-                        System.out.println("File error");
-                        System.exit(123);
+                        System.err.println("File error");
+                        System.exit(1);
                     }
                     break;
                 }
