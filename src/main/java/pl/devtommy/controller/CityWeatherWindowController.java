@@ -78,7 +78,12 @@ public class CityWeatherWindowController implements Initializable {
 
     @FXML
     void changeCity() {
-        getCity();
+        ViewFactory.showSelectCityLocationWindow(cityWeather);
+        City newCity = cityWeather.getSelectedCity();
+        if (newCity != null || city.getId() == newCity.getId()) {
+            city = newCity;
+            refreshWeather();
+        }
     }
 
     @FXML
@@ -160,17 +165,10 @@ public class CityWeatherWindowController implements Initializable {
     }
 
     private void addForecastDays() {
-        for (int i=0; i < FORECAST_DAYS_AMOUNT; i++){
+        for (int i = 0; i < forecastDaysNumber; i++){
             DayWeather forecastDay = cityWeather.getForecastWeather()[i];
             forecastHBox.getChildren().add(ViewFactory.addForecastDay(forecastDay));
         }
-    }
-
-    private void getCity() {
-        cityWeather.setSelectedCity(null);
-        ViewFactory.showSelectCityLocationWindow(cityWeather);
-        city = cityWeather.getSelectedCity();
-        refreshWeather();
     }
 
     private void zoomIn(ImageView imageView, int size){
