@@ -74,8 +74,6 @@ public class CityWeatherWindowController implements Initializable {
         refreshWeather();
     }
 
-
-
     @FXML
     void changeCity() {
         ViewFactory.showSelectCityLocationWindow(cityWeather);
@@ -147,9 +145,6 @@ public class CityWeatherWindowController implements Initializable {
 
     private void updateWeatherView() {
         dayWeather = cityWeather.getCurrentLeftCityWeather();
-
-        System.out.println(dayWeather);
-
         cityLabel.setText(dayWeather.getName());
         countryLabel.setText(dayWeather.getCountry());
         currentTempLabel.setText( dayWeather.getTemp());
@@ -160,12 +155,11 @@ public class CityWeatherWindowController implements Initializable {
                         " / " +
                         dayWeather.getTempMax()
         );
-
         describeLabel.setText(dayWeather.getDescription());
     }
 
     private void addForecastDays() {
-        for (int i = 0; i < forecastDaysNumber; i++){
+        for (int i = 0; i < forecastDaysNumber; i++) {
             DayWeather forecastDay = cityWeather.getForecastWeather()[i];
             forecastHBox.getChildren().add(ViewFactory.addForecastDay(forecastDay));
         }
