@@ -18,9 +18,9 @@ import java.util.ResourceBundle;
 
 public class CityWeatherWindowController implements Initializable {
 
-    private int FORECAST_DAYS_AMOUNT;
-    private int zoomIconSize = 2;
-    private CityWeather cityWeather;
+    private int forecastDaysNumber;
+    private static final int ZOOM_ICON_SIZE = 2;
+    private final CityWeather cityWeather;
     private City city;
     private DayWeather dayWeather;
 
@@ -65,7 +65,7 @@ public class CityWeatherWindowController implements Initializable {
 
     public CityWeatherWindowController(CityWeather cityWeather, int maxForecastDays) {
         this.cityWeather = cityWeather;
-        this.FORECAST_DAYS_AMOUNT = maxForecastDays;
+        this.forecastDaysNumber = maxForecastDays;
     }
 
     @Override
@@ -92,22 +92,22 @@ public class CityWeatherWindowController implements Initializable {
 
     @FXML
     void changeCityOnMouseEntered() {
-        zoomIn(cityImageView, zoomIconSize);
+        zoomIn(cityImageView, ZOOM_ICON_SIZE);
     }
 
     @FXML
     void changeCityOnMouseExited() {
-        zoomOut(cityImageView, zoomIconSize);
+        zoomOut(cityImageView, ZOOM_ICON_SIZE);
     }
 
     @FXML
     void refreshOnMouseEntered() {
-        zoomIn(refreshImageView, zoomIconSize);
+        zoomIn(refreshImageView, ZOOM_ICON_SIZE);
     }
 
     @FXML
     void refreshOnMouseExited() {
-        zoomOut(refreshImageView, zoomIconSize);
+        zoomOut(refreshImageView, ZOOM_ICON_SIZE);
     }
 
     private void updateDates() {
