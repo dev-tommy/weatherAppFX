@@ -13,8 +13,8 @@ import pl.devtommy.model.Coord;
 import pl.devtommy.model.WeatherProvider;
 import pl.devtommy.view.ViewFactory;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -82,9 +82,10 @@ public class MainWindowController implements Initializable {
     }
 
     private void updateCurrentDate() {
-        SimpleDateFormat formatter= new SimpleDateFormat("EE dd MMM yyyy - [HH:mm] ", Locale.US);
-        Date date = new Date(System.currentTimeMillis());
-        currentDate.setText(formatter.format(date));
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("EE dd MMM yyyy - [HH:mm] ").localizedBy(Locale.US);
+        String today = LocalDateTime.now().format(formatter);
+        currentDate.setText(today);
     }
 
     private void addCitiesWeathers() {
