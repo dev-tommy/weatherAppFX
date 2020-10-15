@@ -10,12 +10,11 @@ import pl.devtommy.model.CityWeather;
 import pl.devtommy.model.City;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SelectCityLocationController implements Initializable {
 
-    private ArrayList<City> foundCities;
     private CityWeather cityWeather;
 
     public SelectCityLocationController(CityWeather cityWeather) {
@@ -78,7 +77,7 @@ public class SelectCityLocationController implements Initializable {
         citiesTableView.getItems().clear();
 
         if (!cityName.isEmpty()) {
-            foundCities = cityWeather.getCitiesContainsName(cityName);
+            List<City> foundCities = cityWeather.getCitiesContainsName(cityName);
             citiesTableView.getItems().addAll(foundCities);
             foundCountLabel.setText("Found locations: " + foundCities.size());
         }
