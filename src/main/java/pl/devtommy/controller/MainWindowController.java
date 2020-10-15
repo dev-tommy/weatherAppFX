@@ -24,7 +24,7 @@ public class MainWindowController implements Initializable {
     private int CITIES_AMOUNT = 2;
     private int zoomIconSize = 2;
     private City[] cities;
-    private WeatherProvider[] weathers;
+    private WeatherProvider weather;
     private double xMainWindowOffset;
     private double yMainWindowOffset;
 
@@ -38,8 +38,8 @@ public class MainWindowController implements Initializable {
     @FXML
     private Label currentDate;
 
-    public MainWindowController(WeatherProvider[] weathers) {
-        this.weathers = weathers;
+    public MainWindowController(WeatherProvider weather) {
+        this.weather = weather;
     }
 
     @Override
@@ -91,8 +91,8 @@ public class MainWindowController implements Initializable {
     private void addCitiesWeathers() {
         cities = getCitiesLocation();
         for (int i = 0; i< cities.length; i++){
-            int maxForecastDays = weathers[0].getMaxForecastDays();
-            CityWeather cityWeather = new CityWeather(weathers[0]);
+            int maxForecastDays = weather.getMaxForecastDays();
+            CityWeather cityWeather = new CityWeather(weather);
             cityWeather.setCity(cities[i]);
             citiesWeatherHbox.getChildren().add(ViewFactory.addCityWindow(cityWeather, maxForecastDays));
         }

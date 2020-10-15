@@ -21,16 +21,16 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class ViewFactory {
-    private WeatherProvider[] weatherProviders;
+    private WeatherProvider weatherProvider;
     private static Stage ownerStage;
 
-    public ViewFactory(Stage stage, WeatherProvider[] weatherProviders) {
-        this.weatherProviders = weatherProviders;
+    public ViewFactory(Stage stage, WeatherProvider weatherProvider) {
+        this.weatherProvider = weatherProvider;
         this.ownerStage = stage;
     }
 
     public void showMainWindow() {
-        MainWindowController controller = new MainWindowController(weatherProviders);
+        MainWindowController controller = new MainWindowController(weatherProvider);
         mainStageInit(controller, "MainWindow.fxml");
     }
 

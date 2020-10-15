@@ -16,15 +16,14 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage stage) {
-        ViewFactory viewFactory = new ViewFactory(stage, loadWeatherProviders());
+        ViewFactory viewFactory = new ViewFactory(stage, loadWeatherProvider());
         viewFactory.showMainWindow();
     }
 
-    private WeatherProvider[] loadWeatherProviders() {
+    private WeatherProvider loadWeatherProvider() {
         String owmApiKey = getApiKeyFromConfigFile("config.properties");
-        WeatherProvider[] weatherProviders = new WeatherProvider[1];
-        weatherProviders[0] = new OWMProvider(owmApiKey);
-        return weatherProviders;
+        WeatherProvider weatherProvider = new OWMProvider(owmApiKey);
+        return weatherProvider;
     }
 
     private static String getApiKeyFromConfigFile(String configFileName) {
