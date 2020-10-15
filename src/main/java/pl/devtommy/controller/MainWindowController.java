@@ -12,7 +12,6 @@ import pl.devtommy.model.City;
 import pl.devtommy.model.Coord;
 import pl.devtommy.model.WeatherProvider;
 import pl.devtommy.view.ViewFactory;
-
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,8 +20,8 @@ import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
 
-    private int CITIES_AMOUNT = 2;
-    private int zoomIconSize = 2;
+    private static final int CITIES_NUMBER = 2;
+    private static final int ZOOM_ICON_SIZE = 2;
     private City[] cities;
     private WeatherProvider weather;
     private double xMainWindowOffset;
@@ -69,12 +68,12 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void closeIconOnMouseEntered() {
-        zoomIn(closeIcon, zoomIconSize);
+        zoomIn(closeIcon, ZOOM_ICON_SIZE);
     }
 
     @FXML
     void closeIconOnMouseExited() {
-        zoomOut(closeIcon, zoomIconSize);
+        zoomOut(closeIcon, ZOOM_ICON_SIZE);
     }
 
     @FXML
@@ -99,7 +98,7 @@ public class MainWindowController implements Initializable {
     }
 
     private City[] getCitiesLocation() {
-        City[] cities = new City[CITIES_AMOUNT];
+        City[] cities = new City[CITIES_NUMBER];
         //example
         cities[0] = new City(7533329, "", "", "PL", new Coord(0.0, 0.0));
         return cities;
