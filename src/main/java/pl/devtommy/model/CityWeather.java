@@ -19,7 +19,7 @@ public class CityWeather {
 
     public CityWeather(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
-        cityList = generateCityList();
+        cityList = loadCityList();
         weatherImages = addPathsOfWeatherImages();
     }
 
@@ -81,7 +81,7 @@ public class CityWeather {
         this.selectedCity = selectedCity;
     }
 
-    private City[] generateCityList(){
+    private City[] loadCityList(){
         Gson gson = new Gson();
         City[] cityList = new City[0];
         try {
