@@ -67,7 +67,7 @@ public class OWMProvider implements WeatherProvider {
             System.out.println("Wrong city data!");
             e.printStackTrace();
         }
-        return updateOneDayWeather(currentWeather, countryName);
+        return createOneDayWeather(currentWeather, countryName);
     }
 
     @Override
@@ -92,22 +92,17 @@ public class OWMProvider implements WeatherProvider {
             System.out.println("Wrong city data!");
             e.printStackTrace();
         }
-        return updateForecastWeather(forecastWeather);
+        return createForecastWeather(forecastWeather);
     }
 
-    private void validateApiKey() {
-        try {
-            owm.currentWeatherByCityName("Rome", OWM.Country.ITALY);
-        } catch (APIException e) {
-            System.out.println("Wrong API key! API call gave error: 401 - Unauthorized");
-            System.exit(401);
-        }
-    }
-
-    private DayWeather updateOneDayWeather(CurrentWeather currentWeather, String countryName) {
+    private DayWeather createOneDayWeather(CurrentWeather currentWeather, String countryName) {
         DayWeather dayWeather = new DayWeather();
-        if (currentWeather.hasCityName()) dayWeather.setName(currentWeather.getCityName());
-        if (currentWeather.hasCityId()) dayWeather.setId(currentWeather.getCityId());
+        if (currentWeather.hasCityName()) {
+            dayWeather.setName(currentWeather.getCityName());
+        }
+        if (currentWeather.hasCityId()) {
+            dayWeather.setId(currentWeather.getCityId());
+        }
         dayWeather.setDate(currentWeather.getDateTime());
         dayWeather.setCountry(countryName);
         dayWeather.setDescription(currentWeather.getWeatherList().get(0).getMoreInfo());
@@ -122,7 +117,7 @@ public class OWMProvider implements WeatherProvider {
         return dayWeather;
     }
 
-    private DayWeather updateOneDayWeather(WeatherData weatherData) {
+    private DayWeather createOneDayWeather(WeatherData weatherData) {
         DayWeather dayWeather = new DayWeather();
         dayWeather.setDescription(weatherData.getWeatherList().get(0).getMoreInfo());
         dayWeather.setMainCondition(weatherData.getWeatherList().get(0).getMainInfo());
@@ -137,7 +132,7 @@ public class OWMProvider implements WeatherProvider {
         return dayWeather;
     }
 
-    private DayWeather[] updateForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
+    private DayWeather[] createForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
         DayWeather[] fiveDaysForecastWeather = new DayWeather[5];
         int j = 0;
         LocalDateTime today = LocalDate.now().atTime(23,59,59);
@@ -148,7 +143,7 @@ public class OWMProvider implements WeatherProvider {
 
             int hourOfHourlyWeather = hourlyWeatherDate.getHour();
             if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == 14)) {
-                fiveDaysForecastWeather[j++] = updateOneDayWeather(hourlyWeatherForecast.getDataList().get(i));
+                fiveDaysForecastWeather[j++] = createOneDayWeather(hourlyWeatherForecast.getDataList().get(i));
             }
         }
         return fiveDaysForecastWeather;
