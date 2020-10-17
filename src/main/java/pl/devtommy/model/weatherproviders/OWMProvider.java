@@ -20,10 +20,22 @@ public class OWMProvider implements WeatherProvider {
 
     public OWMProvider(@NotNull String apiKey) {
         this.owm = new OWM(apiKey);
-        validateApiKey();
+        if ( !isCorrectApiKey() ) {
+            System.err.println("Wrong API key! API call gave error: 401 - Unauthorized");
+            System.exit(1);
+        }
 
         this.owm.setUnit(OWM.Unit.METRIC);
         this.owm.setLanguage(OWM.Language.ENGLISH);
+    }
+
+    private boolean isCorrectApiKey() {
+        try {
+            owm.currentWeatherByCityName("Rome", OWM.Country.ITALY);
+            return true;
+        } catch (APIException e) {
+            return false;
+        }
     }
 
     @Override
