@@ -40,14 +40,6 @@ public class City {
         return coord;
     }
 
-    public Double getLatitude() {
-        return coord.getLat();
-    }
-
-    public Double getLongitude() {
-        return coord.getLon();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,8 +64,8 @@ public class City {
         answer += "Name: "+ getName() +"\n";
         answer += "Country code: "+ getCountryCode() +"\n";
         answer += "Country name: "+ getCountry() +"\n";
-        answer += "Coord: Lon: "+ getLongitude() +"\n";
-        answer += "Coord: Lat: "+ getLatitude() +"\n";
+        answer += "Coord: Lon: "+ coord.getLon() +"\n";
+        answer += "Coord: Lat: "+ coord.getLat() +"\n";
         answer += "-------------------------------- \n";
         return answer;
     }
