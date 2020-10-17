@@ -52,9 +52,10 @@ public class CityWeather {
     }
 
     public static Image getWeatherImage(String mainWeatherCondition) {
-        try {
-            return weatherImages.get(mainWeatherCondition);
-        } catch (Exception e) {
+        Image weatherConditionImage = weatherImages.get(mainWeatherCondition);
+        if (weatherConditionImage != null) {
+            return weatherConditionImage;
+        } else {
             return weatherImages.get("Other");
         }
     }
