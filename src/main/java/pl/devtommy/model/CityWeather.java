@@ -68,9 +68,7 @@ public class CityWeather {
     }
 
     public void setCity(City city) {
-        if (city != null) {
             this.city = city;
-        }
     }
 
     public City getCity() {
