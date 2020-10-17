@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CityWeather {
     private String ICON_WEATHER_PATH = "/pl/devtommy/Icon/weather";
@@ -14,7 +15,7 @@ public class CityWeather {
     private City city;
     private City selectedCity;
     private City[] cityList;
-    private static HashMap<String, Image> weatherImages = new HashMap<String, Image>();
+    private static Map<String, Image> weatherImages = new HashMap<>();
 
     public CityWeather(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
@@ -22,9 +23,7 @@ public class CityWeather {
         weatherImages = addPathsOfWeatherImages();
     }
 
-    private HashMap<String, Image> addPathsOfWeatherImages() {
-        HashMap<String, Image> weatherImages = new HashMap<String, Image>();
-
+    private Map<String, Image> addPathsOfWeatherImages() {
         weatherImages.put("Thunderstorm",  new Image(this.getClass().getResourceAsStream( ICON_WEATHER_PATH +
                 "/storm_100px.png")));
         weatherImages.put("Drizzle",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PATH +
