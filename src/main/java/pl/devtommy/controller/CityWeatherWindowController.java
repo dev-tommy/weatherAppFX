@@ -78,7 +78,7 @@ public class CityWeatherWindowController implements Initializable {
     void changeCity() {
         ViewFactory.showSelectCityLocationWindow(cityWeather);
         City newCity = cityWeather.getSelectedCity();
-        if (newCity != null || city.getId() == newCity.getId()) {
+        if (newCity != null && city.getId() != newCity.getId()) {
             city = newCity;
             refreshWeather();
         }
