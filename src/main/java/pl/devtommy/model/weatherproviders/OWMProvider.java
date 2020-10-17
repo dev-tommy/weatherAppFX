@@ -14,19 +14,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class OWMProvider extends OWM implements WeatherProvider {
+public class OWMProvider implements WeatherProvider {
     private OWM owm;
-    private String apiKey;
-    private int MAX_FORECAST_DAYS = 4;
+    private static final int MAX_FORECAST_DAYS = 4;
 
     public OWMProvider(@NotNull String apiKey) {
-        super(apiKey);
-        this.apiKey = apiKey;
         this.owm = new OWM(apiKey);
         validateApiKey();
 
         this.owm.setUnit(OWM.Unit.METRIC);
-        this.owm.setLanguage(Language.ENGLISH);
+        this.owm.setLanguage(OWM.Language.ENGLISH);
     }
 
     @Override
@@ -88,7 +85,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
 
     private void validateApiKey() {
         try {
-            owm.currentWeatherByCityName("Rome", Country.ITALY);
+            owm.currentWeatherByCityName("Rome", OWM.Country.ITALY);
         } catch (APIException e) {
             System.out.println("Wrong API key! API call gave error: 401 - Unauthorized");
             System.exit(401);
