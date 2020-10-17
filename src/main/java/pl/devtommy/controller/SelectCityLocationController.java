@@ -79,7 +79,7 @@ public class SelectCityLocationController implements Initializable {
         if (!cityName.isEmpty()) {
             List<City> foundCities = cityWeather.getCitiesContainsName(cityName);
             citiesTableView.getItems().addAll(foundCities);
-            foundCountLabel.setText("Found locations: " + foundCities.size());
+            foundCountLabel.setText(Messages.FOUND_LOCATIONS_MESSAGE + foundCities.size());
         }
     }
 

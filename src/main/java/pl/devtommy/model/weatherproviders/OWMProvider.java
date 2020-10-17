@@ -6,6 +6,7 @@ import net.aksingh.owmjapis.model.CurrentWeather;
 import net.aksingh.owmjapis.model.HourlyWeatherForecast;
 import net.aksingh.owmjapis.model.param.WeatherData;
 import org.jetbrains.annotations.NotNull;
+import pl.devtommy.controller.Messages;
 import pl.devtommy.model.City;
 import pl.devtommy.model.DayWeather;
 import pl.devtommy.model.WeatherProvider;
@@ -65,7 +66,7 @@ public class OWMProvider implements WeatherProvider {
             }
 
         } catch (Exception e) {
-            System.err.println("Wrong city data!");
+            System.err.println(Messages.WRONG_CITY_DATA_MESSAGE);
         }
         return createOneDayWeather(currentWeather, countryName);
     }
