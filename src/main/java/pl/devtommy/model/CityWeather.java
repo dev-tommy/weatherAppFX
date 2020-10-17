@@ -88,17 +88,8 @@ public class CityWeather {
     private City[] loadCityList(){
         Gson gson = new Gson();
         City[] cityList = new City[0];
-        try {
-            cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream("/pl/devtommy/json" +
-                            "/city.list.json")),
-                    City[].class);
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-            System.exit(300);
-        } catch (JsonIOException e) {
-            e.printStackTrace();
-            System.exit(300);
-        }
+        cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream("/pl/devtommy/json" +
+                            "/city.list.json")), City[].class);
         return cityList;
     }
 
