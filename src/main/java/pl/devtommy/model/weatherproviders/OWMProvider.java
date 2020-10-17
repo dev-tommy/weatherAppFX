@@ -12,6 +12,7 @@ import pl.devtommy.model.WeatherProvider;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class OWMProvider implements WeatherProvider {
@@ -139,7 +140,7 @@ public class OWMProvider implements WeatherProvider {
         int j = 0;
         for (int i = 0; i < hourlyWeatherForecast.getDataCount(); i++) {
             LocalDateTime hourlyWeatherDate =
-                    convertToLocalDateTimeFromDate(hourlyWeatherForecast.getDataList().get(i).getDateTime());
+                    convertDateToLocalDateTime(hourlyWeatherForecast.getDataList().get(i).getDateTime());
             int hourOfHourlyWeather = hourlyWeatherDate.getHour();
             if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == hourOfWeatherToShow)) {
                 fiveDaysForecastWeather[j++] = createOneDayWeather(hourlyWeatherForecast.getDataList().get(i));
@@ -148,7 +149,8 @@ public class OWMProvider implements WeatherProvider {
         return fiveDaysForecastWeather;
     }
 
-    private LocalDateTime convertToLocalDateTimeFromDate(Date dateToConvert) {
-        return LocalDateTime.from(dateToConvert.toInstant());
+    private LocalDateTime convertDateToLocalDateTime(Date dateToConvert) {
+        return LocalDateTime.ofInstant(
+                dateToConvert.toInstant(), ZoneId.systemDefault());
     }
 }
