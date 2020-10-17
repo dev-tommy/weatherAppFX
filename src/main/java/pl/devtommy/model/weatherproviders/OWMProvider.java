@@ -65,8 +65,7 @@ public class OWMProvider implements WeatherProvider {
             }
 
         } catch (Exception e) {
-            System.out.println("Wrong city data!");
-            e.printStackTrace();
+            System.err.println("Wrong city data!");
         }
         return createOneDayWeather(currentWeather, countryName);
     }
