@@ -91,16 +91,24 @@ public class CityWeather {
         return cityList;
     }
 
-    public ArrayList<City> getCitiesContainsName(String cityName) {
-        ArrayList<City> citiesContains = new ArrayList<City>();
+    public List<City> getCitiesContainsName(String cityName) {
+        List<City> citiesContains = new ArrayList<>();
         for (City city: cityList) {
             if (city.getName().toLowerCase().equals(cityName.toLowerCase())) {
-                citiesContains.add(0, city);
+                addToTopOfList(citiesContains, city);
             }
             else if (city.getName().toLowerCase().contains(cityName.toLowerCase())) {
-                citiesContains.add(city);
+                addToEndOfList(citiesContains, city);
             }
         }
         return citiesContains;
+    }
+
+    private void addToEndOfList(List<City> citiesContains, City city) {
+        citiesContains.add(city);
+    }
+
+    private void addToTopOfList(List<City> citiesContains, City city) {
+        citiesContains.add(0, city);
     }
 }
