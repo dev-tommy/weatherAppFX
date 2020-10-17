@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CityWeather {
-    private String ICON_WEATHER_PATH = "/pl/devtommy/Icon/weather";
+    private static final String ICON_WEATHER_PATH = "/pl/devtommy/Icon/weather";
     private WeatherProvider weatherProvider;
     private City city;
     private City selectedCity;
