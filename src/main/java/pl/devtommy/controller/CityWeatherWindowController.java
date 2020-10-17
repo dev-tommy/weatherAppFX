@@ -18,9 +18,9 @@ import java.util.ResourceBundle;
 
 public class CityWeatherWindowController implements Initializable {
 
-    private int FORECAST_DAYS_AMOUNT;
-    private int zoomIconSize = 2;
-    private CityWeather cityWeather;
+    private int forecastDaysNumber;
+    private static final int ZOOM_ICON_SIZE = 2;
+    private final CityWeather cityWeather;
     private City city;
     private DayWeather dayWeather;
 
@@ -65,20 +65,23 @@ public class CityWeatherWindowController implements Initializable {
 
     public CityWeatherWindowController(CityWeather cityWeather, int maxForecastDays) {
         this.cityWeather = cityWeather;
-        this.FORECAST_DAYS_AMOUNT = maxForecastDays;
+        this.forecastDaysNumber = maxForecastDays;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        getCityLocation();
+        city = getCityLocation();
         refreshWeather();
     }
 
-
-
     @FXML
     void changeCity() {
-        getCity();
+        ViewFactory.showSelectCityLocationWindow(cityWeather);
+        City newCity = cityWeather.getSelectedCity();
+        if (newCity != null || city.getId() == newCity.getId()) {
+            city = newCity;
+            refreshWeather();
+        }
     }
 
     @FXML
@@ -92,22 +95,22 @@ public class CityWeatherWindowController implements Initializable {
 
     @FXML
     void changeCityOnMouseEntered() {
-        zoomIn(cityImageView, zoomIconSize);
+        zoomIn(cityImageView, ZOOM_ICON_SIZE);
     }
 
     @FXML
     void changeCityOnMouseExited() {
-        zoomOut(cityImageView, zoomIconSize);
+        zoomOut(cityImageView, ZOOM_ICON_SIZE);
     }
 
     @FXML
     void refreshOnMouseEntered() {
-        zoomIn(refreshImageView, zoomIconSize);
+        zoomIn(refreshImageView, ZOOM_ICON_SIZE);
     }
 
     @FXML
     void refreshOnMouseExited() {
-        zoomOut(refreshImageView, zoomIconSize);
+        zoomOut(refreshImageView, ZOOM_ICON_SIZE);
     }
 
     private void updateDates() {
@@ -125,8 +128,8 @@ public class CityWeatherWindowController implements Initializable {
         cityWeather.setCity(city);
     }
 
-    private void getCityLocation() {
-        city = cityWeather.getCityLocation();
+    private City getCityLocation() {
+        return cityWeather.getCityLocation();
     }
 
     private void updateForecastWeather() {
@@ -142,9 +145,6 @@ public class CityWeatherWindowController implements Initializable {
 
     private void updateWeatherView() {
         dayWeather = cityWeather.getCurrentLeftCityWeather();
-
-        System.out.println(dayWeather);
-
         cityLabel.setText(dayWeather.getName());
         countryLabel.setText(dayWeather.getCountry());
         currentTempLabel.setText( dayWeather.getTemp());
@@ -155,22 +155,14 @@ public class CityWeatherWindowController implements Initializable {
                         " / " +
                         dayWeather.getTempMax()
         );
-
         describeLabel.setText(dayWeather.getDescription());
     }
 
     private void addForecastDays() {
-        for (int i=0; i < FORECAST_DAYS_AMOUNT; i++){
+        for (int i = 0; i < forecastDaysNumber; i++) {
             DayWeather forecastDay = cityWeather.getForecastWeather()[i];
             forecastHBox.getChildren().add(ViewFactory.addForecastDay(forecastDay));
         }
-    }
-
-    private void getCity() {
-        cityWeather.setSelectedCity(null);
-        ViewFactory.showSelectCityLocationWindow(cityWeather);
-        city = cityWeather.getSelectedCity();
-        refreshWeather();
     }
 
     private void zoomIn(ImageView imageView, int size){

@@ -6,27 +6,38 @@ import net.aksingh.owmjapis.model.CurrentWeather;
 import net.aksingh.owmjapis.model.HourlyWeatherForecast;
 import net.aksingh.owmjapis.model.param.WeatherData;
 import org.jetbrains.annotations.NotNull;
+import pl.devtommy.controller.Messages;
 import pl.devtommy.model.City;
 import pl.devtommy.model.DayWeather;
 import pl.devtommy.model.WeatherProvider;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
-public class OWMProvider extends OWM implements WeatherProvider {
+public class OWMProvider implements WeatherProvider {
     private OWM owm;
-    private String apiKey;
-    private int MAX_FORECAST_DAYS = 4;
+    private static final int MAX_FORECAST_DAYS = 4;
 
     public OWMProvider(@NotNull String apiKey) {
-        super(apiKey);
-        this.apiKey = apiKey;
         this.owm = new OWM(apiKey);
-        validateApiKey();
+        if ( !isCorrectApiKey() ) {
+            System.err.println("Wrong API key! API call gave error: 401 - Unauthorized");
+            System.exit(1);
+        }
 
         this.owm.setUnit(OWM.Unit.METRIC);
-        this.owm.setLanguage(Language.ENGLISH);
+        this.owm.setLanguage(OWM.Language.ENGLISH);
+    }
+
+    private boolean isCorrectApiKey() {
+        try {
+            owm.currentWeatherByCityName("Rome", OWM.Country.ITALY);
+            return true;
+        } catch (APIException e) {
+            return false;
+        }
     }
 
     @Override
@@ -55,10 +66,9 @@ public class OWMProvider extends OWM implements WeatherProvider {
             }
 
         } catch (Exception e) {
-            System.out.println("Wrong city data!");
-            e.printStackTrace();
+            System.err.println(Messages.WRONG_CITY_DATA_MESSAGE);
         }
-        return updateOneDayWeather(currentWeather, countryName);
+        return createOneDayWeather(currentWeather, countryName);
     }
 
     @Override
@@ -79,26 +89,20 @@ public class OWMProvider extends OWM implements WeatherProvider {
             } else {
                 forecastWeather = owm.hourlyWeatherForecastByCoords(latitude, longitude);
             }
-        } catch (Exception e) {
-            System.out.println("Wrong city data!");
-            e.printStackTrace();
-        }
-        return updateForecastWeather(forecastWeather);
-    }
-
-    private void validateApiKey() {
-        try {
-            owm.currentWeatherByCityName("Rome", Country.ITALY);
         } catch (APIException e) {
-            System.out.println("Wrong API key! API call gave error: 401 - Unauthorized");
-            System.exit(401);
+            System.err.println("Wrong city data!");
         }
+        return createForecastWeather(forecastWeather);
     }
 
-    private DayWeather updateOneDayWeather(CurrentWeather currentWeather, String countryName) {
+    private DayWeather createOneDayWeather(CurrentWeather currentWeather, String countryName) {
         DayWeather dayWeather = new DayWeather();
-        if (currentWeather.hasCityName()) dayWeather.setName(currentWeather.getCityName());
-        if (currentWeather.hasCityId()) dayWeather.setId(currentWeather.getCityId());
+        if (currentWeather.hasCityName()) {
+            dayWeather.setName(currentWeather.getCityName());
+        }
+        if (currentWeather.hasCityId()) {
+            dayWeather.setId(currentWeather.getCityId());
+        }
         dayWeather.setDate(currentWeather.getDateTime());
         dayWeather.setCountry(countryName);
         dayWeather.setDescription(currentWeather.getWeatherList().get(0).getMoreInfo());
@@ -113,7 +117,7 @@ public class OWMProvider extends OWM implements WeatherProvider {
         return dayWeather;
     }
 
-    private DayWeather updateOneDayWeather(WeatherData weatherData) {
+    private DayWeather createOneDayWeather(WeatherData weatherData) {
         DayWeather dayWeather = new DayWeather();
         dayWeather.setDescription(weatherData.getWeatherList().get(0).getMoreInfo());
         dayWeather.setMainCondition(weatherData.getWeatherList().get(0).getMainInfo());
@@ -128,25 +132,25 @@ public class OWMProvider extends OWM implements WeatherProvider {
         return dayWeather;
     }
 
-    private DayWeather[] updateForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
+    private DayWeather[] createForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
+        int hourOfWeatherToShow = 14;
         DayWeather[] fiveDaysForecastWeather = new DayWeather[5];
-        int j = 0;
         LocalDateTime today = LocalDate.now().atTime(23,59,59);
 
+        int j = 0;
         for (int i = 0; i < hourlyWeatherForecast.getDataCount(); i++) {
             LocalDateTime hourlyWeatherDate =
-                    convertToLocalDateTimeViaSqlTimestamp(hourlyWeatherForecast.getDataList().get(i).getDateTime());
-
+                    convertDateToLocalDateTime(hourlyWeatherForecast.getDataList().get(i).getDateTime());
             int hourOfHourlyWeather = hourlyWeatherDate.getHour();
-            if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == 14)) {
-                fiveDaysForecastWeather[j++] = updateOneDayWeather(hourlyWeatherForecast.getDataList().get(i));
+            if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == hourOfWeatherToShow)) {
+                fiveDaysForecastWeather[j++] = createOneDayWeather(hourlyWeatherForecast.getDataList().get(i));
             }
         }
         return fiveDaysForecastWeather;
     }
 
-    private LocalDateTime convertToLocalDateTimeViaSqlTimestamp(Date dateToConvert) {
-        return new java.sql.Timestamp(
-                dateToConvert.getTime()).toLocalDateTime();
+    private LocalDateTime convertDateToLocalDateTime(Date dateToConvert) {
+        return LocalDateTime.ofInstant(
+                dateToConvert.toInstant(), ZoneId.systemDefault());
     }
 }

@@ -12,19 +12,18 @@ import pl.devtommy.model.City;
 import pl.devtommy.model.Coord;
 import pl.devtommy.model.WeatherProvider;
 import pl.devtommy.view.ViewFactory;
-
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
 
-    private int CITIES_AMOUNT = 2;
-    private int zoomIconSize = 2;
+    private static final int CITIES_NUMBER = 2;
+    private static final int ZOOM_ICON_SIZE = 2;
     private City[] cities;
-    private WeatherProvider[] weathers;
+    private WeatherProvider weather;
     private double xMainWindowOffset;
     private double yMainWindowOffset;
 
@@ -38,8 +37,8 @@ public class MainWindowController implements Initializable {
     @FXML
     private Label currentDate;
 
-    public MainWindowController(WeatherProvider[] weathers) {
-        this.weathers = weathers;
+    public MainWindowController(WeatherProvider weather) {
+        this.weather = weather;
     }
 
     @Override
@@ -69,12 +68,12 @@ public class MainWindowController implements Initializable {
 
     @FXML
     void closeIconOnMouseEntered() {
-        zoomIn(closeIcon, zoomIconSize);
+        zoomIn(closeIcon, ZOOM_ICON_SIZE);
     }
 
     @FXML
     void closeIconOnMouseExited() {
-        zoomOut(closeIcon, zoomIconSize);
+        zoomOut(closeIcon, ZOOM_ICON_SIZE);
     }
 
     @FXML
@@ -83,26 +82,30 @@ public class MainWindowController implements Initializable {
     }
 
     private void updateCurrentDate() {
-        SimpleDateFormat formatter= new SimpleDateFormat("EE dd MMM yyyy - [HH:mm] ", Locale.US);
-        Date date = new Date(System.currentTimeMillis());
-        currentDate.setText(formatter.format(date));
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("EE dd MMM yyyy - [HH:mm] ").localizedBy(Locale.US);
+        String today = LocalDateTime.now().format(formatter);
+        currentDate.setText(today);
     }
 
     private void addCitiesWeathers() {
         cities = getCitiesLocation();
-        for (int i = 0; i< cities.length; i++){
-            int maxForecastDays = weathers[0].getMaxForecastDays();
-            CityWeather cityWeather = new CityWeather(weathers[0]);
-            cityWeather.setCity(cities[i]);
+        for (City city : cities) {
+            int maxForecastDays = weather.getMaxForecastDays();
+            CityWeather cityWeather = new CityWeather(weather);
+            cityWeather.setCity(city);
             citiesWeatherHbox.getChildren().add(ViewFactory.addCityWindow(cityWeather, maxForecastDays));
         }
     }
 
     private City[] getCitiesLocation() {
-        City[] cities = new City[CITIES_AMOUNT];
-        //example
-        cities[0] = new City(7533329, "", "", "PL", new Coord(0.0, 0.0));
+        City[] cities = new City[CITIES_NUMBER];
+        cities[0] = createExampleCity();
         return cities;
+    }
+
+    private City createExampleCity() {
+        return new City(7533329, "", "PL", new Coord(0.0, 0.0));
     }
 
     private void zoomIn(ImageView imageView, int size){

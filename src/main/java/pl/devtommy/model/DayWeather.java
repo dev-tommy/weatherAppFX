@@ -134,7 +134,7 @@ public class DayWeather {
             answer += "TempMin: " + getTempMin() + "\n";
             answer += "TempMax: " + getTempMax() + "\n";
         }
-        answer += "Main codition: " + getMainCondition() + "\n";
+        answer += "Main condition: " + getMainCondition() + "\n";
         answer += "Description: " + getDescription() + "\n";
         answer += "-------------------------------- \n";
         return answer;
