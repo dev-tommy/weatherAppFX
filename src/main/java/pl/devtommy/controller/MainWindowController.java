@@ -105,7 +105,7 @@ public class MainWindowController implements Initializable {
     }
 
     private City createExampleCity() {
-        return new City(7533329, "", "", "PL", new Coord(0.0, 0.0));
+        return new City(7533329, "", "PL", new Coord(0.0, 0.0));
     }
 
     private void zoomIn(ImageView imageView, int size){

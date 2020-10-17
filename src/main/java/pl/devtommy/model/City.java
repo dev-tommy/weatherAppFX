@@ -5,17 +5,16 @@ import java.util.Locale;
 public class City {
     private int id;
     private String name;
-    private String state;
     private String country;
     private Coord coord;
 
     public City() {
+        //for Gson
     }
 
-    public City(int id, String name, String state, String country, Coord coord) {
+    public City(int id, String name, String country, Coord coord) {
         this.id = id;
         this.name = name;
-        this.state = state;
         this.country = country;
         this.coord = coord;
     }
@@ -26,10 +25,6 @@ public class City {
 
     public String getName() {
         return name;
-    }
-
-    public String getState() {
-        return state;
     }
 
     public String getCountryCode() {

@@ -44,7 +44,7 @@ public class CityWeather {
 
     public City getCityLocation() {
         if (city == null) {
-            return new City(0, "Zakynthos", "", "GR", new Coord(0.0, 0.0));
+            return new City(0, "Zakynthos", "GR", new Coord(0.0, 0.0));
         } else return city;
     }
 
