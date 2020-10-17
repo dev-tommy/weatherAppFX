@@ -1,6 +1,7 @@
 package pl.devtommy.model;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class City {
     private int id;
@@ -45,6 +46,22 @@ public class City {
 
     public Double getLongitude() {
         return coord.getLon();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return id == city.id &&
+                name.equals(city.name) &&
+                country.equals(city.country) &&
+                coord.equals(city.coord);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, country, coord);
     }
 
     @Override
