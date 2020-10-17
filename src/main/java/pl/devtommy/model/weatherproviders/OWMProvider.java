@@ -23,7 +23,7 @@ public class OWMProvider implements WeatherProvider {
     public OWMProvider(@NotNull String apiKey) {
         this.owm = new OWM(apiKey);
         if ( !isCorrectApiKey() ) {
-            System.err.println("Wrong API key! API call gave error: 401 - Unauthorized");
+            System.err.println(Messages.WRONG_API_KEY_MESSAGE);
             System.exit(1);
         }
 
