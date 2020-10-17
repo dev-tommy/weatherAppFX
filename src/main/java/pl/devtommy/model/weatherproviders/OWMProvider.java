@@ -132,16 +132,16 @@ public class OWMProvider implements WeatherProvider {
     }
 
     private DayWeather[] createForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
+        int hourOfWeatherToShow = 14;
         DayWeather[] fiveDaysForecastWeather = new DayWeather[5];
-        int j = 0;
         LocalDateTime today = LocalDate.now().atTime(23,59,59);
 
+        int j = 0;
         for (int i = 0; i < hourlyWeatherForecast.getDataCount(); i++) {
             LocalDateTime hourlyWeatherDate =
                     convertToLocalDateTimeViaSqlTimestamp(hourlyWeatherForecast.getDataList().get(i).getDateTime());
-
             int hourOfHourlyWeather = hourlyWeatherDate.getHour();
-            if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == 14)) {
+            if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == hourOfWeatherToShow)) {
                 fiveDaysForecastWeather[j++] = createOneDayWeather(hourlyWeatherForecast.getDataList().get(i));
             }
         }
