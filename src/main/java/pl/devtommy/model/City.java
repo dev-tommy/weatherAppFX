@@ -40,6 +40,16 @@ public class City {
         return coord;
     }
 
+    // for SelectCityLocationController.setUpTableView()
+    public Double getLatitude() {
+        return coord.getLat();
+    }
+
+    // for SelectCityLocationController.setUpTableView()
+    public Double getLongitude() {
+        return coord.getLon();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
