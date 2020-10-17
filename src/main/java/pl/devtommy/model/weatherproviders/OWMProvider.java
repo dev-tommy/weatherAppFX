@@ -88,9 +88,8 @@ public class OWMProvider implements WeatherProvider {
             } else {
                 forecastWeather = owm.hourlyWeatherForecastByCoords(latitude, longitude);
             }
-        } catch (Exception e) {
-            System.out.println("Wrong city data!");
-            e.printStackTrace();
+        } catch (APIException e) {
+            System.err.println("Wrong city data!");
         }
         return createForecastWeather(forecastWeather);
     }
