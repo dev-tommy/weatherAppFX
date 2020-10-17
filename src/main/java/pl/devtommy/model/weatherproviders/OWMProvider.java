@@ -139,7 +139,7 @@ public class OWMProvider implements WeatherProvider {
         int j = 0;
         for (int i = 0; i < hourlyWeatherForecast.getDataCount(); i++) {
             LocalDateTime hourlyWeatherDate =
-                    convertToLocalDateTimeViaSqlTimestamp(hourlyWeatherForecast.getDataList().get(i).getDateTime());
+                    convertToLocalDateTimeFromDate(hourlyWeatherForecast.getDataList().get(i).getDateTime());
             int hourOfHourlyWeather = hourlyWeatherDate.getHour();
             if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == hourOfWeatherToShow)) {
                 fiveDaysForecastWeather[j++] = createOneDayWeather(hourlyWeatherForecast.getDataList().get(i));
@@ -148,8 +148,7 @@ public class OWMProvider implements WeatherProvider {
         return fiveDaysForecastWeather;
     }
 
-    private LocalDateTime convertToLocalDateTimeViaSqlTimestamp(Date dateToConvert) {
-        return new java.sql.Timestamp(
-                dateToConvert.getTime()).toLocalDateTime();
+    private LocalDateTime convertToLocalDateTimeFromDate(Date dateToConvert) {
+        return LocalDateTime.from(dateToConvert.toInstant());
     }
 }
