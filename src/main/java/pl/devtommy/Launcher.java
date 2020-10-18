@@ -9,7 +9,7 @@ import pl.devtommy.model.weatherproviders.OWMProvider;
 import pl.devtommy.view.ViewFactory;
 
 public class Launcher extends Application {
-    public static Config config = new Config(Paths.CONFIG_PROPERTIES_PATH);
+    public static Config config;
 
     public static void main(String[] args) {
         launch();
@@ -17,6 +17,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage stage) {
+        config = new Config(Paths.CONFIG_PROPERTIES_PATH);
         ViewFactory viewFactory = new ViewFactory(stage, loadWeatherProvider(), config);
         viewFactory.showMainWindow();
     }
