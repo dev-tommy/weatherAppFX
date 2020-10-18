@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Locale;
 
 public class OWMProvider implements WeatherProvider {
     private OWM owm;
@@ -68,7 +69,7 @@ public class OWMProvider implements WeatherProvider {
         } catch (Exception e) {
             System.err.println(Messages.WRONG_CITY_DATA_MESSAGE);
         }
-        return createOneDayWeather(currentWeather, countryName);
+        return createDayWeather(currentWeather);
     }
 
     @Override
@@ -95,7 +96,10 @@ public class OWMProvider implements WeatherProvider {
         return createForecastWeather(forecastWeather);
     }
 
-    private DayWeather createOneDayWeather(CurrentWeather currentWeather, String countryName) {
+    private DayWeather createDayWeather(CurrentWeather currentWeather) {
+        String countryName =
+                new Locale("", currentWeather.getSystemData().getCountryCode())
+                        .getDisplayCountry(new Locale("EN"));
         DayWeather dayWeather = new DayWeather();
         if (currentWeather.hasCityName()) {
             dayWeather.setName(currentWeather.getCityName());
@@ -117,7 +121,7 @@ public class OWMProvider implements WeatherProvider {
         return dayWeather;
     }
 
-    private DayWeather createOneDayWeather(WeatherData weatherData) {
+    private DayWeather createDayWeather(WeatherData weatherData) {
         DayWeather dayWeather = new DayWeather();
         dayWeather.setDescription(weatherData.getWeatherList().get(0).getMoreInfo());
         dayWeather.setMainCondition(weatherData.getWeatherList().get(0).getMainInfo());
@@ -143,7 +147,7 @@ public class OWMProvider implements WeatherProvider {
                     convertDateToLocalDateTime(hourlyWeatherForecast.getDataList().get(i).getDateTime());
             int hourOfHourlyWeather = hourlyWeatherDate.getHour();
             if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == hourOfWeatherToShow)) {
-                fiveDaysForecastWeather[j++] = createOneDayWeather(hourlyWeatherForecast.getDataList().get(i));
+                fiveDaysForecastWeather[j++] = createDayWeather(hourlyWeatherForecast.getDataList().get(i));
             }
         }
         return fiveDaysForecastWeather;
