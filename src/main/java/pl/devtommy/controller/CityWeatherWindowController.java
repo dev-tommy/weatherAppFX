@@ -144,7 +144,7 @@ public class CityWeatherWindowController implements Initializable {
     }
 
     private void updateWeatherView() {
-        dayWeather = cityWeather.getCurrentLeftCityWeather();
+        dayWeather = cityWeather.getCurrentCityWeather();
         cityLabel.setText(dayWeather.getName());
         countryLabel.setText(dayWeather.getCountry());
         currentTempLabel.setText( dayWeather.getTemp());

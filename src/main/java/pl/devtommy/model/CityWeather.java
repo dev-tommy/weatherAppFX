@@ -58,7 +58,7 @@ public class CityWeather {
         }
     }
 
-    public DayWeather getCurrentLeftCityWeather() {
+    public DayWeather getCurrentCityWeather() {
         return weatherProvider.getCurrentWeatherByCity(city);
     }
 
