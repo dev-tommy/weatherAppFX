@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CityWeather {
-    private static final String ICON_WEATHER_PARENT_PATH = "/pl/devtommy/Icon/weather";
+    private static final String ICON_WEATHER_PARENT_PATH = "/pl/devtommy/icon/weather";
     public static final String CITY_LIST_JSON_PATH = "/pl/devtommy/json/city.list.json";
     private WeatherProvider weatherProvider;
     private City city;
