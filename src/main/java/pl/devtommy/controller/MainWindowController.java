@@ -87,11 +87,12 @@ public class MainWindowController implements Initializable {
 
     private void addCitiesWeathers() {
         cities = getCitiesLocation();
-        for (City city : cities) {
+        for (int i = 0; i < cities.length; i++) {
+            City city = cities[i];
             int maxForecastDays = weather.getMaxForecastDays();
             CityWeather cityWeather = new CityWeather(weather);
             cityWeather.setCity(city);
-            citiesWeatherHbox.getChildren().add(ViewFactory.addCityWindow(cityWeather, maxForecastDays));
+            citiesWeatherHbox.getChildren().add(ViewFactory.addCityWindow(i, cityWeather, maxForecastDays));
         }
     }
 
