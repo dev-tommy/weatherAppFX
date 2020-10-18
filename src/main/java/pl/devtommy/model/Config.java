@@ -55,6 +55,24 @@ public class Config {
         input.close();
     }
 
+    private static void saveProperties(Properties props) {
+        File configFile = new File(Paths.CONFIG_PROPERTIES_PATH);
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(configFile);
+        } catch (IOException e) {
+            System.err.println(Messages.CREATE_PROPERTIES_FILE_ERROR_MESSAGE);
+            System.exit(1);
+        }
+        try {
+            props.store(writer, Messages.DEFAULT_SETTINGS_MESSAGE);
+            writer.close();
+        } catch (IOException e) {
+            System.err.println(Messages.STORE_PROPERTIES_ERROR_MESSAGE);
+            System.exit(1);
+        }
+    }
+
     private static Properties createProperties() {
         Properties prop = new Properties();
         prop.setProperty("owm.api.key", apiKey);
