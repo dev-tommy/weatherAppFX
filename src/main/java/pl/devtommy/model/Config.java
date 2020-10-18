@@ -16,36 +16,28 @@ public class Config {
         this.configPath = configPath;
     }
 
-    public String getConfigPath() {
-        return configPath;
+    public String getApiKey() {
+        return apiKey;
     }
 
-    public String getApiKey() {
-        String apiKey = "";
-        try (InputStream input = new FileInputStream(Paths.CONFIG_PROPERTIES_PATH)) {
-            Properties prop = new Properties();
-            prop.load(input);
+    public static int getCitiesNumber() {
+        return citiesNumber;
+    }
 
-            apiKey = prop.getProperty("api.key");
+    public static City[] getCities() {
+        return cities;
+    }
 
-        } catch (IOException ex) {
-            while(apiKey.length() != 32) {
-                apiKey = ViewFactory.getApiDialog();
-                if (apiKey.isEmpty()) {
-                    try {
-                        Properties prop = new Properties();
-                        prop.load(new FileInputStream(ViewFactory.getFileDialog()));
-                        apiKey = prop.getProperty("api.key");
-                    } catch (Exception e) {
-                        System.err.println(Messages.FILE_ERROR_MESSAGE);
-                        System.exit(1);
-                    }
-                    break;
-                }
-            }
-        }
+    public static void setCitiesNumber(int citiesNumber) {
+        Config.citiesNumber = citiesNumber;
+    }
 
-        return apiKey;
+    public static void setCities(City[] cities) {
+        Config.cities = cities;
+    }
+
+    public static void setCity(int i, City city) {
+        Config.cities[i] = city;
     }
 
     private static Properties createDefaultProperties() {
