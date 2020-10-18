@@ -63,14 +63,19 @@ public class ViewFactory {
 
     public static String getApiDialog() {
         String apiKey = "";
-        TextInputDialog dialog = new TextInputDialog("...");
+        TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Get Weather Provider API key");
         dialog.setHeaderText("File config.properties not found! The weather provider requires a valid API key to run!");
         dialog.setContentText("Please enter API key:");
 
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            apiKey = result.get();
+        while (apiKey.length() != 32) {
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                apiKey = result.get();
+             } else {
+                System.err.println(Messages.NO_API_KEY_MESSAGE);
+                System.exit(1);
+            }
         }
         return apiKey;
     }
