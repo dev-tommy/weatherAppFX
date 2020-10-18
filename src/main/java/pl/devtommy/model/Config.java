@@ -40,6 +40,10 @@ public class Config {
         Config.cities[i] = city;
     }
 
+    public static void store(){
+        saveProperties(createProperties());
+    }
+
     private static void loadProperties(InputStream input) throws IOException {
         Properties prop = new Properties();
         prop.load(input);
