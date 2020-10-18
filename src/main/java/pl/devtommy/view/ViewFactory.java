@@ -10,12 +10,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import pl.devtommy.model.CityWeather;
+import pl.devtommy.model.*;
 import pl.devtommy.Launcher;
 import pl.devtommy.controller.*;
-import pl.devtommy.model.Config;
-import pl.devtommy.model.DayWeather;
-import pl.devtommy.model.WeatherProvider;
 
 import java.io.File;
 import java.io.IOException;
