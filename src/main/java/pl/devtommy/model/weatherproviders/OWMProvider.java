@@ -6,10 +6,8 @@ import net.aksingh.owmjapis.model.CurrentWeather;
 import net.aksingh.owmjapis.model.HourlyWeatherForecast;
 import net.aksingh.owmjapis.model.param.WeatherData;
 import org.jetbrains.annotations.NotNull;
-import pl.devtommy.model.Messages;
-import pl.devtommy.model.City;
-import pl.devtommy.model.DayWeather;
-import pl.devtommy.model.WeatherProvider;
+import pl.devtommy.model.*;
+import pl.devtommy.view.ViewFactory;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,17 +20,19 @@ public class OWMProvider implements WeatherProvider {
     private static final int MAX_FORECAST_DAYS = 4;
 
     public OWMProvider(@NotNull String apiKey) {
-        this.owm = new OWM(apiKey);
-        if ( !isCorrectApiKey() ) {
+        while ( !isCorrectApiKey(apiKey) ) {
             System.err.println(Messages.WRONG_API_KEY_MESSAGE);
-            System.exit(1);
+            apiKey = ViewFactory.getApiDialog();
         }
-
+        Config.setApiKey(apiKey);
+        Config.store();
+        this.owm = new OWM(apiKey);
         this.owm.setUnit(OWM.Unit.METRIC);
         this.owm.setLanguage(OWM.Language.ENGLISH);
     }
 
-    private boolean isCorrectApiKey() {
+    private boolean isCorrectApiKey(String apiKey) {
+        OWM owm = new OWM(apiKey);
         try {
             owm.currentWeatherByCityName("Rome", OWM.Country.ITALY);
             return true;
