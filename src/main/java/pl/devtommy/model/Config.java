@@ -14,6 +14,7 @@ public class Config {
 
     public Config(String configPath) {
         this.configPath = configPath;
+        load();
     }
 
     public String getApiKey() {
@@ -38,6 +39,24 @@ public class Config {
 
     public static void setCity(int i, City city) {
         Config.cities[i] = city;
+    }
+
+    public void load(){
+        try (InputStream input = new FileInputStream(configPath)) {
+            loadProperties(input);
+        } catch (IOException ex) {
+            try (InputStream input = new FileInputStream(ViewFactory.getFileDialog())) {
+                loadProperties(input);
+            } catch (Exception e) {
+                saveProperties(createDefaultProperties());
+                try (InputStream input = new FileInputStream(configPath)) {
+                    loadProperties(input);
+                } catch (Exception exc) {
+                    System.err.println(Messages.CREATE_PROPERTIES_FILE_ERROR_MESSAGE);
+                    System.exit(1);
+                }
+            }
+        }
     }
 
     public static void store(){
