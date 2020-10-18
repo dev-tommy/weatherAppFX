@@ -3,9 +3,11 @@ package pl.devtommy.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import pl.devtommy.model.CityWeather;
 import pl.devtommy.model.DayWeather;
+import pl.devtommy.model.Paths;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -49,7 +51,12 @@ public class ForecastDayWindowController implements Initializable {
 
     private void updateWeatherImages() {
         String forecastWeatherMainCondition = forecastDay.getMainCondition();
-        forecastWeatherImageView.setImage(CityWeather.getWeatherImage(forecastWeatherMainCondition));
+        forecastWeatherImageView.setImage(loadImage(CityWeather.getWeatherImageName(forecastWeatherMainCondition)));
+    }
+
+    private Image loadImage(String imageName) {
+        return new Image(this.getClass().getResourceAsStream( Paths.IMAGE_WEATHER_PARENT_PATH
+                + imageName));
     }
 
     private void updateWeatherView() {

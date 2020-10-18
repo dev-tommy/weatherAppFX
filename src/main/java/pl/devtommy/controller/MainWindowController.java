@@ -7,10 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import pl.devtommy.model.CityWeather;
-import pl.devtommy.model.City;
-import pl.devtommy.model.Coord;
-import pl.devtommy.model.WeatherProvider;
+import pl.devtommy.model.*;
 import pl.devtommy.view.ViewFactory;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -20,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
 
-    private static final int CITIES_NUMBER = 2;
+    private static int citiesNumber = Config.getCitiesNumber();
     private static final int ZOOM_ICON_SIZE = 2;
     private City[] cities;
     private WeatherProvider weather;
@@ -90,22 +87,21 @@ public class MainWindowController implements Initializable {
 
     private void addCitiesWeathers() {
         cities = getCitiesLocation();
-        for (City city : cities) {
+        for (int i = 0; i < cities.length; i++) {
+            City city = cities[i];
             int maxForecastDays = weather.getMaxForecastDays();
             CityWeather cityWeather = new CityWeather(weather);
             cityWeather.setCity(city);
-            citiesWeatherHbox.getChildren().add(ViewFactory.addCityWindow(cityWeather, maxForecastDays));
+            citiesWeatherHbox.getChildren().add(ViewFactory.addCityWindow(i, cityWeather, maxForecastDays));
         }
     }
 
     private City[] getCitiesLocation() {
-        City[] cities = new City[CITIES_NUMBER];
-        cities[0] = createExampleCity();
+        City[] cities = new City[citiesNumber];
+        for (int i = 0; i < cities.length; i++) {
+            cities[i] = Config.getCities()[i];
+        }
         return cities;
-    }
-
-    private City createExampleCity() {
-        return new City(7533329, "", "PL", new Coord(0.0, 0.0));
     }
 
     private void zoomIn(ImageView imageView, int size){

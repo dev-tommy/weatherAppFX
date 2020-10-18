@@ -6,27 +6,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import pl.devtommy.model.CityWeather;
+import pl.devtommy.model.*;
 import pl.devtommy.Launcher;
 import pl.devtommy.controller.*;
-import pl.devtommy.model.DayWeather;
-import pl.devtommy.model.WeatherProvider;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
 public class ViewFactory {
     private WeatherProvider weatherProvider;
     private static Stage ownerStage;
+    private static Config config;
 
-    public ViewFactory(Stage stage, WeatherProvider weatherProvider) {
+    public ViewFactory(Stage stage, WeatherProvider weatherProvider, Config config) {
         this.weatherProvider = weatherProvider;
         this.ownerStage = stage;
+        this.config = config;
     }
 
     public void showMainWindow() {
@@ -39,8 +37,9 @@ public class ViewFactory {
         stageInit(controller, "Select city", "SelectCityLocationWindow.fxml");
     }
 
-    public static Node addCityWindow(CityWeather cityWeather, int maxForecastWeather) {
-        CityWeatherWindowController controller = new CityWeatherWindowController(cityWeather, maxForecastWeather);
+    public static Node addCityWindow(int index, CityWeather cityWeather, int maxForecastWeather) {
+        CityWeatherWindowController controller = new CityWeatherWindowController(index, cityWeather,
+                maxForecastWeather);
         return getNode(controller, "CityWeatherWindow.fxml");
     }
 
@@ -60,33 +59,21 @@ public class ViewFactory {
         return getNode(controller, "ForecastDayWindow.fxml");
     }
 
-    public static File getFileDialog() {
-        File existDirectory;
-        try {
-            existDirectory = new File(ClassLoader.getSystemClassLoader().getResource(".").getPath());
-        } catch (Exception e) {
-            existDirectory = new File(System.getProperty("user.home"));
-        }
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Config File");
-        fileChooser.setInitialDirectory(existDirectory);
-        fileChooser.setInitialFileName("config.properties");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Config Files", "*.properties"));
-        File selectedFile = fileChooser.showOpenDialog(ownerStage);
-        return selectedFile;
-    }
-
     public static String getApiDialog() {
         String apiKey = "";
-        TextInputDialog dialog = new TextInputDialog("...");
-        dialog.setTitle("Get Weather Provider API key");
-        dialog.setHeaderText("File config.properties not found! The weather provider requires a valid API key to run!");
-        dialog.setContentText("Please enter API key:");
+        TextInputDialog dialog = new TextInputDialog("");
+        dialog.setTitle(Messages.GET_WEATHER_PROVIDER_API_KEY_MESSAGE);
+        dialog.setHeaderText(Messages.GET_API_HEADER_TEXT);
+        dialog.setContentText(Messages.PLEASE_ENTER_API_KEY_MESSAGE);
 
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            apiKey = result.get();
+        while (apiKey.length() != 32) {
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                apiKey = result.get();
+             } else {
+                System.err.println(Messages.NO_API_KEY_MESSAGE);
+                System.exit(1);
+            }
         }
         return apiKey;
     }

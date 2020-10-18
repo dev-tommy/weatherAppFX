@@ -29,7 +29,7 @@
       </VBox>
       <ImageView fx:id="forecastWeatherImageView" fitHeight="66.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Icon/weather/cloudy_day_100px.png" />
+            <Image url="@../icon/weather/cloudy_day_100px.png" />
          </image>
          <effect>
             <ColorAdjust brightness="0.69" />

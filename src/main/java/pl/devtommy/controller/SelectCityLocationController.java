@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pl.devtommy.model.CityWeather;
 import pl.devtommy.model.City;
+import pl.devtommy.model.Messages;
 
 import java.net.URL;
 import java.util.List;

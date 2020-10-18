@@ -3,11 +3,10 @@ package pl.devtommy.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import pl.devtommy.model.CityWeather;
-import pl.devtommy.model.City;
-import pl.devtommy.model.DayWeather;
+import pl.devtommy.model.*;
 import pl.devtommy.view.ViewFactory;
 
 import java.net.URL;
@@ -18,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class CityWeatherWindowController implements Initializable {
 
+    private int index;
     private int forecastDaysNumber;
     private static final int ZOOM_ICON_SIZE = 2;
     private final CityWeather cityWeather;
@@ -63,7 +63,8 @@ public class CityWeatherWindowController implements Initializable {
     @FXML
     private Label tempMinMaxLabel;
 
-    public CityWeatherWindowController(CityWeather cityWeather, int maxForecastDays) {
+    public CityWeatherWindowController(int index, CityWeather cityWeather, int maxForecastDays) {
+        this.index = index;
         this.cityWeather = cityWeather;
         this.forecastDaysNumber = maxForecastDays;
     }
@@ -80,6 +81,8 @@ public class CityWeatherWindowController implements Initializable {
         City newCity = cityWeather.getSelectedCity();
         if (newCity != null && city.getId() != newCity.getId()) {
             city = newCity;
+            Config.setCity(index, city);
+            Config.store();
             refreshWeather();
         }
     }
@@ -140,11 +143,16 @@ public class CityWeatherWindowController implements Initializable {
 
     private void updateWeatherImages() {
         String currentWeatherMainCondition = dayWeather.getMainCondition();
-        currentImageView.setImage(CityWeather.getWeatherImage(currentWeatherMainCondition));
+        currentImageView.setImage(loadImage(CityWeather.getWeatherImageName(currentWeatherMainCondition)));
+    }
+
+    private Image loadImage(String imageName) {
+        return new Image(this.getClass().getResourceAsStream( Paths.IMAGE_WEATHER_PARENT_PATH
+                + imageName));
     }
 
     private void updateWeatherView() {
-        dayWeather = cityWeather.getCurrentLeftCityWeather();
+        dayWeather = cityWeather.getCurrentCityWeather();
         cityLabel.setText(dayWeather.getName());
         countryLabel.setText(dayWeather.getCountry());
         currentTempLabel.setText( dayWeather.getTemp());
