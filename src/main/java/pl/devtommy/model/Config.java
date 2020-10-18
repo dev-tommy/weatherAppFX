@@ -27,9 +27,7 @@ public class Config {
             apiKey = prop.getProperty("api.key");
 
         } catch (IOException ex) {
-            System.err.println("OWM API key not found!");
             while(apiKey.length() != 32) {
-                System.err.println("API key must be 32 characters long!");
                 apiKey = ViewFactory.getApiDialog();
                 if (apiKey.isEmpty()) {
                     try {
@@ -37,7 +35,7 @@ public class Config {
                         prop.load(new FileInputStream(ViewFactory.getFileDialog()));
                         apiKey = prop.getProperty("api.key");
                     } catch (Exception e) {
-                        System.err.println("File error");
+                        System.err.println(Messages.FILE_ERROR_MESSAGE);
                         System.exit(1);
                     }
                     break;
