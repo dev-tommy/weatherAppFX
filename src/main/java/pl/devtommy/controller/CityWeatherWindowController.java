@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import pl.devtommy.model.CityWeather;
 import pl.devtommy.model.City;
+import pl.devtommy.model.Config;
 import pl.devtommy.model.DayWeather;
 import pl.devtommy.view.ViewFactory;
 
@@ -18,6 +19,7 @@ import java.util.ResourceBundle;
 
 public class CityWeatherWindowController implements Initializable {
 
+    private int index;
     private int forecastDaysNumber;
     private static final int ZOOM_ICON_SIZE = 2;
     private final CityWeather cityWeather;
@@ -63,7 +65,8 @@ public class CityWeatherWindowController implements Initializable {
     @FXML
     private Label tempMinMaxLabel;
 
-    public CityWeatherWindowController(CityWeather cityWeather, int maxForecastDays) {
+    public CityWeatherWindowController(int index, CityWeather cityWeather, int maxForecastDays) {
+        this.index = index;
         this.cityWeather = cityWeather;
         this.forecastDaysNumber = maxForecastDays;
     }
@@ -80,6 +83,8 @@ public class CityWeatherWindowController implements Initializable {
         City newCity = cityWeather.getSelectedCity();
         if (newCity != null && city.getId() != newCity.getId()) {
             city = newCity;
+            Config.setCity(index, city);
+            Config.store();
             refreshWeather();
         }
     }
