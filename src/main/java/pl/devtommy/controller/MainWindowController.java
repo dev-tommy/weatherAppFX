@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
 
-    private static final int CITIES_NUMBER = 2;
+    private static int citiesNumber = Config.getCitiesNumber();
     private static final int ZOOM_ICON_SIZE = 2;
     private City[] cities;
     private WeatherProvider weather;
