@@ -97,13 +97,11 @@ public class MainWindowController implements Initializable {
     }
 
     private City[] getCitiesLocation() {
-        City[] cities = new City[CITIES_NUMBER];
-        cities[0] = createExampleCity();
+        City[] cities = new City[citiesNumber];
+        for (int i = 0; i < cities.length; i++) {
+            cities[i] = Config.getCities()[i];
+        }
         return cities;
-    }
-
-    private City createExampleCity() {
-        return new City(7533329, "", "PL", new Coord(0.0, 0.0));
     }
 
     private void zoomIn(ImageView imageView, int size){
