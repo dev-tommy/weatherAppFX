@@ -29,6 +29,10 @@ public class Config {
         return cities;
     }
 
+    public static void setApiKey(String apiKey) {
+        Config.apiKey = apiKey;
+    }
+
     public static void setCity(int i, City city) {
         Config.cities[i] = city;
     }
