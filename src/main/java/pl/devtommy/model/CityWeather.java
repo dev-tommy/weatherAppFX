@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class CityWeather {
-    private static final String ICON_WEATHER_PARENT_PATH = "/pl/devtommy/icon/weather";
-    public static final String CITY_LIST_JSON_PATH = "/pl/devtommy/json/city.list.json";
     private WeatherProvider weatherProvider;
     private City city;
     private City selectedCity;
@@ -24,19 +22,19 @@ public class CityWeather {
     }
 
     private Map<String, Image> addPathsOfWeatherImages() {
-        weatherImages.put("Thunderstorm",  new Image(this.getClass().getResourceAsStream( ICON_WEATHER_PARENT_PATH +
+        weatherImages.put("Thunderstorm",  new Image(this.getClass().getResourceAsStream( Paths.IMAGE_WEATHER_PARENT_PATH +
                 "/storm_100px.png")));
-        weatherImages.put("Drizzle",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PARENT_PATH +
+        weatherImages.put("Drizzle",  new Image(this.getClass().getResourceAsStream(Paths.IMAGE_WEATHER_PARENT_PATH +
                 "/rain_100px.png")));
-        weatherImages.put("Rain",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PARENT_PATH +
+        weatherImages.put("Rain",  new Image(this.getClass().getResourceAsStream(Paths.IMAGE_WEATHER_PARENT_PATH +
                 "/rain_100px.png")));
-        weatherImages.put("Snow",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PARENT_PATH +
+        weatherImages.put("Snow",  new Image(this.getClass().getResourceAsStream(Paths.IMAGE_WEATHER_PARENT_PATH +
                 "/snow_100px.png")));
-        weatherImages.put("Clear",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PARENT_PATH +
+        weatherImages.put("Clear",  new Image(this.getClass().getResourceAsStream(Paths.IMAGE_WEATHER_PARENT_PATH +
                 "/sun_100px.png")));
-        weatherImages.put("Clouds",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PARENT_PATH +
+        weatherImages.put("Clouds",  new Image(this.getClass().getResourceAsStream(Paths.IMAGE_WEATHER_PARENT_PATH +
                 "/cloudy_day_100px.png")));
-        weatherImages.put("Other",  new Image(this.getClass().getResourceAsStream(ICON_WEATHER_PARENT_PATH +
+        weatherImages.put("Other",  new Image(this.getClass().getResourceAsStream(Paths.IMAGE_WEATHER_PARENT_PATH +
                 "/dust_52px.png")));
         return weatherImages;
     }
@@ -87,7 +85,7 @@ public class CityWeather {
     private City[] loadCityList(){
         Gson gson = new Gson();
         City[] cityList = new City[0];
-        cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream(CITY_LIST_JSON_PATH)), City[].class);
+        cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream(Paths.CITY_LIST_JSON_PATH)), City[].class);
         return cityList;
     }
 
