@@ -55,6 +55,16 @@ public class Config {
         input.close();
     }
 
+    private static Properties createProperties() {
+        Properties prop = new Properties();
+        prop.setProperty("owm.api.key", apiKey);
+        prop.setProperty("cities.number", String.valueOf(citiesNumber));
+        for (int i = 0; i < citiesNumber; i++) {
+            prop.setProperty("city." + i +".id", String.valueOf(cities[i].getId()));
+        }
+        return prop;
+    }
+
     private static Properties createDefaultProperties() {
         apiKey = ViewFactory.getApiDialog();
         Properties prop = new Properties();
