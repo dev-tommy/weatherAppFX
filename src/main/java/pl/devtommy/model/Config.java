@@ -40,6 +40,21 @@ public class Config {
         Config.cities[i] = city;
     }
 
+    private static void loadProperties(InputStream input) throws IOException {
+        Properties prop = new Properties();
+        prop.load(input);
+
+        apiKey = prop.getProperty("owm.api.key");
+        citiesNumber = Integer.parseInt(prop.getProperty("cities.number", String.valueOf(citiesNumber)));
+
+        cities = new City[citiesNumber];
+        for (int i = 0; i < citiesNumber; i++) {
+            int cityId = Integer.parseInt(prop.getProperty("city." + i + ".id", defaultCityId));
+            cities[i] = new City(cityId, "", "", new Coord(0.0, 0.0));
+        }
+        input.close();
+    }
+
     private static Properties createDefaultProperties() {
         apiKey = ViewFactory.getApiDialog();
         Properties prop = new Properties();
