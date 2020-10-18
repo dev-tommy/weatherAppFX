@@ -9,9 +9,9 @@ import pl.devtommy.model.weatherproviders.OWMProvider;
 import pl.devtommy.view.ViewFactory;
 
 public class Launcher extends Application {
-    public static Config config = new Config();
+    public static Config config = new Config(Paths.CONFIG_PROPERTIES_PATH);
+
     public static void main(String[] args) {
-        config.setPath(Paths.CONFIG_PROPERTIES_PATH);
         launch();
     }
 

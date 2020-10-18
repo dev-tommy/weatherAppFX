@@ -10,7 +10,7 @@ import java.util.Properties;
 public class Config {
     private static String configPath;
 
-    public void setPath(String configPath) {
+    public Config(String configPath) {
         this.configPath = configPath;
     }
 
