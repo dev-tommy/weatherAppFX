@@ -13,6 +13,7 @@ import javafx.stage.StageStyle;
 import pl.devtommy.model.CityWeather;
 import pl.devtommy.Launcher;
 import pl.devtommy.controller.*;
+import pl.devtommy.model.Config;
 import pl.devtommy.model.DayWeather;
 import pl.devtommy.model.WeatherProvider;
 
@@ -23,10 +24,12 @@ import java.util.Optional;
 public class ViewFactory {
     private WeatherProvider weatherProvider;
     private static Stage ownerStage;
+    private static Config config;
 
-    public ViewFactory(Stage stage, WeatherProvider weatherProvider) {
+    public ViewFactory(Stage stage, WeatherProvider weatherProvider, Config config) {
         this.weatherProvider = weatherProvider;
         this.ownerStage = stage;
+        this.config = config;
     }
 
     public void showMainWindow() {
