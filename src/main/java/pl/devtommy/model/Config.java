@@ -29,14 +29,6 @@ public class Config {
         return cities;
     }
 
-    public static void setCitiesNumber(int citiesNumber) {
-        Config.citiesNumber = citiesNumber;
-    }
-
-    public static void setCities(City[] cities) {
-        Config.cities = cities;
-    }
-
     public static void setCity(int i, City city) {
         Config.cities[i] = city;
     }
