@@ -61,23 +61,6 @@ public class ViewFactory {
         return getNode(controller, "ForecastDayWindow.fxml");
     }
 
-    public static File getFileDialog() {
-        File existDirectory;
-        try {
-            existDirectory = new File(ClassLoader.getSystemClassLoader().getResource(".").getPath());
-        } catch (Exception e) {
-            existDirectory = new File(System.getProperty("user.home"));
-        }
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Config File");
-        fileChooser.setInitialDirectory(existDirectory);
-        fileChooser.setInitialFileName("config.properties");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Config Files", "*.properties"));
-        File selectedFile = fileChooser.showOpenDialog(ownerStage);
-        return selectedFile;
-    }
-
     public static String getApiDialog() {
         String apiKey = "";
         TextInputDialog dialog = new TextInputDialog("...");

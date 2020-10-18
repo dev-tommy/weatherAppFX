@@ -37,16 +37,12 @@ public class Config {
         try (InputStream input = new FileInputStream(configPath)) {
             loadProperties(input);
         } catch (IOException ex) {
-            try (InputStream input = new FileInputStream(ViewFactory.getFileDialog())) {
+            saveProperties(createDefaultProperties());
+            try (InputStream input = new FileInputStream(configPath)) {
                 loadProperties(input);
-            } catch (Exception e) {
-                saveProperties(createDefaultProperties());
-                try (InputStream input = new FileInputStream(configPath)) {
-                    loadProperties(input);
-                } catch (Exception exc) {
-                    System.err.println(Messages.CREATE_PROPERTIES_FILE_ERROR_MESSAGE);
-                    System.exit(1);
-                }
+            } catch (Exception exc) {
+                System.err.println(Messages.CREATE_PROPERTIES_FILE_ERROR_MESSAGE);
+                System.exit(1);
             }
         }
     }
