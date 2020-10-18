@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -14,7 +13,6 @@ import pl.devtommy.model.*;
 import pl.devtommy.Launcher;
 import pl.devtommy.controller.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -64,9 +62,9 @@ public class ViewFactory {
     public static String getApiDialog() {
         String apiKey = "";
         TextInputDialog dialog = new TextInputDialog("");
-        dialog.setTitle("Get Weather Provider API key");
-        dialog.setHeaderText("File config.properties not found! The weather provider requires a valid API key to run!");
-        dialog.setContentText("Please enter API key:");
+        dialog.setTitle(Messages.GET_WEATHER_PROVIDER_API_KEY_MESSAGE);
+        dialog.setHeaderText(Messages.GET_API_HEADER_TEXT);
+        dialog.setContentText(Messages.PLEASE_ENTER_API_KEY_MESSAGE);
 
         while (apiKey.length() != 32) {
             Optional<String> result = dialog.showAndWait();
