@@ -3,12 +3,10 @@ package pl.devtommy.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import pl.devtommy.model.CityWeather;
-import pl.devtommy.model.City;
-import pl.devtommy.model.Config;
-import pl.devtommy.model.DayWeather;
+import pl.devtommy.model.*;
 import pl.devtommy.view.ViewFactory;
 
 import java.net.URL;
@@ -145,7 +143,12 @@ public class CityWeatherWindowController implements Initializable {
 
     private void updateWeatherImages() {
         String currentWeatherMainCondition = dayWeather.getMainCondition();
-        currentImageView.setImage(CityWeather.getWeatherImage(currentWeatherMainCondition));
+        currentImageView.setImage(loadImage(CityWeather.getWeatherImageName(currentWeatherMainCondition)));
+    }
+
+    private Image loadImage(String imageName) {
+        return new Image(this.getClass().getResourceAsStream( Paths.IMAGE_WEATHER_PARENT_PATH
+                + imageName));
     }
 
     private void updateWeatherView() {
