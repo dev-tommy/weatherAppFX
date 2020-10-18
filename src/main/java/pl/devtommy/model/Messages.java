@@ -1,4 +1,4 @@
-package pl.devtommy.controller;
+package pl.devtommy.model;
 
 public class Messages {
 

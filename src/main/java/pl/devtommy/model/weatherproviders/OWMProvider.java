@@ -6,7 +6,7 @@ import net.aksingh.owmjapis.model.CurrentWeather;
 import net.aksingh.owmjapis.model.HourlyWeatherForecast;
 import net.aksingh.owmjapis.model.param.WeatherData;
 import org.jetbrains.annotations.NotNull;
-import pl.devtommy.controller.Messages;
+import pl.devtommy.model.Messages;
 import pl.devtommy.model.City;
 import pl.devtommy.model.DayWeather;
 import pl.devtommy.model.WeatherProvider;
