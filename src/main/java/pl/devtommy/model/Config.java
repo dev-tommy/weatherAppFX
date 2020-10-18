@@ -2,9 +2,7 @@ package pl.devtommy.model;
 
 import pl.devtommy.view.ViewFactory;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class Config {
