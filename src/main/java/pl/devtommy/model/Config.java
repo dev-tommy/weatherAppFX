@@ -3,6 +3,7 @@ package pl.devtommy.model;
 import pl.devtommy.view.ViewFactory;
 
 import java.io.*;
+import java.util.Map;
 import java.util.Properties;
 
 public class Config {
@@ -11,6 +12,15 @@ public class Config {
     private static String configPath;
     private static String apiKey;
     private static City[] cities;
+    private static final Map<String, String> WEATHER_IMAGES_NAMES = Map.of(
+            "Thunderstorm", "storm_100px.png",
+            "Drizzle",  "rain_100px.png",
+            "Rain",  "rain_100px.png",
+            "Snow",  "snow_100px.png",
+            "Clear",  "sun_100px.png",
+            "Clouds",  "cloudy_day_100px.png",
+            "Other", "dust_52px.png"
+    );
 
     public Config(String configPath) {
         this.configPath = configPath;
@@ -27,6 +37,10 @@ public class Config {
 
     public static City[] getCities() {
         return cities;
+    }
+
+    public static String getWeatherImagesName(String weatherCondition) {
+        return WEATHER_IMAGES_NAMES.get(weatherCondition);
     }
 
     public static void setApiKey(String apiKey) {

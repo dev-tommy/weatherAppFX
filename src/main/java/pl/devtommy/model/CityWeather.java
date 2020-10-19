@@ -4,33 +4,21 @@ import com.google.gson.Gson;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CityWeather {
     private WeatherProvider weatherProvider;
     private City city;
     private City selectedCity;
     private City[] cityList;
-    private static Map<String, String> weatherImagesNames = new HashMap<>();
+
 
     public CityWeather(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
         cityList = loadCityList();
-        weatherImagesNames = addNamesOfWeatherImages();
     }
 
-    private Map<String, String> addNamesOfWeatherImages() {
-        weatherImagesNames.put("Thunderstorm", "storm_100px.png");
-        weatherImagesNames.put("Drizzle",  "rain_100px.png");
-        weatherImagesNames.put("Rain",  "rain_100px.png");
-        weatherImagesNames.put("Snow",  "snow_100px.png");
-        weatherImagesNames.put("Clear",  "sun_100px.png");
-        weatherImagesNames.put("Clouds",  "cloudy_day_100px.png");
-        weatherImagesNames.put("Other", "dust_52px.png");
-        return weatherImagesNames;
-    }
+
 
     public City getCityLocation() {
         if (city == null) {
@@ -43,11 +31,11 @@ public class CityWeather {
     }
 
     public static String getWeatherImageName(String mainWeatherCondition) {
-        String weatherConditionName = weatherImagesNames.get(mainWeatherCondition);
+        String weatherConditionName = Config.getWeatherImagesName(mainWeatherCondition);
         if (weatherConditionName != null) {
             return weatherConditionName;
         } else {
-            return weatherImagesNames.get("Other");
+            return Config.getWeatherImagesName("Other");
         }
     }
 
