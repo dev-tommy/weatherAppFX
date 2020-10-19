@@ -1,8 +1,5 @@
 package pl.devtommy.model;
 
-import com.google.gson.Gson;
-
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,15 +7,11 @@ public class CityWeather {
     private WeatherProvider weatherProvider;
     private City city;
     private City selectedCity;
-    private City[] cityList;
-
+    private static final City[] CITY_LIST = Config.getCityList();
 
     public CityWeather(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
-        cityList = loadCityList();
     }
-
-
 
     public City getCityLocation() {
         if (city == null) {
@@ -63,16 +56,9 @@ public class CityWeather {
         this.selectedCity = selectedCity;
     }
 
-    private City[] loadCityList(){
-        Gson gson = new Gson();
-        City[] cityList = new City[0];
-        cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream(Paths.CITY_LIST_JSON_PATH)), City[].class);
-        return cityList;
-    }
-
     public List<City> getCitiesContainsName(String cityName) {
         List<City> citiesContains = new ArrayList<>();
-        for (City city: cityList) {
+        for (City city: CITY_LIST) {
             if (city.getName().toLowerCase().equals(cityName.toLowerCase())) {
                 addToTopOfList(citiesContains, city);
             }

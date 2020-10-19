@@ -1,5 +1,6 @@
 package pl.devtommy.model;
 
+import com.google.gson.Gson;
 import pl.devtommy.view.ViewFactory;
 
 import java.io.*;
@@ -12,6 +13,7 @@ public class Config {
     private static String configPath;
     private static String apiKey;
     private static City[] cities;
+    private static City[] cityList;
     private static final Map<String, String> WEATHER_IMAGES_NAMES = Map.of(
             "Thunderstorm", "storm_100px.png",
             "Drizzle",  "rain_100px.png",
@@ -25,6 +27,7 @@ public class Config {
     public Config(String configPath) {
         this.configPath = configPath;
         load();
+        this.cityList = loadCityList();
     }
 
     public String getApiKey() {
@@ -41,6 +44,10 @@ public class Config {
 
     public static String getWeatherImagesName(String weatherCondition) {
         return WEATHER_IMAGES_NAMES.get(weatherCondition);
+    }
+
+    public static City[] getCityList() {
+        return cityList;
     }
 
     public static void setApiKey(String apiKey) {
@@ -120,5 +127,12 @@ public class Config {
         prop.setProperty("city.0.id", "7533329");
         prop.setProperty("city.1.id", "7533329");
         return prop;
+    }
+
+    private City[] loadCityList(){
+        Gson gson = new Gson();
+        City[] cityList = new City[0];
+        cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream(Paths.CITY_LIST_JSON_PATH)), City[].class);
+        return cityList;
     }
 }
