@@ -132,7 +132,13 @@ public class Config {
     private City[] loadCityList(){
         Gson gson = new Gson();
         City[] cityList = new City[0];
-        cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream(Paths.CITY_LIST_JSON_PATH)), City[].class);
+        try {
+            cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream(Paths.CITY_LIST_JSON_PATH)
+                    , "UTF-8"), City[].class);
+        } catch (UnsupportedEncodingException e) {
+            System.err.println(Messages.UNSUPPORTED_ENCODING_EXCEPTION_MESSAGE);
+            System.exit(1);
+        }
         return cityList;
     }
 }
