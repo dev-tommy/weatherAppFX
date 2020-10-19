@@ -12,4 +12,5 @@ public class Messages {
     public static final String GET_API_HEADER_TEXT = "The weather provider requires a valid API key to run!";
     public static final String PLEASE_ENTER_API_KEY_MESSAGE = "Please enter API key:";
     public static final String GET_WEATHER_PROVIDER_API_KEY_MESSAGE = "Get Weather Provider API key";
+    public static final String UNSUPPORTED_ENCODING_EXCEPTION_MESSAGE = "Unsupported encoding exception";
 }
