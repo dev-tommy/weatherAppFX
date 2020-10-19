@@ -15,11 +15,14 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ResourceBundle;
 
+import static pl.devtommy.controller.MainWindowController.zoomIn;
+import static pl.devtommy.controller.MainWindowController.zoomOut;
+
 public class CityWeatherWindowController implements Initializable {
 
     private int index;
     private int forecastDaysNumber;
-    private static final int ZOOM_ICON_SIZE = 2;
+    private static final int ZOOM_ICON_SIZE = MainWindowController.ZOOM_ICON_SIZE;
     private final CityWeather cityWeather;
     private City city;
     private DayWeather dayWeather;
@@ -172,19 +175,4 @@ public class CityWeatherWindowController implements Initializable {
             forecastHBox.getChildren().add(ViewFactory.addForecastDay(forecastDay));
         }
     }
-
-    private void zoomIn(ImageView imageView, int size){
-        imageView.setFitWidth(imageView.getFitWidth()+2*size);
-        imageView.setFitHeight(imageView.getFitHeight()+2*size);
-        imageView.setLayoutX(imageView.getLayoutX()-size);
-        imageView.setLayoutY(imageView.getLayoutY()-size);
-    }
-
-    private void zoomOut(ImageView imageView, int size){
-        imageView.setFitWidth(imageView.getFitWidth()-2*size);
-        imageView.setFitHeight(imageView.getFitHeight()-2*size);
-        imageView.setLayoutX(imageView.getLayoutX()+size);
-        imageView.setLayoutY(imageView.getLayoutY()+size);
-    }
-
 }

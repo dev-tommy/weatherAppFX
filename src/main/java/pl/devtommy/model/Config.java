@@ -1,20 +1,33 @@
 package pl.devtommy.model;
 
+import com.google.gson.Gson;
 import pl.devtommy.view.ViewFactory;
 
 import java.io.*;
+import java.util.Map;
 import java.util.Properties;
 
 public class Config {
     private static int citiesNumber = 2;
-    private static String defaultCityId = "251280";
+    private static final String DEFAULT_CITY_ID = "251280";
     private static String configPath;
     private static String apiKey;
     private static City[] cities;
+    private static City[] cityList;
+    private static final Map<String, String> WEATHER_IMAGES_NAMES = Map.of(
+            "Thunderstorm", "storm_100px.png",
+            "Drizzle",  "rain_100px.png",
+            "Rain",  "rain_100px.png",
+            "Snow",  "snow_100px.png",
+            "Clear",  "sun_100px.png",
+            "Clouds",  "cloudy_day_100px.png",
+            "Other", "dust_52px.png"
+    );
 
     public Config(String configPath) {
         this.configPath = configPath;
         load();
+        this.cityList = loadCityList();
     }
 
     public String getApiKey() {
@@ -27,6 +40,14 @@ public class Config {
 
     public static City[] getCities() {
         return cities;
+    }
+
+    public static String getWeatherImagesName(String weatherCondition) {
+        return WEATHER_IMAGES_NAMES.get(weatherCondition);
+    }
+
+    public static City[] getCityList() {
+        return cityList;
     }
 
     public static void setApiKey(String apiKey) {
@@ -64,7 +85,7 @@ public class Config {
 
         cities = new City[citiesNumber];
         for (int i = 0; i < citiesNumber; i++) {
-            int cityId = Integer.parseInt(prop.getProperty("city." + i + ".id", defaultCityId));
+            int cityId = Integer.parseInt(prop.getProperty("city." + i + ".id", DEFAULT_CITY_ID));
             cities[i] = new City(cityId, "", "", new Coord(0.0, 0.0));
         }
         input.close();
@@ -106,5 +127,12 @@ public class Config {
         prop.setProperty("city.0.id", "7533329");
         prop.setProperty("city.1.id", "7533329");
         return prop;
+    }
+
+    private City[] loadCityList(){
+        Gson gson = new Gson();
+        City[] cityList = new City[0];
+        cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream(Paths.CITY_LIST_JSON_PATH)), City[].class);
+        return cityList;
     }
 }

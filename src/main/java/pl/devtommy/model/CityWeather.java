@@ -1,35 +1,16 @@
 package pl.devtommy.model;
 
-import com.google.gson.Gson;
-
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CityWeather {
     private WeatherProvider weatherProvider;
     private City city;
     private City selectedCity;
-    private City[] cityList;
-    private static Map<String, String> weatherImagesNames = new HashMap<>();
+    private static final City[] CITY_LIST = Config.getCityList();
 
     public CityWeather(WeatherProvider weatherProvider) {
         this.weatherProvider = weatherProvider;
-        cityList = loadCityList();
-        weatherImagesNames = addNamesOfWeatherImages();
-    }
-
-    private Map<String, String> addNamesOfWeatherImages() {
-        weatherImagesNames.put("Thunderstorm", "storm_100px.png");
-        weatherImagesNames.put("Drizzle",  "rain_100px.png");
-        weatherImagesNames.put("Rain",  "rain_100px.png");
-        weatherImagesNames.put("Snow",  "snow_100px.png");
-        weatherImagesNames.put("Clear",  "sun_100px.png");
-        weatherImagesNames.put("Clouds",  "cloudy_day_100px.png");
-        weatherImagesNames.put("Other", "dust_52px.png");
-        return weatherImagesNames;
     }
 
     public City getCityLocation() {
@@ -43,11 +24,11 @@ public class CityWeather {
     }
 
     public static String getWeatherImageName(String mainWeatherCondition) {
-        String weatherConditionName = weatherImagesNames.get(mainWeatherCondition);
+        String weatherConditionName = Config.getWeatherImagesName(mainWeatherCondition);
         if (weatherConditionName != null) {
             return weatherConditionName;
         } else {
-            return weatherImagesNames.get("Other");
+            return Config.getWeatherImagesName("Other");
         }
     }
 
@@ -75,16 +56,9 @@ public class CityWeather {
         this.selectedCity = selectedCity;
     }
 
-    private City[] loadCityList(){
-        Gson gson = new Gson();
-        City[] cityList = new City[0];
-        cityList = gson.fromJson(new InputStreamReader(this.getClass().getResourceAsStream(Paths.CITY_LIST_JSON_PATH)), City[].class);
-        return cityList;
-    }
-
     public List<City> getCitiesContainsName(String cityName) {
         List<City> citiesContains = new ArrayList<>();
-        for (City city: cityList) {
+        for (City city: CITY_LIST) {
             if (city.getName().toLowerCase().equals(cityName.toLowerCase())) {
                 addToTopOfList(citiesContains, city);
             }
