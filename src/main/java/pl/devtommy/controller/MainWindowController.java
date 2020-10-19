@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class MainWindowController implements Initializable {
 
     private static int citiesNumber = Config.getCitiesNumber();
-    private static final int ZOOM_ICON_SIZE = 2;
+    static final int ZOOM_ICON_SIZE = 2;
     private City[] cities;
     private WeatherProvider weather;
     private double xMainWindowOffset;
@@ -104,14 +104,14 @@ public class MainWindowController implements Initializable {
         return cities;
     }
 
-    private void zoomIn(ImageView imageView, int size){
+    static void zoomIn(ImageView imageView, int size){
         imageView.setFitWidth(imageView.getFitWidth()+2*size);
         imageView.setFitHeight(imageView.getFitHeight()+2*size);
         imageView.setLayoutX(imageView.getLayoutX()-size);
         imageView.setLayoutY(imageView.getLayoutY()-size);
     }
 
-    private void zoomOut(ImageView imageView, int size){
+    static void zoomOut(ImageView imageView, int size){
         imageView.setFitWidth(imageView.getFitWidth()-2*size);
         imageView.setFitHeight(imageView.getFitHeight()-2*size);
         imageView.setLayoutX(imageView.getLayoutX()+size);
