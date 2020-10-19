@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class Config {
     private static int citiesNumber = 2;
-    private static String defaultCityId = "251280";
+    private static final String DEFAULT_CITY_ID = "251280";
     private static String configPath;
     private static String apiKey;
     private static City[] cities;
@@ -78,7 +78,7 @@ public class Config {
 
         cities = new City[citiesNumber];
         for (int i = 0; i < citiesNumber; i++) {
-            int cityId = Integer.parseInt(prop.getProperty("city." + i + ".id", defaultCityId));
+            int cityId = Integer.parseInt(prop.getProperty("city." + i + ".id", DEFAULT_CITY_ID));
             cities[i] = new City(cityId, "", "", new Coord(0.0, 0.0));
         }
         input.close();
