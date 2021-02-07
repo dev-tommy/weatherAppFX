@@ -137,7 +137,7 @@ public class OWMProvider implements WeatherProvider {
     }
 
     private DayWeather[] createForecastWeather(HourlyWeatherForecast hourlyWeatherForecast) {
-        int hourOfWeatherToShow = 14;
+        int hourOfWeatherToShow = 13;
         DayWeather[] fiveDaysForecastWeather = new DayWeather[5];
         LocalDateTime today = LocalDate.now().atTime(23,59,59);
 
@@ -146,7 +146,7 @@ public class OWMProvider implements WeatherProvider {
             LocalDateTime hourlyWeatherDate =
                     convertDateToLocalDateTime(hourlyWeatherForecast.getDataList().get(i).getDateTime());
             int hourOfHourlyWeather = hourlyWeatherDate.getHour();
-            if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == hourOfWeatherToShow)) {
+            if ((hourlyWeatherDate.isAfter(today)) && (hourOfHourlyWeather == hourOfWeatherToShow || hourOfHourlyWeather == (hourOfWeatherToShow+1))) {
                 fiveDaysForecastWeather[j++] = createDayWeather(hourlyWeatherForecast.getDataList().get(i));
             }
         }
